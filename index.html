@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>商品教程中心</title>
+  <meta name="description" content="每个商品都对应一份图文教程，点击即可查看。" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/rental-theme.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开商品列表">☰</button>
+
+      <div class="brand" aria-label="商品教程中心">
+        <span class="brand-logo">📘</span>
+        <span class="brand-text">商品教程中心</span>
+      </div>
+
+      <label class="search">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="search" placeholder="搜索商品或教程关键词…" autocomplete="off" />
+      </label>
+
+      <button class="icon-btn" id="themeToggle" aria-label="切换深浅主题">🌙</button>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <span class="sidebar-title">全部商品</span>
+        <span class="badge" id="resultCount">0</span>
+      </div>
+      <div class="category-bar" id="categoryBar"></div>
+      <div class="card-list" id="cardList"></div>
+    </aside>
+
+    <main class="content" id="content">
+      <section class="home" id="home" hidden>
+        <div class="home-hero">
+          <span class="home-kicker" id="homeKicker">武汉租相机</span>
+          <h1 class="home-title" id="homeTitle">相机使用教程</h1>
+          <p class="home-subtitle" id="homeSubtitle">选择下方目录，快速查看对应设备的使用教程</p>
+        </div>
+        <div class="home-services" id="homeServices"></div>
+        <div class="home-grid" id="homeGrid"></div>
+      </section>
+
+      <div class="empty" id="empty">
+        <div class="empty-icon">📦</div>
+        <h2>请选择一个商品</h2>
+        <p>在左侧列表中点击任意商品，即可查看对应教程</p>
+      </div>
+      <article class="detail" id="detail" hidden></article>
+    </main>
+
+  </div>
+
+  <div class="mask" id="mask"></div>
+  <div class="toast" id="toast"></div>
+  <button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+网站最终版本恢复说明
+
+1. 解压 
+hbkmjweb-final-backup_2026-09-16_14-13-40.zip
+。
+2. 将解压后的 index.html、css、js、images、assets、videos 放回同一个网站文件夹。
+3. 不要只复制 index.html，CSS、JS 和 images 也需要一起复制。
+4. 本备份已包含最终清理和修复后的网站代码。
+5. 
+hbkmjweb-final-manifest_2026-09-16_14-13-40.txt
+ 可用于核对每个文件的大小和 SHA256。
+
+源目录：C:\Users\adminu\Desktop\hbkmjweb - 副本 (2)
+备份文件：
+C:\Users\adminu\Desktop\hbkmjweb - 副本 (2)\backups\hbkmjweb-final-backup_2026-09-16_14-13-40.zip
+备份时间：
+2026-09-16 14:13:41
+备份 SHA256：
+216E8846E345A1C97E80479CBCB5D2BFF83CD7827422C2DDE047A23CE2EEE7D7
