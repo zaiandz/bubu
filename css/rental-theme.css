@@ -1,6 +1,6 @@
 /* ============================================================
  * 相机租赁主题覆盖层
- * 只覆盖 UI 与布局，不修改任何教程内容、目录名称或数据结构
+ * 仅覆盖 UI 与布局，不修改任何教程内容、目录名称或数据结构
  * 原始基础样式仍保留在 style.css 中
  * ============================================================ */
 
@@ -80,7 +80,7 @@ body {
 .search:focus-within { box-shadow: 0 0 0 4px var(--primary-soft); }
 .scroll-progress { background: linear-gradient(90deg, var(--primary), var(--primary-2), #1f7770); }
 
-/* [主体] 更宽的租赁服务工作区 */
+/* [主体] 租赁服务工作区 */
 .layout {
   max-width: 1380px;
   gap: 28px;
@@ -145,7 +145,7 @@ body {
   border-radius: 9px;
 }
 .cat-parent-row .cat-parent.active {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  background: var(--primary);
 }
 .cat-group.open .cat-parent-row {
   background: color-mix(in srgb, var(--primary) 5%, var(--surface));
@@ -196,9 +196,9 @@ body {
 }
 .home-hero::after { display: none; }
 .home-kicker {
-  color: #ffd8bd;
-  background: rgba(232, 93, 34, .18);
-  border-color: rgba(255, 160, 98, .36);
+  color: #f2c7ad;
+  background: rgba(198, 91, 47, .18);
+  border-color: rgba(198, 91, 47, .32);
 }
 .home-title { max-width: 720px; font-size: 32px; }
 .home-subtitle { max-width: 650px; color: rgba(255,255,255,.72); }
@@ -355,6 +355,7 @@ body {
 }
 .step-icon { background: var(--primary-soft); }
 
+/* [教程] 内容块 */
 .detail .fig {
   padding: 8px;
   background: #fff;
@@ -365,7 +366,6 @@ body {
   margin: 0 auto;
   border-radius: 8px;
 }
-/* [教程] 内容块 */
 .note-tip {
   background: color-mix(in srgb, #1f7770 8%, var(--surface));
   border-color: color-mix(in srgb, #1f7770 24%, var(--border));
@@ -397,7 +397,7 @@ body {
   box-shadow: 0 14px 30px -12px var(--primary);
 }
 
-/* [响应式] 相机租赁主题移动端 */
+/* [响应式] */
 @media (max-width: 1080px) {
   .home-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -420,4 +420,107 @@ body {
   .home-sub-btn { padding: 5px 8px; }
   .detail-hero { padding: 23px 20px; }
   .hero-text h1 { font-size: 21px; }
+}
+/* [图标] 主目录对应的原创 SVG 图标 */
+.cat-parent {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cat-parent-icon-wrap {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 21px;
+  display: inline-grid;
+  place-items: center;
+}
+
+.cat-parent-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.cat-parent-icon-img,
+.home-card-icon-image,
+.card-group-icon-img {
+  display: block;
+  object-fit: contain;
+}
+
+.cat-parent-icon-img {
+  width: 21px;
+  height: 21px;
+}
+
+.cat-parent.active .cat-parent-icon-img {
+  filter: brightness(0) invert(1);
+}
+
+.home-card-icon-image {
+  width: 40px;
+  height: 40px;
+}
+
+.card-group-icon-img {
+  width: 32px;
+  height: 32px;
+}
+
+.home-card-art .home-card-icon-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+/* [图标] 子目录对应的原创 SVG 图标 */
+.card-icon-img {
+  width: 34px;
+  height: 34px;
+  display: block;
+  object-fit: contain;
+}
+
+.hero-icon-img {
+  width: 52px;
+  height: 52px;
+  display: block;
+  object-fit: contain;
+}
+
+.home-sub-btn,
+.cat-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.home-sub-icon-img,
+.cat-child-icon-img,
+.home-sub-icon,
+.cat-child-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+
+.home-sub-icon-img,
+.cat-child-icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.home-sub-icon,
+.cat-child-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+@media (max-width: 820px) {
+  .hero-icon-img {
+    width: 44px;
+    height: 44px;
+  }
 }

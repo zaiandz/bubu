@@ -6,30 +6,29 @@
  * 结构说明：
  *   SITE_CONFIG -> 站点名称、Logo、搜索框提示文字
  *   CATEGORIES  -> 主类目与子类目（children 就是子类目）
- *   PRODUCTS    -> 主类教程模板
+ *   PRODUCTS    -> 主类公共信息（名称、图标、颜色、标签、关键词）
  *   SUBCATEGORY_CONTENT -> 每个子类目的独立教程正文
  *
  * 注释标签：
- *   [配置] 网站配置    [分类] 目录结构    [模板] 主类模板
- *   [子目录内容] 可单独修改的教程内容    [预留内容] 当前未引用但保留的内容
+ *   [配置] 网站配置    [分类] 目录结构
+ *   [主类信息] 主类公共字段    [子目录内容] 可单独修改的教程内容
  *
  * 子类目维护规则：
  *   1. 在对应主类的 children 数组中增删对象，即可新增或删除子类目。
- *   2. 删除整个主类对象即可删除该主类，其教程模板不会残留在“全部”中。
- *   3. 主类 icon 用于下方大目录；子类目会自动继承 PRODUCTS 中相同 category 的 desc、keywords、steps。
+ *   2. 删除整个主类对象即可删除该主类，对应教程不会残留在“全部”中。
+ *   3. PRODUCTS 只提供主类公共信息；完整教程正文放在 SUBCATEGORY_CONTENT 中。
  *   4. id 建议使用唯一英文；label 是页面显示名称；icon 可选。
- *   5. 如需让某个子类使用不同说明，可在该子类中单独填写 desc、keywords、steps。
+ *   5. 如某个子类直接填写 desc、keywords、steps，则该子类优先使用自身内容。
  *
  * body 数组支持的内容块类型：
  *   { type:"p",     text:"段落，支持 **加粗** 和 `代码`" }
  *   { type:"list",  items:["无序列表项"] }
  *   { type:"olist", items:["有序列表项"] }
- *   { type:"tip",   text:"蓝色提示框" }
- *   { type:"warn",  text:"黄色警告框" }
+ *   { type:"tip",   text:"提示框" }
+ *   { type:"warn",  text:"警告框" }
  *   { type:"code",  lang:"bash", text:"代码内容" }
  *   { type:"img",   src:"图片地址", alt:"替代文字", caption:"图注" }
-
-
+ *   { type:"video", src:"视频地址", caption:"视频说明" }
  *   { type:"table", head:["列1","列2"], rows:[["值1","值2"]] }
  * ============================================================ */
 
@@ -71,10 +70,11 @@ const CATEGORIES = [
     label: "手持云台相机",
     homeDesc: "稳定跟拍，适合 Vlog 和日常记录",
     icon: "🎥",
+    iconImage: "images/category-icons/gimbal-camera.svg",
     children: [
-      { id: "gimbal-phone",  value: "大疆pocket3标准版",   label: "大疆pocket3标准版",   icon: "📱" },
-      { id: "gimbal-one",  value: "大疆pocket3长续航版",   label: "大疆pocket3长续航版",   icon: "📱" },
-      { id: "gimbal-two",  value: "大疆pocket3全能版",   label: "大疆pocket3全能版",   icon: "📱" },
+      { id: "gimbal-phone",  value: "大疆pocket3标准版",   label: "大疆pocket3标准版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-standard.svg" },
+      { id: "gimbal-one",  value: "大疆pocket3长续航版",   label: "大疆pocket3长续航版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-long-battery.svg" },
+      { id: "gimbal-two",  value: "大疆pocket3全能版",   label: "大疆pocket3全能版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-creator.svg" },
     ]
   },
   {
@@ -82,12 +82,25 @@ const CATEGORIES = [
     label: "运动相机",
     homeDesc: "户外运动，防水防抖记录精彩瞬间",
     icon: "🎿",
+    iconImage: "images/category-icons/action-camera.svg",
     children: [
-      { id: "action-standard", value: "影石ACEPro2",       label: "影石ACEpro2",       icon: "🎿" },
-      { id: "action-street", value: "影石ACEPro2街拍套装",       label: "影石ACEpro2街拍套装",       icon: "🎿" },
-      { id: "action-neck", value: "影石ACEPro2挂脖套装",       label: "影石ACEpro2挂脖套装",       icon: "🎿" },
-      { id: "action-vlog", value: "影石ACEPro2手持vlog套装",       label: "影石ACEpro2手持vlog套装",       icon: "🎿" },
+      { id: "action-standard", value: "影石ACEPro2",       label: "影石ACEpro2",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-standard.svg" },
+      { id: "action-street", value: "影石ACEPro2街拍套装",       label: "影石ACEpro2街拍套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-street.svg" },
+      { id: "action-neck", value: "影石ACEPro2挂脖套装",       label: "影石ACEpro2挂脖套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-neck.svg" },
+      { id: "action-vlog", value: "影石ACEPro2手持vlog套装",       label: "影石ACEpro2手持vlog套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-vlog.svg" },
 
+    ]
+  },
+  {
+    value: "全景相机",
+    label: "全景相机",
+    homeDesc: "360°全景记录，适合旅行、运动和创意拍摄",
+    icon: "🌐",
+    iconImage: "images/category-icons/panorama-camera.svg",
+    children: [
+      { id: "insta360-x6-standard", value: "影石Insta360 X6标准版", label: "影石Insta360 X6标准版", icon: "🌐", iconImage: "images/category-icons/children/x6-standard.svg" },
+      { id: "insta360-x6-allround", value: "影石Insta360 X6全能版", label: "影石Insta360 X6全能版", icon: "🎒", iconImage: "images/category-icons/children/x6-allround.svg" },
+      { id: "insta360-x6-travel", value: "影石Insta360 X6旅拍套装", label: "影石Insta360 X6旅拍套装", icon: "✈️", iconImage: "images/category-icons/children/x6-travel.svg" }
     ]
   },
   {
@@ -95,11 +108,12 @@ const CATEGORIES = [
     label: "微单相机",
     homeDesc: "高清画质，适合人像、旅行和专业拍摄",
     icon: "📷",
+    iconImage: "images/category-icons/mirrorless-camera.svg",
     children: [
-      { id: "mirrorless-entry", value: "佳能微单+18-45mm入门套镜头", label: "佳能微单+18-45mm入门套镜头", icon: "🎬" },
-      { id: "mirrorless-plus",  value: "佳能微单+18-150mm风光变焦镜头", label: "佳能微单+18-150mm风光变焦镜头", icon: "📷" },
-      { id: "mirrorless-pro",   value: "佳能微单+F1.8人像大光圈镜头", label: "佳能微单+F1.8人像大光圈镜头", icon: "🎞️" },
-      { id: "mirrorless-one",   value: "佳能微单+超远摄100-400mm", label: "佳能微单+超远摄100-400mm", icon: "🔍" }
+      { id: "mirrorless-entry", value: "佳能微单+18-45mm入门套镜头", label: "佳能微单+18-45mm入门套镜头", icon: "🎬", iconImage: "images/category-icons/children/mirrorless-18-45.svg" },
+      { id: "mirrorless-plus",  value: "佳能微单+18-150mm风光变焦镜头", label: "佳能微单+18-150mm风光变焦镜头", icon: "📷", iconImage: "images/category-icons/children/mirrorless-18-150.svg" },
+      { id: "mirrorless-pro",   value: "佳能微单+F1.8人像大光圈镜头", label: "佳能微单+F1.8人像大光圈镜头", icon: "🎞️", iconImage: "images/category-icons/children/mirrorless-f18.svg" },
+      { id: "mirrorless-one",   value: "佳能微单+超远摄100-400mm", label: "佳能微单+超远摄100-400mm", icon: "🔍", iconImage: "images/category-icons/children/mirrorless-100-400.svg" }
     ]
   },
   {
@@ -107,9 +121,21 @@ const CATEGORIES = [
     label: "卡片相机",
     homeDesc: "轻巧便携，旅行和日常随手拍",
     icon: "📸",
+    iconImage: "images/category-icons/compact-camera.svg",
     children: [
-      { id: "compact-entry", value: "佳能卡片相机标准版", label: "佳能卡片相机标准版", icon: "📸" },
-      { id: "compact-vlog",  value: "佳能无线蓝牙自拍杆版", label: "佳能无线蓝牙自拍杆版", icon: "🎥" },
+      { id: "compact-entry", value: "佳能卡片相机标准版", label: "佳能卡片相机标准版", icon: "📸", iconImage: "images/category-icons/children/compact-standard.svg" },
+      { id: "compact-vlog",  value: "佳能无线蓝牙自拍杆版", label: "佳能无线蓝牙自拍杆版", icon: "🎥", iconImage: "images/category-icons/children/compact-selfie.svg" },
+    ]
+  },
+  {
+    value: "CCD相机",
+    label: "CCD相机",
+    homeDesc: "复古CCD画质，适合日常、旅行和氛围感照片",
+    icon: "📻",
+    iconImage: "images/category-icons/ccd-camera.svg",
+    children: [
+      { id: "canon-ixus-210", value: "佳能IXU210复古CCD相机", label: "佳能IXU210复古CCD相机", icon: "📸", iconImage: "images/category-icons/children/ccd-210.svg" },
+      { id: "canon-ixus-130", value: "佳能IXU130复古CCD相机", label: "佳能IXU130复古CCD相机", icon: "📷", iconImage: "images/category-icons/children/ccd-130.svg" }
     ]
   },
   {
@@ -117,9 +143,10 @@ const CATEGORIES = [
     label: "落地三脚架",
     homeDesc: "稳定支撑，直播和拍摄更省心",
     icon: "🔭",
+    iconImage: "images/category-icons/tripod.svg",
     children: [
-      { id: "tripod-live",  value: "富宝图FY-830-MH-4A液压云台标准版",   label: "富宝图FY-830-MH-4A液压云台标准版",   icon: "📱" },
-      { id: "tripod-cam",   value: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   label: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   icon: "📷" },
+      { id: "tripod-live",  value: "富宝图FY-830-MH-4A液压云台标准版",   label: "富宝图FY-830-MH-4A液压云台标准版",   icon: "📱", iconImage: "images/category-icons/children/tripod-hydraulic.svg" },
+      { id: "tripod-cam",   value: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   label: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   icon: "📷", iconImage: "images/category-icons/children/tripod-accessories.svg" },
     ]
   },
   {
@@ -127,92 +154,29 @@ const CATEGORIES = [
     label: "内存卡数据找回",
     homeDesc: "素材误删，尝试找回重要照片和视频",
     icon: "💾",
+    iconImage: "images/category-icons/memory-recovery.svg",
     children: [
-      { id: "recovery-sd",   value: "SD 卡",       label: "SD 卡",       icon: "💾" },
-      { id: "recovery-tf",   value: "TF 卡",       label: "TF 卡",       icon: "📱" },
+      { id: "recovery-sd",   value: "SD 卡",       label: "SD 卡",       icon: "💾", iconImage: "images/category-icons/children/recovery-sd.svg" },
+      { id: "recovery-tf",   value: "TF 卡",       label: "TF 卡",       icon: "📱", iconImage: "images/category-icons/children/recovery-tf.svg" },
     ]
   }
 ];
 
-/* ---------- 商品 + 教程数据 ---------- */
+/* ---------- 主类公共信息模板 ----------
+ * PRODUCTS 只保留主类名称、图标、颜色和搜索关键词等公共信息。
+ * 每个子目录的完整教程正文统一放在下方 SUBCATEGORY_CONTENT 中，便于单独修改。
+ */
 const PRODUCTS = [
-
-  /* ===== 商品 1：手持云台相机 X1 ===== */
   {
     id: "sp-x1",
     name: "手持云台相机",
-    icon: "🎈",
+    icon: "🎥",
     category: "手持云台相机",
     tag: "热门",
     color: "#6366f1",
     desc: "手持云台系列简易说明教程",
-    keywords: "音箱 语音 蓝牙 wifi 配网 小智",
-    steps: [
-      {
-        title: "开箱与配件确认",
-        icon: "📦",
-        body: [
-          { type: "p", text: "打开包装后，请先核对以下配件是否齐全。如缺少相机相关配件或者无法使用的情况请及时联系售后客服，以防耽误您的使用时间。"},
-          { type: "list", items: ["因选购版本不同，相机配件也不同", "相机主机x1", "官方保护壳x1", "收纳包x1","128G内存卡x1","手绳x1","收纳包x1","USB读卡器x1",
-            "长续航版本在原标准版寄出增加" ,"原厂续航手柄x1","全能套装在原标准版寄出上增加"," 原厂续航手柄x1","迷你三脚架x1","DJI Mic2发射器","Osmo pocket3增广镜","DJI Mic2防风毛套","DJI Mic2磁吸背夹"
-          ] },
-          { type: "tip", text: "因为手持云台较为脆弱，请您在使用过程中爱护相机，请勿磕碰、严重划痕、丢失相机等 如有货损或丢失需要进行赔付。" }
-        ]
-      },
-      {
-        title: "相机首次开机使用说明",
-        icon: "📶",
-        body: [
-          { type: "p", text: "相机收到后如无法开机可将相机连接充电线进行充电" },
-          { type: "olist", items: [
-            "相机正面（有显示屏的页面）轻推屏幕向左旋转",
-            "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-            "相机正面有摇杆，摇杆往上相加画面也会同步往上，同理摇杆往下画面也会往下",
-            "如您需要相机画面放大可在相机开机后点击屏幕右侧有放大和方向按钮，点击切换后使用摇杆往上即为放大画面，往下即为缩小画面",
-            "摇杆右侧为《开始录制按钮——停止录制按钮》点击后相机会开始录制，录制完成之后再次点击即可结束录制"
-          ] },
-          { type: "warn", text: "如您开机后相机出现使用异常或其他情况请第一时间联系客服售后进行处理" }
-        ]
-      },
-      {
-        title: "常用语音指令",
-        icon: "🎙️",
-        body: [
-          { type: "p", text: "唤醒词默认为「你好，小智」，可在 App 中修改。常用指令如下：" },
-          { type: "table",
-            head: ["功能", "示例指令"],
-            rows: [
-              ["播放音乐", "你好小智，播放周杰伦的歌"],
-              ["控制灯光", "你好小智，打开客厅的灯"],
-              ["查询天气", "你好小智，今天天气怎么样"],
-              ["设定闹钟", "你好小智，明早七点叫我起床"]
-            ]
-          }
-        ]
-      },
-      {
-        title: "常见问题排查",
-        icon: "🛠️",
-        body: [
-          { type: "p", text: "如果音箱无响应，可以按顺序尝试以下操作：" },
-          { type: "olist", items: [
-            "检查电源是否插紧，指示灯是否亮起。",
-            "长按电源键 10 秒强制重启。",
-            "在 App 中删除设备后重新配网。",
-            "仍无法解决时，联系官方客服并提供设备 SN 码。"
-          ] },
-          { type: "code", lang: "bash", text: "# 查看设备 SN 码（位于机身底部标签）\nSN: X1-2024-XXXX-XXXX" }
-        ]
-      },
-      
-    ]
+    keywords: "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出"
   },
-
-
-
-
-
-  /* ===== 商品 2：运动相机 Pro ===== */
   {
     id: "hp-pro",
     name: "运动相机",
@@ -221,154 +185,28 @@ const PRODUCTS = [
     tag: "",
     color: "#0ea5e9",
     desc: "运动相机系列简易使用说明教程",
-    keywords: "耳机 降噪 蓝牙 续航 充电",
-    steps: [
-      {
-        title: "蓝牙配对与连接",
-        icon: "🔗",
-        body: [
-          { type: "olist", items: [
-            "将耳机从充电盒中取出，耳机自动进入配对状态（指示灯白蓝交替闪烁）。",
-            "打开手机「设置 → 蓝牙」，在列表中找到「HP Pro」并点击连接。",
-            "首次连接成功后，后续开盖即可自动回连。"
-          ] },
-          { type: "tip", text: "如果列表中找不到设备，请将耳机放回充电盒，长按盒内按键 3 秒重置后重试。" }
-        ]
-      },
-      {
-        title: "降噪 / 通透模式切换",
-        icon: "🔇",
-        body: [
-          { type: "p", text: "轻捏耳机柄 **1 次** 可在「主动降噪」与「通透模式」之间切换，长捏 2 秒进入「关闭降噪」。" },
-          { type: "table",
-            head: ["模式", "适用场景"],
-            rows: [
-              ["主动降噪", "地铁、飞机、嘈杂办公室"],
-              ["通透模式", "与人交谈、过马路、听报站"],
-              ["关闭降噪", "安静室内，延长续航"]
-            ]
-          },
-          { type: "warn", text: "骑行或驾驶时请勿使用主动降噪模式，注意交通安全。" }
-        ]
-      },
-      {
-        title: "充电与续航说明",
-        icon: "🔋",
-        body: [
-          { type: "list", items: ["单耳续航：约 8 小时（关闭降噪）", "配合充电盒：约 32 小时", "快充 10 分钟：可用约 3 小时"] },
-          { type: "p", text: "请使用 **5V/1A** 及以上的充电头，避免使用快充协议不兼容的充电器。" }
-        ]
-      }
-    ]
+    keywords: "影石 Ace Pro 2 运动相机 防水 防抖 拍照 录像 内存卡 导出"
   },
-
-
-
-
-
-  /* ===== 商品 3：微单相机 ===== */
   {
     id: "mirrorless-template",
     name: "微单相机",
     icon: "🎬",
     category: "微单相机",
-    tag: "新品",
+    tag: "专业画质",
     color: "#10b981",
-    desc: "微单相机（单加镜头）简易使用说明",
-    keywords: "榨汁 果汁 便携 清洗 充电",
-    steps: [
-      {
-        title: "首次使用前清洗",
-        icon: "🚿",
-        body: [
-          { type: "p", text: "新机可能会有轻微塑料气味，属于正常现象。请先做一次清水空转。" },
-          { type: "olist", items: [
-            "往杯中注入 2/3 清水，滴入 2 滴洗洁精。",
-            "装好刀头组件并拧紧。",
-            "双击开关启动 15 秒，倒掉水后冲洗干净。"
-          ] },
-          { type: "warn", text: "清洗时请勿将主机底座浸入水中，仅杯体与刀头可水洗。" }
-        ]
-      },
-      {
-        title: "正确装填与榨汁",
-        icon: "🍓",
-        body: [
-          { type: "p", text: "食材总量不要超过杯体 **最大刻度线**，并加入适量液体（水、牛奶等）。" },
-          { type: "list", items: ["水果建议切成 2cm 小块，去核去硬壳", "固体与液体比例建议 1 : 1.5", "单次运行不要超过 60 秒"] },
-          { type: "tip", text: "双击按钮启动，运行中再次单击即可停止。" }
-        ]
-      },
-      {
-        title: "充电与日常保养",
-        icon: "🔌",
-        body: [
-          { type: "p", text: "机身底部为 Type-C 接口，充电时指示灯为红色，充满后转为绿色，约需 2.5 小时。" },
-          { type: "olist", items: [
-            "每次使用后立即清洗，避免果渣干结。",
-            "刀头组件建议每周拆下单独冲洗一次。",
-            "长期不用时，请充满电后存放于干燥处。"
-          ] }
-        ]
-      }
-    ]
+    desc: "微单相机与镜头组合简易使用说明",
+    keywords: "佳能 微单 镜头 拍照 录像 光圈 对焦 内存卡 导出"
   },
-
-
-
-
-
-    /* ===== 商品 3：卡片相机 ===== */
   {
     id: "compact-template",
     name: "卡片相机",
     icon: "📸",
     category: "卡片相机",
-    tag: "新品",
-    color: "#f849f8",
-    desc: "卡片相机简易使用说明",
-    keywords: "榨汁 果汁 便携 清洗 充电",
-    steps: [
-      {
-        title: "首次使用前清洗",
-        icon: "🚿",
-        body: [
-          { type: "p", text: "新机可能会有轻微塑料气味，属于正常现象。请先做一次清水空转。" },
-          { type: "olist", items: [
-            "往杯中注入 2/3 清水，滴入 2 滴洗洁精。",
-            "装好刀头组件并拧紧。",
-            "双击开关启动 15 秒，倒掉水后冲洗干净。"
-          ] },
-          { type: "warn", text: "清洗时请勿将主机底座浸入水中，仅杯体与刀头可水洗。" }
-        ]
-      },
-      {
-        title: "正确装填与榨汁",
-        icon: "🍓",
-        body: [
-          { type: "p", text: "食材总量不要超过杯体 **最大刻度线**，并加入适量液体（水、牛奶等）。" },
-          { type: "list", items: ["水果建议切成 2cm 小块，去核去硬壳", "固体与液体比例建议 1 : 1.5", "单次运行不要超过 60 秒"] },
-          { type: "tip", text: "双击按钮启动，运行中再次单击即可停止。" }
-        ]
-      },
-      {
-        title: "充电与日常保养",
-        icon: "🔌",
-        body: [
-          { type: "p", text: "机身底部为 Type-C 接口，充电时指示灯为红色，充满后转为绿色，约需 2.5 小时。" },
-          { type: "olist", items: [
-            "每次使用后立即清洗，避免果渣干结。",
-            "刀头组件建议每周拆下单独冲洗一次。",
-            "长期不用时，请充满电后存放于干燥处。"
-          ] }
-        ]
-      }
-    ]
+    tag: "轻便",
+    color: "#d97706",
+    desc: "卡片相机简易使用说明教程",
+    keywords: "佳能 G7 X Mark III 卡片相机 拍照 录像 自拍杆 导出"
   },
-
-
-
-  /* ===== 商品 4：落地三脚架 ===== */
   {
     id: "tripod-template",
     name: "落地三脚架",
@@ -376,103 +214,19 @@ const PRODUCTS = [
     category: "落地三脚架",
     tag: "",
     color: "#f97316",
-    desc: "富宝图落地三脚架使用说明",
-    keywords: "空气炸锅 预热 菜单 温度 清洁",
-    steps: [
-      {
-        title: "开箱与首次预热",
-        icon: "♨️",
-        body: [
-          { type: "p", text: "首次使用请空烧预热一次，去除加热管上的保护油涂层。" },
-          { type: "olist", items: [
-            "取出炸篮与烤盘，用温水加洗洁精清洗并擦干。",
-            "将炸篮装回，温度调至 180℃，时间设为 10 分钟。",
-            "空烧结束后开盖通风，待冷却后再清洗一次。"
-          ] },
-          { type: "warn", text: "首次空烧可能会有白烟和气味，属正常现象，请在通风处操作。" }
-        ]
-      },
-      {
-        title: "常用食材温度时间表",
-        icon: "📋",
-        body: [
-          { type: "table",
-            head: ["食材", "温度", "时间", "备注"],
-            rows: [
-              ["薯条（冷冻）", "200℃", "15 分钟", "中途翻动一次"],
-              ["鸡翅中", "180℃", "20 分钟", "提前腌制更入味"],
-              ["蛋挞", "170℃", "12 分钟", "无需预热"],
-              ["红薯（整只）", "200℃", "35 分钟", "选细长型更易熟"]
-            ]
-          },
-          { type: "tip", text: "食材铺放不要超过炸篮高度的 2/3，留出热风循环空间。" }
-        ]
-      },
-      {
-        title: "清洁与保养",
-        icon: "🧽",
-        body: [
-          { type: "list", items: ["炸篮与烤盘可用洗碗机清洗", "机身外部用微湿软布擦拭", "加热管上的油渍待冷却后用软刷清理"] },
-          { type: "warn", text: "清洁前请务必拔掉电源并等待整机完全冷却。" }
-        ]
-      }
-    ]
+    desc: "富图宝 FY-830 + MH-4A 落地三脚架使用说明",
+    keywords: "富图宝 FY-830 MH-4A 三脚架 液压云台 手机夹 配件"
   },
-
-
-
-
-    /* ===== 商品 4：内存卡数据找回 ===== */
   {
     id: "recovery-template",
     name: "内存卡数据找回",
     icon: "💾",
     category: "内存卡数据找回",
     tag: "",
-    color: "#f91616",
-    desc: "拍摄照片or视频误删尝试找回（不是百分百概率找回）",
-    keywords: "空气炸锅 预热 菜单 温度 清洁",
-    steps: [
-      {
-        title: "开箱与首次预热",
-        icon: "♨️",
-        body: [
-          { type: "p", text: "首次使用请空烧预热一次，去除加热管上的保护油涂层。" },
-          { type: "olist", items: [
-            "取出炸篮与烤盘，用温水加洗洁精清洗并擦干。",
-            "将炸篮装回，温度调至 180℃，时间设为 10 分钟。",
-            "空烧结束后开盖通风，待冷却后再清洗一次。"
-          ] },
-          { type: "warn", text: "首次空烧可能会有白烟和气味，属正常现象，请在通风处操作。" }
-        ]
-      },
-      {
-        title: "常用食材温度时间表",
-        icon: "📋",
-        body: [
-          { type: "table",
-            head: ["食材", "温度", "时间", "备注"],
-            rows: [
-              ["薯条（冷冻）", "200℃", "15 分钟", "中途翻动一次"],
-              ["鸡翅中", "180℃", "20 分钟", "提前腌制更入味"],
-              ["蛋挞", "170℃", "12 分钟", "无需预热"],
-              ["红薯（整只）", "200℃", "35 分钟", "选细长型更易熟"]
-            ]
-          },
-          { type: "tip", text: "食材铺放不要超过炸篮高度的 2/3，留出热风循环空间。" }
-        ]
-      },
-      {
-        title: "清洁与保养",
-        icon: "🧽",
-        body: [
-          { type: "list", items: ["炸篮与烤盘可用洗碗机清洗", "机身外部用微湿软布擦拭", "加热管上的油渍待冷却后用软刷清理"] },
-          { type: "warn", text: "清洁前请务必拔掉电源并等待整机完全冷却。" }
-        ]
-      }
-    ]
-  },
-
+    color: "#dc2626",
+    desc: "误删照片或视频后的数据找回参考说明",
+    keywords: "内存卡 数据恢复 照片 视频 SD卡 TF卡 误删 格式化"
+  }
 ]
 
 /* ---------- 每个子类目的独立教程内容（可单独修改） ----------
@@ -485,7 +239,7 @@ const SUBCATEGORY_CONTENT = {
   // 子目录内容：手持云台相机 · 大疆pocket3标准版
   "gimbal-phone": {
     "desc": "手持云台系列简易说明教程",
-    "keywords": "音箱 语音 蓝牙 wifi 配网 小智",
+    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
     "steps": [
       {
         "title": "开箱与配件确认",
@@ -504,11 +258,10 @@ const SUBCATEGORY_CONTENT = {
               "收纳包x1",
               "128G内存卡x1",
               "手绳x1",
-              "收纳包x1",
               "USB读卡器x1",
-              "长续航版本在原标准版寄出增加",
+              "长续航版在标准版基础上增加：",
               "原厂续航手柄x1",
-              "全能套装在原标准版寄出上增加",
+              "全能套装在标准版基础上增加：",
               " 原厂续航手柄x1",
               "迷你三脚架x1",
               "DJI Mic2发射器",
@@ -525,7 +278,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机首次开机使用说明",
-        "icon": "📶",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -536,19 +289,17 @@ const SUBCATEGORY_CONTENT = {
             "items": [
               "相机正面（有显示屏的页面）轻推屏幕向左旋转",
               "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上相加画面也会同步往上，同理摇杆往下画面也会往下",
-              "如您需要相机画面放大可在相机开机后点击屏幕右侧有放大和方向按钮，点击切换后使用摇杆往上即为放大画面，往下即为缩小画面",
-              "摇杆右侧为《开始录制按钮——停止录制按钮》点击后相机会开始录制，录制完成之后再次点击即可结束录制"
+              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
+              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
+              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
             ]
           },
-  {
-            type: "video",
-            className: "gimbal-start-video",
-            src: "images/使用说明教程.mp4",
-            caption: "相机使用说明教程"
+          {
+            "type": "video",
+            "className": "gimbal-start-video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "相机使用说明教程"
           },
-
-
           {
             "type": "warn",
             "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
@@ -557,7 +308,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机可切换的模式",
-        "icon": "🎙️",
+        "icon": "🎛️",
         "body": [
           {
             "type": "p",
@@ -603,22 +354,22 @@ const SUBCATEGORY_CONTENT = {
                 "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
               ],
               [
-              "旋转运镜",
-              "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
+                "旋转运镜",
+                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
               ],
               [
-              "竖拍模式",
-              "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
+                "竖拍模式",
+                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
               ]
             ]
           }
         ]
       },
-             {
-        title: "相机滤镜美颜调整",
-        icon: "🖼️",
-        body: [
- {
+      {
+        "title": "相机滤镜美颜调整",
+        "icon": "✨",
+        "body": [
+          {
             "type": "p",
             "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
           },
@@ -628,46 +379,47 @@ const SUBCATEGORY_CONTENT = {
               "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
               "如您需要开启美颜即可在调出的页面点击美颜开关即可",
               "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦",
-            ],
+              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
+            ]
           },
           {
-            type: "img",
-            src: "images/滤镜参数推荐.jpg",
-            alt: "相机滤镜参数推荐调整示意图",
-            caption: "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "相机滤镜参数推荐调整示意图",
+            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
           },
-
-          { type: "tip", text: "如有不清楚的地方请联系客服售后" }
+          {
+            "type": "tip",
+            "text": "如有不清楚的地方请联系客服售后"
+          }
         ]
       },
-
-
-       {
-        title: "相机收纳说明",
-        icon: "🗃️",
-        body: [
- {
+      {
+        "title": "相机收纳说明",
+        "icon": "🎒",
+        "body": [
+          {
             "type": "p",
             "text": "相机收到后如无法开机可将相机连接充电线进行充电"
           },
-
           {
             "type": "olist",
             "items": [
               "相机完全关机（云台转轴也自动收纳完成）",
               "将相机正面朝下（含显示屏的方向朝下）",
               "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）",
+              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
             ]
           },
-  {
-            type: "video",
-            src: "images/收纳说明.mp4",
-            caption: "相机正确收纳说明"
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "相机正确收纳说明"
           },
-
-          { type: "tip", text: "如您不清楚如何进行收纳可联系售后客服进行咨询" }
+          {
+            "type": "tip",
+            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
+          }
         ]
       },
       {
@@ -693,6 +445,104 @@ const SUBCATEGORY_CONTENT = {
             "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
@@ -704,7 +554,7 @@ const SUBCATEGORY_CONTENT = {
   // 子目录内容：手持云台相机 · 大疆pocket3长续航版
   "gimbal-one": {
     "desc": "手持云台系列简易说明教程",
-    "keywords": "音箱 语音 蓝牙 wifi 配网 小智",
+    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
     "steps": [
       {
         "title": "开箱与配件确认",
@@ -723,9 +573,8 @@ const SUBCATEGORY_CONTENT = {
               "收纳包x1",
               "128G内存卡x1",
               "手绳x1",
-              "收纳包x1",
               "USB读卡器x1",
-              "原厂续航手柄x1",
+              "原厂续航手柄x1"
             ]
           },
           {
@@ -736,7 +585,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机首次开机使用说明",
-        "icon": "📶",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -747,19 +596,17 @@ const SUBCATEGORY_CONTENT = {
             "items": [
               "相机正面（有显示屏的页面）轻推屏幕向左旋转",
               "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上相加画面也会同步往上，同理摇杆往下画面也会往下",
-              "如您需要相机画面放大可在相机开机后点击屏幕右侧有放大和方向按钮，点击切换后使用摇杆往上即为放大画面，往下即为缩小画面",
-              "摇杆右侧为《开始录制按钮——停止录制按钮》点击后相机会开始录制，录制完成之后再次点击即可结束录制"
+              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
+              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
+              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
             ]
           },
-  {
-            type: "video",
-            className: "gimbal-start-video",
-            src: "images/使用说明教程.mp4",
-            caption: "相机使用说明教程"
+          {
+            "type": "video",
+            "className": "gimbal-start-video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "相机使用说明教程"
           },
-
-
           {
             "type": "warn",
             "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
@@ -768,7 +615,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机可切换的模式",
-        "icon": "🎙️",
+        "icon": "🎛️",
         "body": [
           {
             "type": "p",
@@ -814,22 +661,22 @@ const SUBCATEGORY_CONTENT = {
                 "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
               ],
               [
-              "旋转运镜",
-              "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
+                "旋转运镜",
+                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
               ],
               [
-              "竖拍模式",
-              "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
+                "竖拍模式",
+                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
               ]
             ]
           }
         ]
       },
-             {
-        title: "相机滤镜美颜调整",
-        icon: "🖼️",
-        body: [
- {
+      {
+        "title": "相机滤镜美颜调整",
+        "icon": "✨",
+        "body": [
+          {
             "type": "p",
             "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
           },
@@ -839,46 +686,47 @@ const SUBCATEGORY_CONTENT = {
               "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
               "如您需要开启美颜即可在调出的页面点击美颜开关即可",
               "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦",
-            ],
+              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
+            ]
           },
           {
-            type: "img",
-            src: "images/滤镜参数推荐.jpg",
-            alt: "相机滤镜参数推荐调整示意图",
-            caption: "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "相机滤镜参数推荐调整示意图",
+            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
           },
-
-          { type: "tip", text: "如有不清楚的地方请联系客服售后" }
+          {
+            "type": "tip",
+            "text": "如有不清楚的地方请联系客服售后"
+          }
         ]
       },
-
-
-       {
-        title: "相机收纳说明",
-        icon: "🗃️",
-        body: [
- {
+      {
+        "title": "相机收纳说明",
+        "icon": "🎒",
+        "body": [
+          {
             "type": "p",
             "text": "相机收到后如无法开机可将相机连接充电线进行充电"
           },
-
           {
             "type": "olist",
             "items": [
               "相机完全关机（云台转轴也自动收纳完成）",
               "将相机正面朝下（含显示屏的方向朝下）",
               "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）",
+              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
             ]
           },
-  {
-            type: "video",
-            src: "images/收纳说明.mp4",
-            caption: "相机正确收纳说明"
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "相机正确收纳说明"
           },
-
-          { type: "tip", text: "如您不清楚如何进行收纳可联系售后客服进行咨询" }
+          {
+            "type": "tip",
+            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
+          }
         ]
       },
       {
@@ -904,6 +752,104 @@ const SUBCATEGORY_CONTENT = {
             "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
@@ -915,7 +861,7 @@ const SUBCATEGORY_CONTENT = {
   // 子目录内容：手持云台相机 · 大疆pocket3全能版
   "gimbal-two": {
     "desc": "手持云台系列简易说明教程",
-    "keywords": "音箱 语音 蓝牙 wifi 配网 小智",
+    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
     "steps": [
       {
         "title": "开箱与配件确认",
@@ -934,11 +880,10 @@ const SUBCATEGORY_CONTENT = {
               "收纳包x1",
               "128G内存卡x1",
               "手绳x1",
-              "收纳包x1",
               "USB读卡器x1",
-              "长续航版本在原标准版寄出增加",
+              "长续航版在标准版基础上增加：",
               "原厂续航手柄x1",
-              "全能套装在原标准版寄出上增加",
+              "全能套装在标准版基础上增加：",
               " 原厂续航手柄x1",
               "迷你三脚架x1",
               "DJI Mic2发射器",
@@ -955,7 +900,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机首次开机使用说明",
-        "icon": "📶",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -966,19 +911,17 @@ const SUBCATEGORY_CONTENT = {
             "items": [
               "相机正面（有显示屏的页面）轻推屏幕向左旋转",
               "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上相加画面也会同步往上，同理摇杆往下画面也会往下",
-              "如您需要相机画面放大可在相机开机后点击屏幕右侧有放大和方向按钮，点击切换后使用摇杆往上即为放大画面，往下即为缩小画面",
-              "摇杆右侧为《开始录制按钮——停止录制按钮》点击后相机会开始录制，录制完成之后再次点击即可结束录制"
+              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
+              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
+              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
             ]
           },
-  {
-            type: "video",
-            className: "gimbal-start-video",
-            src: "images/使用说明教程.mp4",
-            caption: "相机使用说明教程"
+          {
+            "type": "video",
+            "className": "gimbal-start-video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "相机使用说明教程"
           },
-
-
           {
             "type": "warn",
             "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
@@ -987,7 +930,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "相机可切换的模式",
-        "icon": "🎙️",
+        "icon": "🎛️",
         "body": [
           {
             "type": "p",
@@ -1033,22 +976,22 @@ const SUBCATEGORY_CONTENT = {
                 "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
               ],
               [
-              "旋转运镜",
-              "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
+                "旋转运镜",
+                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
               ],
               [
-              "竖拍模式",
-              "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
+                "竖拍模式",
+                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
               ]
             ]
           }
         ]
       },
-             {
-        title: "相机滤镜美颜调整",
-        icon: "🖼️",
-        body: [
- {
+      {
+        "title": "相机滤镜美颜调整",
+        "icon": "✨",
+        "body": [
+          {
             "type": "p",
             "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
           },
@@ -1058,46 +1001,47 @@ const SUBCATEGORY_CONTENT = {
               "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
               "如您需要开启美颜即可在调出的页面点击美颜开关即可",
               "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦",
-            ],
+              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
+            ]
           },
           {
-            type: "img",
-            src: "images/滤镜参数推荐.jpg",
-            alt: "相机滤镜参数推荐调整示意图",
-            caption: "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "相机滤镜参数推荐调整示意图",
+            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
           },
-
-          { type: "tip", text: "如有不清楚的地方请联系客服售后" }
+          {
+            "type": "tip",
+            "text": "如有不清楚的地方请联系客服售后"
+          }
         ]
       },
-
-
-       {
-        title: "相机收纳说明",
-        icon: "🗃️",
-        body: [
- {
+      {
+        "title": "相机收纳说明",
+        "icon": "🎒",
+        "body": [
+          {
             "type": "p",
             "text": "相机收到后如无法开机可将相机连接充电线进行充电"
           },
-
           {
             "type": "olist",
             "items": [
               "相机完全关机（云台转轴也自动收纳完成）",
               "将相机正面朝下（含显示屏的方向朝下）",
               "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）",
+              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
             ]
           },
-  {
-            type: "video",
-            src: "images/收纳说明.mp4",
-            caption: "相机正确收纳说明"
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "相机正确收纳说明"
           },
-
-          { type: "tip", text: "如您不清楚如何进行收纳可联系售后客服进行咨询" }
+          {
+            "type": "tip",
+            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
+          }
         ]
       },
       {
@@ -1121,6 +1065,104 @@ const SUBCATEGORY_CONTENT = {
             "type": "code",
             "lang": "bash",
             "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -1242,7 +1284,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "充电、导出和保养",
-        "icon": "💾",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -1260,6 +1302,104 @@ const SUBCATEGORY_CONTENT = {
           {
             "type": "warn",
             "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -1331,7 +1471,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装手持支架",
-        "icon": "🦯",
+        "icon": "🔧",
         "body": [
           {
             "type": "p",
@@ -1380,7 +1520,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "充电、导出和保养",
-        "icon": "💾",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -1398,6 +1538,104 @@ const SUBCATEGORY_CONTENT = {
           {
             "type": "warn",
             "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -1468,7 +1706,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "连接街拍手柄",
-        "icon": "🎮",
+        "icon": "🧩",
         "body": [
           {
             "type": "p",
@@ -1520,7 +1758,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "充电、导出和保养",
-        "icon": "💾",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -1538,6 +1776,104 @@ const SUBCATEGORY_CONTENT = {
           {
             "type": "warn",
             "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -1608,7 +1944,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装挂脖支架",
-        "icon": "🧍",
+        "icon": "📿",
         "body": [
           {
             "type": "p",
@@ -1660,7 +1996,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "充电、导出和保养",
-        "icon": "💾",
+        "icon": "🔌",
         "body": [
           {
             "type": "p",
@@ -1680,11 +2016,808 @@ const SUBCATEGORY_CONTENT = {
             "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
   // 子目录内容：微单相机 · 佳能微单+18-45mm入门套镜头
   // 子目录内容：手持云台相机 · 大疆pocket3标准版
+  // 子目录内容：全景相机 · 影石Insta360 X6标准版
+  "insta360-x6-standard": {
+    "desc": "影石Insta360 X6标准版简易使用教程",
+    "keywords": "影石 Insta360 X6 全景相机 8K 电池 充电 内存卡 App",
+    "steps": [
+      {
+        "title": "先认识 X6",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-standard-original.svg",
+            "alt": "Insta360 X6 全景相机示意图",
+            "caption": "原创全景相机示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "两个镜头：拍摄时不要用手摸镜片。",
+              "触摸屏：查看画面、切换模式和调整设置。",
+              "快门键：开始和停止拍摄。",
+              "Type-C 接口：给相机充电和连接电脑。",
+              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
+          }
+        ]
+      },
+      {
+        "title": "充电和存储",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "约 24 分钟可以充到 80%，约 35 分钟充满。",
+              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
+              "卡槽方向和缺口对准后再插入，不要硬推。",
+              "内置存储快满时，先把素材导出到手机或电脑。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "边充边拍会让机身更热，建议保持通风。"
+          }
+        ]
+      },
+      {
+        "title": "开机和屏幕操作",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "点按电源键开机，屏幕亮起后就可以查看画面。X6 使用虚拟按键，很多操作可以直接在屏幕上完成。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "点按电源键开机，再点按可切换拍摄模式。",
+              "左右滑动屏幕切换全景视频、全景照片等模式。",
+              "从屏幕边缘滑动进入设置、相册或拍摄参数。",
+              "开始拍摄前，先确认两个镜头都没有被手指或配件挡住。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "屏幕按键不需要用力按压，轻触或滑动即可。"
+          }
+        ]
+      },
+      {
+        "title": "拍全景和导出",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "选择全景视频或全景照片模式。",
+              "按快门开始拍摄，再按一下停止。",
+              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
+              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
+              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
+          },
+          {
+            "type": "tip",
+            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
+          }
+        ]
+      },
+      {
+        "title": "镜头和日常保养",
+        "icon": "🧰",
+        "body": [
+          {
+            "type": "list",
+            "items": [
+              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
+              "不要用衣服、纸巾或手指反复摩擦镜片。",
+              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
+              "海边使用后，用淡水湿布擦净机身并晾干。",
+              "长期不用时，放在干燥阴凉处并定期充电。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
+          },
+          {
+            "type": "warn",
+            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
+      }
+    ]
+  },
+  // 子目录内容：全景相机 · 影石Insta360 X6全能版
+  "insta360-x6-allround": {
+    "desc": "影石Insta360 X6全能版简易使用教程",
+    "keywords": "影石 Insta360 X6 全能版 配件 电池 手柄 全景相机",
+    "steps": [
+      {
+        "title": "先认识 X6",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-standard-original.svg",
+            "alt": "Insta360 X6 全景相机示意图",
+            "caption": "原创全景相机示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "两个镜头：拍摄时不要用手摸镜片。",
+              "触摸屏：查看画面、切换模式和调整设置。",
+              "快门键：开始和停止拍摄。",
+              "Type-C 接口：给相机充电和连接电脑。",
+              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
+          }
+        ]
+      },
+      {
+        "title": "充电和存储",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "约 24 分钟可以充到 80%，约 35 分钟充满。",
+              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
+              "卡槽方向和缺口对准后再插入，不要硬推。",
+              "内置存储快满时，先把素材导出到手机或电脑。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "边充边拍会让机身更热，建议保持通风。"
+          }
+        ]
+      },
+      {
+        "title": "使用全能版配件",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "p",
+            "text": "全能版配件以实际收到的套装为准，常见配件主要用来增加续航、稳定性和拍摄机位。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-allround-original.svg",
+            "alt": "Insta360 X6 全能版配件示意图",
+            "caption": "原创全能版配件示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "备用电池：长时间拍摄时轮换使用。",
+              "扩展手柄：手持和自拍时更稳。",
+              "充电管家：方便同时整理和充电多块电池。",
+              "收纳包：不用时保护相机和镜头。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "安装配件时不要挡住镜头，也不要把过重的设备挂在相机上。"
+          }
+        ]
+      },
+      {
+        "title": "拍全景和导出",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "选择全景视频或全景照片模式。",
+              "按快门开始拍摄，再按一下停止。",
+              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
+              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
+              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
+          },
+          {
+            "type": "tip",
+            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
+          }
+        ]
+      },
+      {
+        "title": "镜头和日常保养",
+        "icon": "🧰",
+        "body": [
+          {
+            "type": "list",
+            "items": [
+              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
+              "不要用衣服、纸巾或手指反复摩擦镜片。",
+              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
+              "海边使用后，用淡水湿布擦净机身并晾干。",
+              "长期不用时，放在干燥阴凉处并定期充电。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
+          },
+          {
+            "type": "warn",
+            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
+      }
+    ]
+  },
+  // 子目录内容：全景相机 · 影石Insta360 X6旅拍套装
+  "insta360-x6-travel": {
+    "desc": "影石Insta360 X6旅拍套装简易使用教程",
+    "keywords": "影石 Insta360 X6 旅拍套装 自拍杆 三脚架 全景相机",
+    "steps": [
+      {
+        "title": "先认识 X6",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-standard-original.svg",
+            "alt": "Insta360 X6 全景相机示意图",
+            "caption": "原创全景相机示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "两个镜头：拍摄时不要用手摸镜片。",
+              "触摸屏：查看画面、切换模式和调整设置。",
+              "快门键：开始和停止拍摄。",
+              "Type-C 接口：给相机充电和连接电脑。",
+              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
+          }
+        ]
+      },
+      {
+        "title": "充电和存储",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "约 24 分钟可以充到 80%，约 35 分钟充满。",
+              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
+              "卡槽方向和缺口对准后再插入，不要硬推。",
+              "内置存储快满时，先把素材导出到手机或电脑。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "边充边拍会让机身更热，建议保持通风。"
+          }
+        ]
+      },
+      {
+        "title": "旅拍套装使用",
+        "icon": "✈️",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅拍套装适合旅行、Vlog 和多人合影，通常搭配自拍杆、三脚架和收纳包，以实际套装为准。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-travel-original.svg",
+            "alt": "Insta360 X6 旅拍套装示意图",
+            "caption": "原创旅拍套装示意图"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把相机固定到自拍杆或三脚架上，确认螺丝拧紧。",
+              "先试拍一小段，检查相机有没有挡镜头。",
+              "拍全景视频时慢慢移动，画面后期更容易调整。",
+              "旅行结束后先备份素材，再清空内存卡。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "人多的地方使用自拍杆时，注意周围行人，避免碰到别人或相机。"
+          }
+        ]
+      },
+      {
+        "title": "拍全景和导出",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "选择全景视频或全景照片模式。",
+              "按快门开始拍摄，再按一下停止。",
+              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
+              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
+              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
+          },
+          {
+            "type": "tip",
+            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
+          }
+        ]
+      },
+      {
+        "title": "镜头和日常保养",
+        "icon": "🧰",
+        "body": [
+          {
+            "type": "list",
+            "items": [
+              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
+              "不要用衣服、纸巾或手指反复摩擦镜片。",
+              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
+              "海边使用后，用淡水湿布擦净机身并晾干。",
+              "长期不用时，放在干燥阴凉处并定期充电。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
+          },
+          {
+            "type": "warn",
+            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
+      }
+    ]
+  },
   "mirrorless-entry": {
     "desc": "佳能微单 + 18-45mm 入门套机简易教程",
     "keywords": "佳能微单 R50 18-45mm 入门 拍照 录像 电池 内存卡",
@@ -1756,7 +2889,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装18-45mm镜头",
-        "icon": "🔭",
+        "icon": "🔘",
         "body": [
           {
             "type": "p",
@@ -1844,6 +2977,104 @@ const SUBCATEGORY_CONTENT = {
             "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
@@ -1920,7 +3151,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装18-150mm镜头",
-        "icon": "🔭",
+        "icon": "🔘",
         "body": [
           {
             "type": "p",
@@ -2008,6 +3239,104 @@ const SUBCATEGORY_CONTENT = {
             "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
@@ -2084,7 +3413,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装 F1.8 人像镜头",
-        "icon": "🔭",
+        "icon": "🔘",
         "body": [
           {
             "type": "p",
@@ -2172,6 +3501,104 @@ const SUBCATEGORY_CONTENT = {
             "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
           }
         ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
       }
     ]
   },
@@ -2249,7 +3676,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装100-400mm镜头",
-        "icon": "🔭",
+        "icon": "🔘",
         "body": [
           {
             "type": "p",
@@ -2335,6 +3762,104 @@ const SUBCATEGORY_CONTENT = {
           {
             "type": "tip",
             "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -2471,6 +3996,104 @@ const SUBCATEGORY_CONTENT = {
           {
             "type": "warn",
             "text": "不要把相机长时间放在高温、潮湿或阳光直射的地方。电池不建议长期放在完全没电的状态。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
@@ -2610,79 +4233,528 @@ const SUBCATEGORY_CONTENT = {
             "text": "不要把相机长时间放在高温、潮湿或阳光直射的地方。电池不建议长期放在完全没电的状态。"
           }
         ]
-      }
-    ]
-  },
-  // 预留内容：compact-zoom，当前目录未引用
-  "compact-zoom": {
-    "desc": "卡片相机简易使用说明",
-    "keywords": "榨汁 果汁 便携 清洗 充电",
-    "steps": [
+      },
       {
-        "title": "首次使用前清洗",
-        "icon": "🚿",
+        "title": "如何导出照片和视频",
+        "icon": "📤",
         "body": [
           {
             "type": "p",
-            "text": "新机可能会有轻微塑料气味，属于正常现象。请先做一次清水空转。"
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线连接相机导出素材示意图",
+            "caption": "官方 App 无线连接和导出步骤"
           },
           {
             "type": "olist",
             "items": [
-              "往杯中注入 2/3 清水，滴入 2 滴洗洁精。",
-              "装好刀头组件并拧紧。",
-              "双击开关启动 15 秒，倒掉水后冲洗干净。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "清洗时请勿将主机底座浸入水中，仅杯体与刀头可水洗。"
-          }
-        ]
-      },
-      {
-        "title": "正确装填与榨汁",
-        "icon": "🍓",
-        "body": [
-          {
-            "type": "p",
-            "text": "食材总量不要超过杯体 **最大刻度线**，并加入适量液体（水、牛奶等）。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "水果建议切成 2cm 小块，去核去硬壳",
-              "固体与液体比例建议 1 : 1.5",
-              "单次运行不要超过 60 秒"
+              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
+              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
+              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
+              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
+              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
+              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
+              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
             ]
           },
           {
             "type": "tip",
-            "text": "双击按钮启动，运行中再次单击即可停止。"
-          }
-        ]
-      },
-      {
-        "title": "充电与日常保养",
-        "icon": "🔌",
-        "body": [
+            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
+          },
           {
             "type": "p",
-            "text": "机身底部为 Type-C 接口，充电时指示灯为红色，充满后转为绿色，约需 2.5 小时。"
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
           },
           {
             "type": "olist",
             "items": [
-              "每次使用后立即清洗，避免果渣干结。",
-              "刀头组件建议每周拆下单独冲洗一次。",
-              "长期不用时，请充满电后存放于干燥处。"
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
             ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
           }
         ]
       }
     ]
   },
-  // 子目录内容：落地三脚架 · 富宝图FY-830-MH-4A液压云台标准版
+  // 子目录内容：CCD相机 · 佳能IXU210复古CCD相机
+  "canon-ixus-210": {
+    "desc": "佳能 IXUS 210 复古 CCD 简易使用教程",
+    "keywords": "佳能 IXUS 210 CCD 相机 拍照 变焦 电池 存储卡",
+    "steps": [
+      {
+        "title": "先认识 CCD 相机",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "这台相机操作简单，主要用开关、快门、变焦和回放键。复古 CCD 相机不需要复杂设置，先用自动模式就能拍。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-210-original.svg",
+            "alt": "佳能复古 CCD 相机示意图",
+            "caption": "原创 CCD 相机示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "电源键：开机和关机。",
+              "快门键：轻按对焦，按到底拍照。",
+              "变焦杆：拉近或拉远画面。",
+              "回放键：查看已经拍好的照片。",
+              "触摸屏：轻触屏幕可以选择对焦位置。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "复古 CCD 相机对光线比较敏感，白天和室内明亮环境下更容易拍出清楚的照片。"
+          }
+        ]
+      },
+      {
+        "title": "安装电池和存储卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "先关机，再打开底部的电池仓盖。电池和存储卡按仓内的方向标记放入。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把电池对准方向放入电池仓。",
+              "把存储卡按方向插到底。",
+              "盖好仓盖并扣紧。",
+              "开机后确认屏幕能显示电量。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "老相机建议使用状态正常的原规格电池。不要用力硬塞电池或存储卡。"
+          }
+        ]
+      },
+      {
+        "title": "开机和基础设置",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "第一次开机后，按照屏幕提示设置日期和时间，然后选择自动或普通拍摄模式。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "按电源键开机。",
+              "把模式转到 AUTO 自动拍摄。",
+              "设置日期、时间和语言。",
+              "用手指轻触屏幕选择对焦点。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "每次换电池后如果时间不对，重新设置日期和时间即可。"
+          }
+        ]
+      },
+      {
+        "title": "拍照和查看照片",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "眼睛看屏幕，把想拍的人和物放在画面中间。",
+              "轻按快门对焦，按到底完成拍照。",
+              "用变焦杆拉近或拉远画面。",
+              "光线不足时可以打开闪光灯。",
+              "按回放键查看照片，不满意可以直接删除重拍。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拍摄时双手拿稳相机，按快门时先轻轻停一下，照片更不容易糊。"
+          }
+        ]
+      },
+      {
+        "title": "导出照片和保养",
+        "icon": "💾",
+        "body": [
+          {
+            "type": "p",
+            "text": "老款 CCD 相机通常使用存储卡或数据线传输。最稳定的方法是把存储卡取出，通过读卡器连接电脑。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后取出存储卡。",
+              "把卡插入读卡器并连接电脑。",
+              "打开 DCIM 文件夹，复制照片到电脑。",
+              "传输完成后安全弹出读卡器。",
+              "镜头用气吹和软布清理，不要用酒精直接擦拭。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看佳能 IXUS 210 官方使用者指南](https://www.canon.com.cn/supports/download/simsdetail/0300327102.html)"
+          },
+          {
+            "type": "warn",
+            "text": "不要经常插拔数据线来传照片，老相机接口容易松动。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "佳能 IXU210 和 IXU130 属于早期 CCD 卡片相机，通常没有 Wi-Fi 或蓝牙，也没有可连接手机导出的官方 App。请直接使用下面的 USB 有线连接或 USB 读卡器方法。"
+          },
+          {
+            "type": "tip",
+            "text": "不要安装来源不明的所谓手机连接 App，避免隐私和账号风险。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
+      }
+    ]
+  },
+  // 子目录内容：CCD相机 · 佳能IXU130复古CCD相机
+  "canon-ixus-130": {
+    "desc": "佳能 IXUS 130 复古 CCD 简易使用教程",
+    "keywords": "佳能 IXUS 130 CCD 相机 拍照 变焦 电池 存储卡",
+    "steps": [
+      {
+        "title": "先认识 CCD 相机",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "这台相机操作简单，主要用开关、快门、变焦和回放键。复古 CCD 相机不需要复杂设置，先用自动模式就能拍。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-130-original.svg",
+            "alt": "佳能复古 CCD 相机示意图",
+            "caption": "原创 CCD 相机示意图"
+          },
+          {
+            "type": "list",
+            "items": [
+              "电源键：开机和关机。",
+              "快门键：轻按对焦，按到底拍照。",
+              "变焦杆：拉近或拉远画面。",
+              "回放键：查看已经拍好的照片。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "复古 CCD 相机对光线比较敏感，白天和室内明亮环境下更容易拍出清楚的照片。"
+          }
+        ]
+      },
+      {
+        "title": "安装电池和存储卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "先关机，再打开底部的电池仓盖。电池和存储卡按仓内的方向标记放入。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把电池对准方向放入电池仓。",
+              "把存储卡按方向插到底。",
+              "盖好仓盖并扣紧。",
+              "开机后确认屏幕能显示电量。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "老相机建议使用状态正常的原规格电池。不要用力硬塞电池或存储卡。"
+          }
+        ]
+      },
+      {
+        "title": "开机和基础设置",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "第一次开机后，按照屏幕提示设置日期和时间，然后选择自动或普通拍摄模式。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "按电源键开机。",
+              "把模式转到 AUTO 自动拍摄。",
+              "设置日期、时间和语言。",
+              "使用方向键和功能键调整常用设置。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "每次换电池后如果时间不对，重新设置日期和时间即可。"
+          }
+        ]
+      },
+      {
+        "title": "拍照和查看照片",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "眼睛看屏幕，把想拍的人和物放在画面中间。",
+              "轻按快门对焦，按到底完成拍照。",
+              "用变焦杆拉近或拉远画面。",
+              "光线不足时可以打开闪光灯。",
+              "按回放键查看照片，不满意可以直接删除重拍。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拍摄时双手拿稳相机，按快门时先轻轻停一下，照片更不容易糊。"
+          }
+        ]
+      },
+      {
+        "title": "导出照片和保养",
+        "icon": "💾",
+        "body": [
+          {
+            "type": "p",
+            "text": "老款 CCD 相机通常使用存储卡或数据线传输。最稳定的方法是把存储卡取出，通过读卡器连接电脑。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后取出存储卡。",
+              "把卡插入读卡器并连接电脑。",
+              "打开 DCIM 文件夹，复制照片到电脑。",
+              "传输完成后安全弹出读卡器。",
+              "镜头用气吹和软布清理，不要用酒精直接擦拭。"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "[查看佳能 IXUS 130 官方使用者指南](https://www.canon.com.cn/supports/download/simsdetail/0300366401.html)"
+          },
+          {
+            "type": "warn",
+            "text": "不要经常插拔数据线来传照片，老相机接口容易松动。"
+          }
+        ]
+      },
+      {
+        "title": "如何导出照片和视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+          },
+          {
+            "type": "p",
+            "text": "**方法一：下载官方 App，无线连接相机导出**"
+          },
+          {
+            "type": "p",
+            "text": "佳能 IXU210 和 IXU130 属于早期 CCD 卡片相机，通常没有 Wi-Fi 或蓝牙，也没有可连接手机导出的官方 App。请直接使用下面的 USB 有线连接或 USB 读卡器方法。"
+          },
+          {
+            "type": "tip",
+            "text": "不要安装来源不明的所谓手机连接 App，避免隐私和账号风险。"
+          },
+          {
+            "type": "p",
+            "text": "**方法二：使用 USB 数据线连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "USB 数据线连接手机导出照片视频示意图",
+            "caption": "USB 数据线连接手机和文件保存步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
+              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
+              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
+              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
+              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
+              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
+              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
+              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
+          },
+          {
+            "type": "p",
+            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "USB 读卡器连接手机导出照片视频示意图",
+            "caption": "取出存储卡、连接读卡器和保存素材步骤"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
+              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
+              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
+              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
+              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
+              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
+              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
+              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+          },
+          {
+            "type": "warn",
+            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+          }
+        ]
+      }
+    ]
+  },
   "tripod-live": {
     "desc": "富图宝 FY-830 + MH-4A 液压云台简易使用教程",
     "keywords": "富图宝 FY-830 MH-4A 三脚架 液压云台 直播 拍照 录像",
@@ -2720,7 +4792,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "展开三脚架",
-        "icon": "🦵",
+        "icon": "📐",
         "body": [
           {
             "type": "p",
@@ -2744,7 +4816,7 @@ const SUBCATEGORY_CONTENT = {
       },
       {
         "title": "安装相机或手机",
-        "icon": "📱",
+        "icon": "📷",
         "body": [
           {
             "type": "p",
@@ -2822,12 +4894,12 @@ const SUBCATEGORY_CONTENT = {
   },
   // 子目录内容：落地三脚架 · 富宝图FY-830-MH-4A所含配件可自选赠送使用
   "tripod-cam": {
-    "desc": "11富图宝 FY-830 + MH-4A 配件自选使用简易教程",
+    "desc": "富图宝 FY-830 + MH-4A 配件自选使用简易教程",
     "keywords": "富图宝 FY-830 MH-4A 三脚架 配件 手机夹 独脚架 自拍杆",
     "steps": [
       {
         "title": "可选三脚架配件（提前联系客服进行咨询需要的配件）",
-        "icon": "🎈",
+        "icon": "🧩",
         "body": [
           {
             "type": "p",
@@ -2847,7 +4919,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "warn",
-            "text": "小配件大部分均可免费赠送使用，需要请提前联系放在无货。"
+            "text": "小配件大部分可免费赠送使用，具体以库存为准，请提前联系客服确认。"
           }
         ]
       },
@@ -2860,53 +4932,53 @@ const SUBCATEGORY_CONTENT = {
   // 子目录内容：内存卡数据找回 · SD 卡
   "recovery-sd": {
     "desc": "拍摄照片或视频误删尝试找回（不是百分百概率找回）",
-    "keywords": "空气炸锅 预热 菜单 温度 清洁",
+    "keywords": "内存卡 数据恢复 照片 视频 SD卡 TF卡 误删 格式化",
     "steps": [
       {
         "title": "闪迪SD内存卡官方数据找回修复软件",
-        "icon": "🎴",
+        "icon": "🧰",
         "body": [
           {
             "type": "p",
-            "text": "如您误删或者格式化了内存卡后请不要进行拍摄和传入内存卡数据，以防数据覆盖找回失败。"
+            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
           },
           {
             "type": "olist",
             "items": [
-              "请注意：此数据找回操作仅限电脑端操作，如您担心可联系客服售后或选择您本地数据找回门店",
-              "将内存卡从相机内取出后，插入读卡器内连接至电脑的接口，安装好官方的找回软件进行数据修复找回",
-              "Windows下载地址：https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip",
-              "mac下载地址：https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip",
-              "注：非专业人生请勿随意操作，以防您的数据丢失，也不要因为好奇而去操作，数据丢失或其他情况需您承担相应的责任"
+              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
+              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
+              "Windows 下载地址：[SanDisk RescuePRO Deluxe Windows 版](https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip)",
+              "Mac 下载地址：[SanDisk RescuePRO Deluxe Mac 版](https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip)",
+              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
             ]
           },
           {
             "type": "warn",
-            "text": "再次和您确认，如您操作后内存卡出现异常/数据丢失/内存卡损坏 等其他情况需您承担相应的责任。"
+            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
           }
         ]
       },
  {
         "title": "雷克沙SD内存卡官方数据找回修复软件",
-        "icon": "🎴",
+        "icon": "🧰",
         "body": [
           {
             "type": "p",
-            "text": "如您误删或者格式化了内存卡后请不要进行拍摄和传入内存卡数据，以防数据覆盖找回失败。"
+            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
           },
           {
             "type": "olist",
             "items": [
-              "请注意：此数据找回操作仅限电脑端操作，如您担心可联系客服售后或选择您本地数据找回门店",
-              "将内存卡从相机内取出后，插入读卡器内连接至电脑的接口，安装好官方的找回软件进行数据修复找回",
-              "Windows下载地址：https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip",
-              "mac下载地址：https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip",
-              "注：非专业人生请勿随意操作，以防您的数据丢失，也不要因为好奇而去操作，数据丢失或其他情况需您承担相应的责任"
+              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
+              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
+              "Windows 下载地址：[Lexar 数据恢复 Windows 版](https://www-oss.lexar.com/lexar/resource/files/2025-08-28/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Windows%E7%89%88%E6%9C%AC.zip)",
+              "Mac 下载地址：[Lexar 数据恢复 Mac 版](https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip)",
+              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
             ]
           },
           {
             "type": "warn",
-            "text": "再次和您确认，如您操作后内存卡出现异常/数据丢失/内存卡损坏 等其他情况需您承担相应的责任。"
+            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
           }
         ]
       },
@@ -2919,53 +4991,53 @@ const SUBCATEGORY_CONTENT = {
   // 子目录内容：内存卡数据找回 · TF 卡
   "recovery-tf": {
     "desc": "拍摄照片或视频误删尝试找回（不是百分百概率找回）",
-    "keywords": "空气炸锅 预热 菜单 温度 清洁",
+    "keywords": "内存卡 数据恢复 照片 视频 SD卡 TF卡 误删 格式化",
     "steps": [
       {
         "title": "闪迪TF内存卡官方数据找回修复软件",
-        "icon": "🎴",
+        "icon": "🧰",
         "body": [
           {
             "type": "p",
-            "text": "如您误删或者格式化了内存卡后请不要进行拍摄和传入内存卡数据，以防数据覆盖找回失败。"
+            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
           },
           {
             "type": "olist",
             "items": [
-              "请注意：此数据找回操作仅限电脑端操作，如您担心可联系客服售后或选择您本地数据找回门店",
-              "将内存卡从相机内取出后，插入读卡器内连接至电脑的接口，安装好官方的找回软件进行数据修复找回",
-              "Windows下载地址：https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip",
-              "mac下载地址：https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip",
-              "注：非专业人生请勿随意操作，以防您的数据丢失，也不要因为好奇而去操作，数据丢失或其他情况需您承担相应的责任"
+              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
+              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
+              "Windows 下载地址：[SanDisk RescuePRO Deluxe Windows 版](https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip)",
+              "Mac 下载地址：[SanDisk RescuePRO Deluxe Mac 版](https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip)",
+              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
             ]
           },
           {
             "type": "warn",
-            "text": "再次和您确认，如您操作后内存卡出现异常/数据丢失/内存卡损坏 等其他情况需您承担相应的责任。"
+            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
           }
         ]
       },
  {
         "title": "雷克沙TF内存卡官方数据找回修复软件",
-        "icon": "🎴",
+        "icon": "🧰",
         "body": [
           {
             "type": "p",
-            "text": "如您误删或者格式化了内存卡后请不要进行拍摄和传入内存卡数据，以防数据覆盖找回失败。"
+            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
           },
           {
             "type": "olist",
             "items": [
-              "请注意：此数据找回操作仅限电脑端操作，如您担心可联系客服售后或选择您本地数据找回门店",
-              "将内存卡从相机内取出后，插入读卡器内连接至电脑的接口，安装好官方的找回软件进行数据修复找回",
-              "Windows下载地址：https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip",
-              "mac下载地址：https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip",
-              "注：非专业人生请勿随意操作，以防您的数据丢失，也不要因为好奇而去操作，数据丢失或其他情况需您承担相应的责任"
+              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
+              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
+              "Windows 下载地址：[Lexar 数据恢复 Windows 版](https://www-oss.lexar.com/lexar/resource/files/2025-08-28/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Windows%E7%89%88%E6%9C%AC.zip)",
+              "Mac 下载地址：[Lexar 数据恢复 Mac 版](https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip)",
+              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
             ]
           },
           {
             "type": "warn",
-            "text": "再次和您确认，如您操作后内存卡出现异常/数据丢失/内存卡损坏 等其他情况需您承担相应的责任。"
+            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
           }
         ]
       },
@@ -2973,3 +5045,5 @@ const SUBCATEGORY_CONTENT = {
     ]
   },
 }
+
+

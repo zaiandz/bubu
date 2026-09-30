@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="body" x1="10" y1="7" x2="54" y2="57" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFDFB"/><stop offset="1" stop-color="#F6E4D8"/></linearGradient>
+    <linearGradient id="accent" x1="14" y1="8" x2="50" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#D97648"/><stop offset="1" stop-color="#9F4225"/></linearGradient>
+  </defs>
+  
+  <rect x="10" y="15" width="27" height="20" rx="6" fill="url(#body)" stroke="url(#accent)" stroke-width="3"/><circle cx="23.5" cy="25" r="5.8" fill="#5A3425" stroke="url(#accent)" stroke-width="2.5"/><circle cx="23.5" cy="25" r="2.6" fill="#B8643E"/>
+  <rect x="37" y="33" width="18" height="17" rx="5" fill="#F0CFBE" stroke="url(#accent)" stroke-width="3"/><path d="M42 38h8M42 44h8" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round"/><path d="M14 40h19M23.5 40v14" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+</svg>

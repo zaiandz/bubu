@@ -1,7 +1,7 @@
 /* ============================================================
  * 【逻辑层】js/app.js
  * 负责：渲染列表 / 搜索 / 分类 / 详情渲染 / 步骤折叠 / 主题 / 动效
- * 依赖：js/data.js 中的 SITE_CONFIG、CATEGORIES、PRODUCTS
+ * 依赖：js/data.js 中的 SITE_CONFIG、HOME_CONFIG、CATEGORIES、PRODUCTS、SUBCATEGORY_CONTENT
  *
  * 注释标签：
  *   [状态] 页面状态    [DOM] 页面元素    [工具] 通用函数
@@ -151,7 +151,7 @@
       });
       var children = Array.isArray(cat.children) ? cat.children : [];
 
-      if (!children.length || !templates.length) {
+      if (!children.length) {
         templates.forEach(function (p) { result.push(p); });
         return;
       }
@@ -160,28 +160,36 @@
         var childValue = child.value || child.id || child.label || ("子类 " + (index + 1));
         var template = templates.filter(function (p) {
           return p.id === child.productId;
-        })[0] || templates[0];
+        })[0] || templates[0] || {};
         var item = copyObject(template);
         var childContent = (typeof SUBCATEGORY_CONTENT !== "undefined" && child.id)
           ? SUBCATEGORY_CONTENT[child.id]
           : null;
 
         Object.keys(child).forEach(function (key) { item[key] = child[key]; });
-        item.id = child.id || (template.id + "-" + (index + 1));
-        item.name = child.name || (template.name + " · " + (child.label || childValue));
+        item.id = child.id || ((template.id || cat.value) + "-" + (index + 1));
+        item.name = child.name || ((template.name || cat.label || childValue) + " · " + (child.label || childValue));
         item.category = cat.value;
-        item.parentId = template.id;
+        item.parentId = template.id || "";
         item.parentName = cat.label || cat.value;
         item.parentIcon = cat.icon || template.icon || "📁";
+        item.parentIconImage = cat.iconImage || template.iconImage || "";
+        item.icon = child.icon || template.icon || cat.icon || "📦";
+        item.iconImage = child.iconImage || template.iconImage || "";
+        item.color = child.color || template.color || cat.homeColor || "#4f46e5";
         item.subcategory = childValue;
         item.subcategoryLabel = child.label || childValue;
         item.desc = child.desc !== undefined
           ? child.desc
-          : (childContent && childContent.desc !== undefined ? childContent.desc : template.desc);
+          : (childContent && childContent.desc !== undefined
+            ? childContent.desc
+            : (template.desc || cat.homeDesc || ""));
         item.keywords = child.keywords !== undefined
           ? child.keywords
-          : (childContent && childContent.keywords !== undefined ? childContent.keywords : template.keywords);
-        item.steps = child.steps || (childContent && childContent.steps) || template.steps;
+          : (childContent && childContent.keywords !== undefined
+            ? childContent.keywords
+            : (template.keywords || ""));
+        item.steps = child.steps || (childContent && childContent.steps) || template.steps || [];
 
         result.push(item);
       });
@@ -282,6 +290,7 @@
     state.page = "home";
     state.category = "all";
     state.subcategory = "";
+    state.activeId = null;
     syncCategoryButtons();
 
     /* 每次进入首页时清除教程参数，刷新后仍优先显示首页 */
@@ -300,22 +309,28 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // 功能：从首页打开指定目录或子目录
+  // 功能：从首页打开指定目录或子目录，同时保留其他主目录
   function openHomeDirectory(categoryValue, subcategoryValue) {
     showTutorialView();
-    state.category = categoryValue;
-    state.subcategory = subcategoryValue || "";
+
+    /* 先按“全部”渲染侧栏，确保点击一个主目录后其他目录仍然显示 */
+    state.category = "all";
+    state.subcategory = "";
     syncCategoryButtons();
     renderCards();
     setCategoryExpanded(categoryValue, true);
 
+    var targetSubcategory = subcategoryValue || "";
     var target = displayProducts.filter(function (p) {
       return p.category === categoryValue &&
-        (!state.subcategory || p.subcategory === state.subcategory);
+        (!targetSubcategory || p.subcategory === targetSubcategory);
     })[0];
 
     if (target) {
       selectProduct(target.id);
+      state.category = categoryValue;
+      state.subcategory = targetSubcategory;
+      syncCategoryButtons();
     } else {
       els.empty.hidden = false;
       els.detail.hidden = true;
@@ -423,7 +438,9 @@
         '<span class="home-card-art">' +
           (cat.homeImage
             ? '<img src="' + esc(cat.homeImage) + '" alt="" loading="lazy">'
-            : '<span class="home-card-emoji" aria-hidden="true">' + esc(cat.homeIcon || cat.icon || "📷") + "</span>") +
+            : ((cat.homeIconImage || cat.iconImage)
+              ? '<img class="home-card-icon-image" src="' + esc(cat.homeIconImage || cat.iconImage) + '" alt="" loading="lazy">'
+              : '<span class="home-card-emoji" aria-hidden="true">' + esc(cat.homeIcon || cat.icon || "📷") + "</span>")) +
         "</span>" +
         '<span class="home-card-copy">' +
           '<span class="home-card-brand">' + esc(brand) + "</span>" +
@@ -441,7 +458,11 @@
         var subBtn = document.createElement("button");
         subBtn.type = "button";
         subBtn.className = "home-sub-btn";
-        subBtn.textContent = child.label || child.value;
+        subBtn.innerHTML =
+          (child.iconImage
+            ? '<img class="home-sub-icon-img" src="' + esc(child.iconImage) + '" alt="" loading="lazy">'
+            : '<span class="home-sub-icon" aria-hidden="true">' + esc(child.icon || "📷") + "</span>") +
+          '<span class="home-sub-label">' + esc(child.label || child.value) + "</span>";
         subBtn.addEventListener("click", function () {
           openHomeDirectory(cat.value, child.value || child.label || child.id);
         });
@@ -515,7 +536,13 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "cat-btn cat-parent" + (state.category === cat.value ? " active" : "");
-      btn.textContent = cat.label || cat.value;
+      btn.innerHTML =
+        '<span class="cat-parent-icon-wrap" aria-hidden="true">' +
+          (cat.iconImage
+            ? '<img class="cat-parent-icon-img" src="' + esc(cat.iconImage) + '" alt="" loading="lazy">'
+            : '<span class="cat-parent-icon">' + esc(cat.icon || "📁") + "</span>") +
+        "</span>" +
+        '<span class="cat-parent-label">' + esc(cat.label || cat.value) + "</span>";
       btn.dataset.value = cat.value;
       btn.dataset.child = "";
       btn.setAttribute("aria-pressed", state.category === cat.value ? "true" : "false");
@@ -562,7 +589,11 @@
           childBtn.type = "button";
           childBtn.className = "cat-btn cat-child" +
             (state.category === cat.value && state.subcategory === childValue ? " active" : "");
-          childBtn.textContent = child.label || childValue;
+          childBtn.innerHTML =
+            (child.iconImage
+              ? '<img class="cat-child-icon-img" src="' + esc(child.iconImage) + '" alt="" loading="lazy">'
+              : '<span class="cat-child-icon" aria-hidden="true">' + esc(child.icon || "📷") + "</span>") +
+            '<span class="cat-child-label">' + esc(child.label || childValue) + "</span>";
           childBtn.dataset.value = cat.value;
           childBtn.dataset.child = childValue;
           childBtn.tabIndex = isExpanded ? 0 : -1;
@@ -588,6 +619,25 @@
   }
 
   /* ---------------- 过滤逻辑 ---------------- */
+  // 功能：收集教程正文，允许搜索结果匹配步骤内容
+  function stepSearchText(step) {
+    var parts = [step.title || ""];
+    (step.body || []).forEach(function (block) {
+      if (!block) return;
+      if (block.text) parts.push(block.text);
+      if (block.caption) parts.push(block.caption);
+      if (block.alt) parts.push(block.alt);
+      if (Array.isArray(block.items)) parts.push(block.items.join(" "));
+      if (Array.isArray(block.head)) parts.push(block.head.join(" "));
+      if (Array.isArray(block.rows)) {
+        block.rows.forEach(function (row) {
+          if (Array.isArray(row)) parts.push(row.join(" "));
+        });
+      }
+    });
+    return parts.join(" ");
+  }
+
   // 功能：按分类和关键词筛选教程
   function getFiltered() {
     var source = getProductSource();
@@ -600,7 +650,7 @@
 
       var haystack = [
         p.name, p.desc, p.category, p.parentName || "", p.subcategoryLabel || "", p.keywords || ""
-      ].concat((p.steps || []).map(function (s) { return s.title; }))
+      ].concat((p.steps || []).map(function (s) { return stepSearchText(s); }))
        .join(" ")
        .toLowerCase();
 
@@ -619,7 +669,11 @@
     card.style.animationDelay = (index * 45) + "ms";
 
     card.innerHTML =
-      '<span class="card-icon">' + esc(p.icon || "📦") + "</span>" +
+      '<span class="card-icon">' +
+        (p.iconImage
+          ? '<img class="card-icon-img" src="' + esc(p.iconImage) + '" alt="" loading="lazy">'
+          : esc(p.icon || "📦")) +
+      "</span>" +
       '<span class="card-main">' +
         '<span class="card-name">' + esc(p.name) + "</span>" +
         '<span class="card-desc">' + esc(p.desc || "") + "</span>" +
@@ -668,6 +722,7 @@
           value: key,
           label: p.parentName || key,
           icon: p.parentIcon || p.icon || "📁",
+          iconImage: p.parentIconImage || "",
           color: p.color || "#4f46e5",
           items: []
         };
@@ -698,7 +753,11 @@
       main.style.animation = "fadeUp .35s var(--ease) " + (groupIndex * 45) + "ms both";
       main.innerHTML =
         '<span class="card-group-name">' +
-          '<span class="card-group-icon" aria-hidden="true">' + esc(groupData.icon) + '</span>' +
+          '<span class="card-group-icon" aria-hidden="true">' +
+            (groupData.iconImage
+              ? '<img class="card-group-icon-img" src="' + esc(groupData.iconImage) + '" alt="" loading="lazy">'
+              : esc(groupData.icon)) +
+          "</span>" +
           "<span>" + esc(groupData.label) + "</span>" +
         "</span>" +
         '<span class="card-group-count">' + groupData.items.length + " 项</span>";
@@ -818,7 +877,11 @@
 
     return '' +
       '<div class="detail-hero" style="--accent-color:' + esc(p.color || "#4f46e5") + '">' +
-        '<div class="hero-icon">' + esc(p.icon || "📦") + "</div>" +
+        '<div class="hero-icon">' +
+          (p.iconImage
+            ? '<img class="hero-icon-img" src="' + esc(p.iconImage) + '" alt="" loading="lazy">'
+            : esc(p.icon || "📦")) +
+        "</div>" +
         '<div class="hero-text">' +
           "<h1>" + esc(p.name) + "</h1>" +
           "<p>" + esc(p.desc || "") + "</p>" +
@@ -847,7 +910,10 @@
     }
     if (!p) return;
 
+    state.category = p.category || "all";
+    state.subcategory = p.subcategory || "";
     state.page = "tutorial";
+    syncCategoryButtons();
     if (els.home) els.home.hidden = true;
     state.activeId = id;
 
@@ -864,6 +930,9 @@
     /* 高亮左侧卡片 */
     Array.prototype.forEach.call(els.cardList.querySelectorAll(".card"), function (c) {
       c.classList.toggle("active", c.dataset.id === id);
+    });
+    Array.prototype.forEach.call(els.cardList.querySelectorAll(".card-group"), function (group) {
+      group.classList.toggle("active", group.dataset.value === p.category);
     });
 
     els.empty.hidden = true;
@@ -906,8 +975,12 @@
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); done(); }
-      catch (err) { toast("复制失败，请手动复制"); }
+      try {
+        if (document.execCommand("copy")) done();
+        else toast("复制失败，请手动复制");
+      } catch (err) {
+        toast("复制失败，请手动复制");
+      }
       ta.remove();
     }
 
@@ -1081,3 +1154,6 @@
     init();
   }
 })();
+
+
+
