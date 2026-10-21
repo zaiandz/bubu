@@ -1,15 +1,15 @@
 网站最终版本恢复说明
 
-1. 解压 hbkmjweb-final-backup_2026-09-30_22-45-59.zip。
+1. 解压 hbkmjweb-final-backup_2026-10-16_16-25-59.zip。
 2. 将解压后的 index.html、README.md、css、js、images、assets、videos 放回同一个网站文件夹。
-3. 已完成全站目录图标适配：8 个主目录、22 个子目录和明显不匹配的步骤图标均已更新。
-4. 子目录图标按设备型号、镜头焦段、套装配件、存储卡类型分别设计。
-5. 网站共 8 个主目录、22 个子目录，其中 18 个相机子目录含照片和视频导出教程。
-6. hbkmjweb-final-manifest_2026-09-30_22-45-59.txt 可用于核对每个文件的大小和 SHA256。
+3. 大疆 Pocket 4 Pro 标准套装和全能套装教程均已增加“如何使用官方自带补光灯”步骤。
+4. 补光灯教程包含安装、开关、三级亮度、三级色温、自动调节、自定义按键和官方链接。
+5. 网站共 8 个主目录、24 个子目录，其中 20 个相机子目录含照片和视频导出教程。
+6. hbkmjweb-final-manifest_2026-10-16_16-25-59.txt 可用于核对每个文件的大小和 SHA256。
 
 源目录：
 C:\Users\adminu\Desktop\hbkmjweb
 备份文件：
-C:\Users\adminu\Desktop\hbkmjweb\backups\hbkmjweb-final-backup_2026-09-30_22-45-59.zip
+C:\Users\adminu\Desktop\hbkmjweb\backups\hbkmjweb-final-backup_2026-10-16_16-25-59.zip
 备份 SHA256：
-53FDA927FDD43DA85375F7D528C484FFE58C0DF72236A63664B148025CF1C280
+0EDBCB52DB54C3A6F0A177BEA668FB51748DB45EA213783EDEAF6A10A53B6FEE
