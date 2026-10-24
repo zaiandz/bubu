@@ -34,18 +34,31 @@
 
 /* ---------- 站点基础配置 ---------- */
 const SITE_CONFIG = {
-  brand: "湖北视感闪租相机使用教程",
+  brand: "视感闪租",
+  brandSub: "设备使用教程中心",
+  brandShort: "视感闪租",
+  subtitle: "设备使用教程中心",
   logo: "",
+  // logo-mark 为从方形 Logo 中裁出的图形标记；如需整张图可改回 images/视感闪租 LOGO-02.jpg
+  logoIcon: "images/logo-mark.png",
   logoImage: "images/视感闪租 LOGO-02.jpg",
-  searchPlaceholder: "搜索商品或教程关键词…",
+  searchPlaceholder: "搜索设备、型号或教程关键词…",
   // [配置] logoImage 填写图片路径后优先显示图片；留空时显示 logo 表情
 };
 
 /* ---------- 首页基础配置 ---------- */
 const HOME_CONFIG = {
-  brand: "湖北视感闪租相机租赁",
-  title: "各类相机使用简易教程",
-  subtitle: "选择下方目录，快速查看对应设备的使用教程",
+  brand: "视感闪租",
+  kicker: "视感闪租 · 设备使用教程中心",
+  title: "设备使用教程中心",
+  subtitle: "按设备类目检索图文与视频教程，覆盖开箱、开机、拍摄模式、素材导出与售后排查全流程。",
+  stats: [
+    { key: "categories", label: "设备类目" },
+    { key: "tutorials", label: "在线教程" },
+    { key: "steps", label: "操作步骤" },
+    { key: "media", label: "图示视频" }
+  ],
+
   services: [
     {
       title: "在线租赁客服",
@@ -64,102 +77,118 @@ const HOME_CONFIG = {
 
 /* ---------- 分类列表（children 为子类目，可自由增删，复制其中一行进行复制粘贴后修改文字即可） ---------- */
 const CATEGORIES = [
-  { value: "all", label: "全部" },
+  { value: "all", label: "全部教程" },
   {
-    value: "手持云台相机",
-    label: "手持云台相机",
-    homeDesc: "稳定跟拍，适合 Vlog 和日常记录",
+    value: "手持云台 · Pocket 系列",
+    label: "手持云台 · Pocket 系列",
+    short: "手持云台",
+    brand: "DJI",
+    homeDesc: "三轴机械防抖，Vlog 与旅拍随身影视机",
     icon: "🎥",
     iconImage: "images/category-icons/gimbal-camera.svg",
     children: [
-      { id: "gimbal-phone",  value: "大疆pocket3标准版",   label: "大疆pocket3标准版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-standard.svg" },
-      { id: "gimbal-one",  value: "大疆pocket3长续航版",   label: "大疆pocket3长续航版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-long-battery.svg" },
-      { id: "gimbal-two",  value: "大疆pocket3全能版",   label: "大疆pocket3全能版",   icon: "📱", iconImage: "images/category-icons/children/pocket3-creator.svg" },
-      { id: "gimbal-pocket4pro-standard", value: "大疆Pocket 4 Pro标准套装", label: "大疆Pocket 4 Pro标准套装", icon: "📱", iconImage: "images/category-icons/children/pocket4pro-standard.svg" },
-      { id: "gimbal-pocket4pro-combo", value: "大疆Pocket 4 Pro全能套装", label: "大疆Pocket 4 Pro全能套装", icon: "📱", iconImage: "images/category-icons/children/pocket4pro-combo.svg" },
+      { id: "gimbal-phone",  value: "大疆pocket3标准版",   label: "Pocket 3 标准版",   icon: "📱" },
+      { id: "gimbal-one",  value: "大疆pocket3长续航版",   label: "Pocket 3 长续航版",   icon: "📱" },
+      { id: "gimbal-two",  value: "大疆pocket3全能版",   label: "Pocket 3 全能套装",   icon: "📱" },
+      { id: "gimbal-pocket4pro-standard", value: "大疆Pocket 4 Pro标准套装", label: "Pocket 4 Pro 标准套装", icon: "📱" },
+      { id: "gimbal-pocket4pro-combo", value: "大疆Pocket 4 Pro全能套装", label: "Pocket 4 Pro 全能套装", icon: "📱" }
     ]
   },
   {
-    value: "运动相机",
-    label: "运动相机",
-    homeDesc: "户外运动，防水防抖记录精彩瞬间",
+    value: "运动相机 · Insta360 Ace 系列",
+    label: "运动相机 · Insta360 Ace 系列",
+    short: "运动相机",
+    brand: "Insta360",
+    homeDesc: "防水耐摔，第一视角记录户外与运动瞬间",
     icon: "🎿",
     iconImage: "images/category-icons/action-camera.svg",
     children: [
-      { id: "action-standard", value: "影石ACEPro2",       label: "影石ACEpro2",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-standard.svg" },
-      { id: "action-street", value: "影石ACEPro2街拍套装",       label: "影石ACEpro2街拍套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-street.svg" },
-      { id: "action-neck", value: "影石ACEPro2挂脖套装",       label: "影石ACEpro2挂脖套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-neck.svg" },
-      { id: "action-vlog", value: "影石ACEPro2手持vlog套装",       label: "影石ACEpro2手持vlog套装",       icon: "🎿", iconImage: "images/category-icons/children/acepro2-vlog.svg" },
-
+      { id: "action-standard", value: "影石ACEPro2",       label: "Ace Pro 2 标准版",       icon: "🎿" },
+      { id: "action-street", value: "影石ACEPro2街拍套装",       label: "Ace Pro 2 街拍套装",       icon: "🎿" },
+      { id: "action-neck", value: "影石ACEPro2挂脖套装",       label: "Ace Pro 2 挂脖套装",       icon: "🎿" },
+      { id: "action-vlog", value: "影石ACEPro2手持vlog套装",       label: "Ace Pro 2 手持 Vlog 套装",       icon: "🎿" }
     ]
   },
   {
-    value: "全景相机",
-    label: "全景相机",
-    homeDesc: "360°全景记录，适合旅行、运动和创意拍摄",
+    value: "全景相机 · Insta360 X 系列",
+    label: "全景相机 · Insta360 X 系列",
+    short: "全景相机",
+    brand: "Insta360",
+    homeDesc: "360° 全景记录，旅行、运动与创意拍摄",
     icon: "🌐",
     iconImage: "images/category-icons/panorama-camera.svg",
     children: [
-      { id: "insta360-x6-standard", value: "影石Insta360 X6标准版", label: "影石Insta360 X6标准版", icon: "🌐", iconImage: "images/category-icons/children/x6-standard.svg" },
-      { id: "insta360-x6-allround", value: "影石Insta360 X6全能版", label: "影石Insta360 X6全能版", icon: "🎒", iconImage: "images/category-icons/children/x6-allround.svg" },
-      { id: "insta360-x6-travel", value: "影石Insta360 X6旅拍套装", label: "影石Insta360 X6旅拍套装", icon: "✈️", iconImage: "images/category-icons/children/x6-travel.svg" }
+      { id: "insta360-x6-standard", value: "影石Insta360 X6标准版", label: "Insta360 X6 标准版", icon: "🌐" },
+      { id: "insta360-x6-allround", value: "影石Insta360 X6全能版", label: "Insta360 X6 全能版", icon: "🎒" },
+      { id: "insta360-x6-travel", value: "影石Insta360 X6旅拍套装", label: "Insta360 X6 旅拍套装", icon: "✈️" }
     ]
   },
   {
-    value: "微单相机",
-    label: "微单相机",
-    homeDesc: "高清画质，适合人像、旅行和专业拍摄",
+    value: "微单相机 · 佳能 RF 卡口",
+    label: "微单相机 · 佳能 RF 卡口",
+    short: "微单相机",
+    brand: "Canon",
+    homeDesc: "APS-C 画质机身搭配可换镜头，人像旅拍通用",
     icon: "📷",
     iconImage: "images/category-icons/mirrorless-camera.svg",
     children: [
-      { id: "mirrorless-entry", value: "佳能微单+18-45mm入门套镜头", label: "佳能微单+18-45mm入门套镜头", icon: "🎬", iconImage: "images/category-icons/children/mirrorless-18-45.svg" },
-      { id: "mirrorless-plus",  value: "佳能微单+18-150mm风光变焦镜头", label: "佳能微单+18-150mm风光变焦镜头", icon: "📷", iconImage: "images/category-icons/children/mirrorless-18-150.svg" },
-      { id: "mirrorless-pro",   value: "佳能微单+F1.8人像大光圈镜头", label: "佳能微单+F1.8人像大光圈镜头", icon: "🎞️", iconImage: "images/category-icons/children/mirrorless-f18.svg" },
-      { id: "mirrorless-one",   value: "佳能微单+超远摄100-400mm", label: "佳能微单+超远摄100-400mm", icon: "🔍", iconImage: "images/category-icons/children/mirrorless-100-400.svg" }
+      { id: "mirrorless-entry", value: "佳能微单+18-45mm入门套镜头", label: "佳能微单 + 18-45mm 入门套机", icon: "🎬" },
+      { id: "mirrorless-plus",  value: "佳能微单+18-150mm风光变焦镜头", label: "佳能微单 + 18-150mm 风光变焦", icon: "📷" },
+      { id: "mirrorless-pro",   value: "佳能微单+F1.8人像大光圈镜头", label: "佳能微单 + F1.8 人像镜头", icon: "🎞️" },
+      { id: "mirrorless-one",   value: "佳能微单+超远摄100-400mm", label: "佳能微单 + 100-400mm 超远摄", icon: "🔍" }
     ]
   },
   {
-    value: "卡片相机",
-    label: "卡片相机",
-    homeDesc: "轻巧便携，旅行和日常随手拍",
+    value: "卡片相机 · 佳能 G 系列",
+    label: "卡片相机 · 佳能 G 系列",
+    short: "卡片相机",
+    brand: "Canon",
+    homeDesc: "口袋机身即开即拍，旅行与日常随手记录",
     icon: "📸",
     iconImage: "images/category-icons/compact-camera.svg",
     children: [
-      { id: "compact-entry", value: "佳能卡片相机标准版", label: "佳能卡片相机标准版", icon: "📸", iconImage: "images/category-icons/children/compact-standard.svg" },
-      { id: "compact-vlog",  value: "佳能无线蓝牙自拍杆版", label: "佳能无线蓝牙自拍杆版", icon: "🎥", iconImage: "images/category-icons/children/compact-selfie.svg" },
+      { id: "compact-entry", value: "佳能卡片相机标准版", label: "G7 X Mark III 标准版", icon: "📸" },
+      { id: "compact-vlog",  value: "佳能无线蓝牙自拍杆版", label: "G7 X Mark III 蓝牙自拍杆版", icon: "🎥" },
+      { id: "compact-g12",   value: "佳能G12卡片相机", label: "佳能G12卡片相机", icon: "📷" }
     ]
   },
   {
-    value: "CCD相机",
-    label: "CCD相机",
-    homeDesc: "复古CCD画质，适合日常、旅行和氛围感照片",
+    value: "复古 CCD 相机 · 佳能 IXUS 系列",
+    label: "复古 CCD 相机 · 佳能 IXUS 系列",
+    short: "复古 CCD",
+    brand: "Canon",
+    homeDesc: "千禧年复古色彩，氛围感照片与胶片质感",
     icon: "📻",
     iconImage: "images/category-icons/ccd-camera.svg",
     children: [
-      { id: "canon-ixus-210", value: "佳能IXU210复古CCD相机", label: "佳能IXU210复古CCD相机", icon: "📸", iconImage: "images/category-icons/children/ccd-210.svg" },
-      { id: "canon-ixus-130", value: "佳能IXU130复古CCD相机", label: "佳能IXU130复古CCD相机", icon: "📷", iconImage: "images/category-icons/children/ccd-130.svg" }
+      { id: "canon-ixus-210", value: "佳能IXU210复古CCD相机", label: "IXUS 210 复古 CCD", icon: "📸" },
+      { id: "canon-ixus-130", value: "佳能IXU130复古CCD相机", label: "IXUS 130 复古 CCD", icon: "📷" }
     ]
   },
   {
-    value: "落地三脚架",
-    label: "落地三脚架",
-    homeDesc: "稳定支撑，直播和拍摄更省心",
+    value: "三脚架 · 云台与配件",
+    label: "三脚架 · 云台与配件",
+    short: "脚架配件",
+    brand: "Fotopro",
+    homeDesc: "液压云台稳定支撑，直播、合影与长曝光必备",
     icon: "🔭",
     iconImage: "images/category-icons/tripod.svg",
     children: [
-      { id: "tripod-live",  value: "富宝图FY-830-MH-4A液压云台标准版",   label: "富宝图FY-830-MH-4A液压云台标准版",   icon: "📱", iconImage: "images/category-icons/children/tripod-hydraulic.svg" },
-      { id: "tripod-cam",   value: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   label: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   icon: "📷", iconImage: "images/category-icons/children/tripod-accessories.svg" },
+      { id: "tripod-live",  value: "富宝图FY-830-MH-4A液压云台标准版",   label: "FY-830 液压云台标准版",   icon: "📱" },
+      { id: "tripod-cam",   value: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   label: "FY-830 自选赠送配件",   icon: "📷" }
     ]
   },
   {
     value: "内存卡数据找回",
     label: "内存卡数据找回",
-    homeDesc: "素材误删，尝试找回重要照片和视频",
+    short: "数据找回",
+    brand: "SanDisk · Lexar",
+    homeDesc: "误删或格式化后，按官方工具流程尝试找回",
     icon: "💾",
     iconImage: "images/category-icons/memory-recovery.svg",
     children: [
-      { id: "recovery-sd",   value: "SD 卡",       label: "SD 卡",       icon: "💾", iconImage: "images/category-icons/children/recovery-sd.svg" },
-      { id: "recovery-tf",   value: "TF 卡",       label: "TF 卡",       icon: "📱", iconImage: "images/category-icons/children/recovery-tf.svg" },
+      { id: "recovery-sd",   value: "SD 卡",       label: "SD 卡数据找回",       icon: "💾" },
+      { id: "recovery-tf",   value: "TF 卡",       label: "TF 卡数据找回",       icon: "📱" }
     ]
   }
 ];
@@ -171,9 +200,9 @@ const CATEGORIES = [
 const PRODUCTS = [
   {
     id: "sp-x1",
-    name: "手持云台相机",
+    name: "手持云台 · Pocket 系列",
     icon: "🎥",
-    category: "手持云台相机",
+    category: "手持云台 · Pocket 系列",
     tag: "热门",
     color: "#6366f1",
     desc: "手持云台系列简易说明教程",
@@ -181,9 +210,9 @@ const PRODUCTS = [
   },
   {
     id: "hp-pro",
-    name: "运动相机",
+    name: "运动相机 · Insta360 Ace 系列",
     icon: "🎿",
-    category: "运动相机",
+    category: "运动相机 · Insta360 Ace 系列",
     tag: "",
     color: "#0ea5e9",
     desc: "运动相机系列简易使用说明教程",
@@ -191,9 +220,9 @@ const PRODUCTS = [
   },
   {
     id: "mirrorless-template",
-    name: "微单相机",
+    name: "微单相机 · 佳能 RF 卡口",
     icon: "🎬",
-    category: "微单相机",
+    category: "微单相机 · 佳能 RF 卡口",
     tag: "专业画质",
     color: "#10b981",
     desc: "微单相机与镜头组合简易使用说明",
@@ -201,9 +230,9 @@ const PRODUCTS = [
   },
   {
     id: "compact-template",
-    name: "卡片相机",
+    name: "卡片相机 · 佳能 G 系列",
     icon: "📸",
-    category: "卡片相机",
+    category: "卡片相机 · 佳能 G 系列",
     tag: "轻便",
     color: "#d97706",
     desc: "卡片相机简易使用说明教程",
@@ -211,9 +240,9 @@ const PRODUCTS = [
   },
   {
     id: "tripod-template",
-    name: "落地三脚架",
+    name: "三脚架 · 云台与配件",
     icon: "🔭",
-    category: "落地三脚架",
+    category: "三脚架 · 云台与配件",
     tag: "",
     color: "#f97316",
     desc: "富图宝 FY-830 + MH-4A 落地三脚架使用说明",
@@ -238,5431 +267,6032 @@ const PRODUCTS = [
 /* ---------- 手持云台子目录第一列 ----------
 */
 const SUBCATEGORY_CONTENT = {
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
   "gimbal-phone": {
-    "desc": "手持云台系列简易说明教程",
-    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
+    "desc": "大疆 Pocket 3 标准版教程，开机到导出全流程，适合 Vlog 与旅拍。",
+    "keywords": "大疆 Pocket 3 标准版 手持云台 口袋相机 开机 摇杆 智能跟随 竖拍 内存卡 导出 DJI Mimo 租赁教程",
     "steps": [
       {
-        "title": "开箱与配件确认",
+        "title": "开箱核对与爱惜提醒",
         "icon": "📦",
         "body": [
           {
+            "type": "warn",
+            "text": "租赁设备请务必爱护。云台非常娇贵，使用中如有磕碰、进水或任何异常，请第一时间联系客服售后处理，不要自行拆机维修。"
+          },
+          {
             "type": "p",
-            "text": "打开包装后，请先核对以下配件是否齐全。如缺少相机相关配件或者无法使用的情况请及时联系售后客服，以防耽误您的使用时间。"
+            "text": "拿到机子先别急着开机，照单清点一遍配件，缺件或外壳有伤请当场拍照联系客服，免得归还时说不清。"
           },
           {
             "type": "list",
             "items": [
-              "因选购版本不同，相机配件也不同",
-              "相机主机x1",
-              "官方保护壳x1",
-              "收纳包x1",
-              "128G内存卡x1",
-              "手绳x1",
-              "USB读卡器x1",
-              "长续航版在标准版基础上增加：",
-              "原厂续航手柄x1",
-              "全能套装在标准版基础上增加：",
-              " 原厂续航手柄x1",
-              "迷你三脚架x1",
-              "DJI Mic2发射器",
-              "Osmo pocket3增广镜",
-              "DJI Mic2防风毛套",
-              "DJI Mic2磁吸背夹"
+              "Pocket 3 主机 1 台（标准版）",
+              "官方保护壳、收纳包各 1 个",
+              "已装好的 MicroSD 卡 1 张",
+              "手绳、USB 读卡器各 1 个",
+              "充电线 1 根"
             ]
           },
           {
             "type": "tip",
-            "text": "因为手持云台较为脆弱，请您在使用过程中爱护相机，请勿磕碰、严重划痕、丢失相机等 如有货损或丢失需要进行赔付。"
+            "text": "机身**没有内置存储**，只能靠卡存素材。先确认卡已在卡槽里，再拍第一条视频，省得白拍一场。"
           }
         ]
       },
       {
-        "title": "相机首次开机使用说明",
+        "title": "开机、关机与首次充电",
         "icon": "🔌",
         "body": [
           {
             "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
+            "text": "Pocket 3 最常用的开机方式就是**把屏幕转出来**，转出的动作本身就会唤醒机器。"
           },
           {
             "type": "olist",
             "items": [
-              "相机正面（有显示屏的页面）轻推屏幕向左旋转",
-              "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
-              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
-              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
+              "向左旋转触摸屏，屏幕点亮、云台自动展开，这就开机了。",
+              "也可以短按侧面的拍摄键开机，开机后云台同样会自动展开。",
+              "关机：长按拍摄键，屏幕出现提示后确认关机即可。",
+              "想在屏幕里设置**旋转屏幕关机**，以后开机后顺时针把屏幕收回机身就能关机。"
             ]
           },
           {
             "type": "video",
-            "className": "gimbal-start-video",
             "src": "images/使用说明教程.mp4",
-            "caption": "相机使用说明教程"
+            "caption": "Pocket 系列开机、屏幕旋转与摇杆操作演示，开机前先看一遍最省心"
           },
           {
             "type": "warn",
-            "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
+            "text": "收到设备如果按了开机键没反应，通常是电量太低。先接上充电线充一会儿再开，**不要硬掰屏幕、硬推云台**。"
           }
         ]
       },
       {
-        "title": "相机可切换的模式",
+        "title": "认识按键与触摸屏",
         "icon": "🎛️",
         "body": [
           {
             "type": "p",
-            "text": "相机开机后点击屏幕左下角可手动更改为直接需要的拍照/视频模式等其他等其他模式 具体如下："
+            "text": "机身外露的操作其实就两样：一个拍摄键、一个五维摇杆，其余都在屏幕上完成。"
           },
           {
             "type": "table",
             "head": [
-              "模式",
-              "可直接切换的模式"
+              "位置",
+              "怎么用"
             ],
             "rows": [
               [
-                "普通视频录制",
-                "1080P——4K 60帧任意调节录制画质大小（画质越高耗电越高，占用存储也越高，设备也会发热）"
+                "拍摄键（单击）",
+                "拍照模式下拍一张；录像模式下按一下开始录、再按一下停止"
               ],
               [
-                "普通拍照",
-                "普通拍照，定格画面按下快门即可随拍"
+                "拍摄键（长按）",
+                "关机"
               ],
               [
-                "全景模式",
-                "切换全景模式最高可支持180°拍摄照片"
+                "五维摇杆（左右拨）",
+                "让镜头左右转，扫视左右场景就用它"
               ],
               [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率"
+                "五维摇杆（上下拨）",
+                "调整镜头上下的俯仰角度"
               ],
               [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率才可启用"
+                "屏幕顶部下滑",
+                "拉出控制中心，调亮度、云台模式、设置等"
               ],
               [
-                "慢动作",
-                "用于捕捉快速运动的瞬间，如运动、舞蹈、宠物奔跑等，最高拍摄支持4K 120帧率"
-              ],
-              [
-                "延时摄影",
-                "将长时间过程压缩为短视频，适合拍摄云卷云舒、日出日落、城市车流等"
-              ],
-              [
-                "智能跟随",
-                "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
-              ],
-              [
-                "旋转运镜",
-                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
-              ],
-              [
-                "竖拍模式",
-                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
+                "屏幕向左/右滑",
+                "切换参数面板，调画质、曝光、美颜等"
               ]
             ]
-          }
-        ]
-      },
-      {
-        "title": "相机滤镜美颜调整",
-        "icon": "✨",
-        "body": [
-          {
-            "type": "p",
-            "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
-              "如您需要开启美颜即可在调出的页面点击美颜开关即可",
-              "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
-            ]
-          },
-          {
-            "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
-            "alt": "相机滤镜参数推荐调整示意图",
-            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
           },
           {
             "type": "tip",
-            "text": "如有不清楚的地方请联系客服售后"
+            "text": "想放大画面：点屏幕右侧的缩放按钮，再**向上拨摇杆**放大，向下拨缩小。别用手直接拧镜头。"
           }
         ]
       },
       {
-        "title": "相机收纳说明",
-        "icon": "🎒",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "相机完全关机（云台转轴也自动收纳完成）",
-              "将相机正面朝下（含显示屏的方向朝下）",
-              "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
-            ]
-          },
-          {
-            "type": "video",
-            "src": "images/收纳说明.mp4",
-            "caption": "相机正确收纳说明"
-          },
-          {
-            "type": "tip",
-            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
-          }
-        ]
-      },
-      {
-        "title": "常见问题排查",
-        "icon": "🛠️",
-        "body": [
-          {
-            "type": "p",
-            "text": "如您开拍摄过程中出现异常可尝试解决："
-          },
-          {
-            "type": "olist",
-            "items": [
-              "11相机无法关机可尝试进行强制关机：长按相机拍摄按钮至相机屏幕黑屏和云台回收完成  强制关机后稍等一会可尝试重新开机",
-              "如相机无法进行链接手机，可按此操作：相机开机——屏幕顶部向下滑动——点击齿轮图标（设置）——向下滑动菜单栏找到（无线连接）——点击Wi-Fi频段更改为2.4GHz 修改好后相机重启手机app重启进行连接。",
-              "拍摄的视频手机无法保存：下载DJI Mimo应用程序打开后，请把app所需的权限全部允许，如拒绝的情况可能会出现无法保存图像的情况。",
-              "如还有其他状况问题请及时联系客服售后进行处理解决。"
-            ]
-          },
-          {
-            "type": "code",
-            "lang": "bash",
-            "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-
-/* ---------- 手持云台相机目录第二列（需增加复制以下整体进行修改即可） ----------
-*/
-
-  /* 长续航版独立教程内容，可单独修改 */
-  // 子目录内容：手持云台相机 · 大疆pocket3长续航版
-  "gimbal-one": {
-    "desc": "手持云台系列简易说明教程",
-    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
-    "steps": [
-      {
-        "title": "开箱与配件确认",
-        "icon": "📦",
-        "body": [
-          {
-            "type": "p",
-            "text": "打开包装后，请先核对以下配件是否齐全。如缺少相机相关配件或者无法使用的情况请及时联系售后客服，以防耽误您的使用时间。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "此页面为大疆pocket3手持云台长续航版（只是配件不同，操作一致）",
-              "相机主机x1",
-              "官方保护壳x1",
-              "收纳包x1",
-              "128G内存卡x1",
-              "手绳x1",
-              "USB读卡器x1",
-              "原厂续航手柄x1"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "因为手持云台较为脆弱，请您在使用过程中爱护相机，请勿磕碰、严重划痕、丢失相机等 如有货损或丢失需要进行赔付。"
-          }
-        ]
-      },
-      {
-        "title": "相机首次开机使用说明",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "相机正面（有显示屏的页面）轻推屏幕向左旋转",
-              "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
-              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
-              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
-            ]
-          },
-          {
-            "type": "video",
-            "className": "gimbal-start-video",
-            "src": "images/使用说明教程.mp4",
-            "caption": "相机使用说明教程"
-          },
-          {
-            "type": "warn",
-            "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
-          }
-        ]
-      },
-      {
-        "title": "相机可切换的模式",
-        "icon": "🎛️",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机开机后点击屏幕左下角可手动更改为直接需要的拍照/视频模式等其他等其他模式 具体如下："
-          },
-          {
-            "type": "table",
-            "head": [
-              "模式",
-              "可直接切换的模式"
-            ],
-            "rows": [
-              [
-                "普通视频录制",
-                "1080P——4K 60帧任意调节录制画质大小（画质越高耗电越高，占用存储也越高，设备也会发热）"
-              ],
-              [
-                "普通拍照",
-                "普通拍照，定格画面按下快门即可随拍"
-              ],
-              [
-                "全景模式",
-                "切换全景模式最高可支持180°拍摄照片"
-              ],
-              [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率"
-              ],
-              [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率才可启用"
-              ],
-              [
-                "慢动作",
-                "用于捕捉快速运动的瞬间，如运动、舞蹈、宠物奔跑等，最高拍摄支持4K 120帧率"
-              ],
-              [
-                "延时摄影",
-                "将长时间过程压缩为短视频，适合拍摄云卷云舒、日出日落、城市车流等"
-              ],
-              [
-                "智能跟随",
-                "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
-              ],
-              [
-                "旋转运镜",
-                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
-              ],
-              [
-                "竖拍模式",
-                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
-              ]
-            ]
-          }
-        ]
-      },
-      {
-        "title": "相机滤镜美颜调整",
-        "icon": "✨",
-        "body": [
-          {
-            "type": "p",
-            "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
-              "如您需要开启美颜即可在调出的页面点击美颜开关即可",
-              "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
-            ]
-          },
-          {
-            "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
-            "alt": "相机滤镜参数推荐调整示意图",
-            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
-          },
-          {
-            "type": "tip",
-            "text": "如有不清楚的地方请联系客服售后"
-          }
-        ]
-      },
-      {
-        "title": "相机收纳说明",
-        "icon": "🎒",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "相机完全关机（云台转轴也自动收纳完成）",
-              "将相机正面朝下（含显示屏的方向朝下）",
-              "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
-            ]
-          },
-          {
-            "type": "video",
-            "src": "images/收纳说明.mp4",
-            "caption": "相机正确收纳说明"
-          },
-          {
-            "type": "tip",
-            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
-          }
-        ]
-      },
-      {
-        "title": "常见问题排查",
-        "icon": "🛠️",
-        "body": [
-          {
-            "type": "p",
-            "text": "如您开拍摄过程中出现异常可尝试解决："
-          },
-          {
-            "type": "olist",
-            "items": [
-              "11相机无法关机可尝试进行强制关机：长按相机拍摄按钮至相机屏幕黑屏和云台回收完成  强制关机后稍等一会可尝试重新开机",
-              "如相机无法进行链接手机，可按此操作：相机开机——屏幕顶部向下滑动——点击齿轮图标（设置）——向下滑动菜单栏找到（无线连接）——点击Wi-Fi频段更改为2.4GHz 修改好后相机重启手机app重启进行连接。",
-              "拍摄的视频手机无法保存：下载DJI Mimo应用程序打开后，请把app所需的权限全部允许，如拒绝的情况可能会出现无法保存图像的情况。",
-              "如还有其他状况问题请及时联系客服售后进行处理解决。"
-            ]
-          },
-          {
-            "type": "code",
-            "lang": "bash",
-            "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-
-/* ---------- 手持云台相机目录第三列（需增加复制以下整体进行修改即可） ----------
-*/
-
-  /* 全能版独立教程内容，可单独修改 */
-  // 子目录内容：手持云台相机 · 大疆pocket3全能版
-  "gimbal-two": {
-    "desc": "手持云台系列简易说明教程",
-    "keywords": "大疆 Pocket 3 手持云台 相机 开机 拍照 录像 续航 内存卡 导出",
-    "steps": [
-      {
-        "title": "开箱与配件确认",
-        "icon": "📦",
-        "body": [
-          {
-            "type": "p",
-            "text": "打开包装后，请先核对以下配件是否齐全。如缺少相机相关配件或者无法使用的情况请及时联系售后客服，以防耽误您的使用时间。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "此链接为大疆pocket3全能版（只是配件不同，相机整体操作一致）",
-              "相机主机x1",
-              "官方保护壳x1",
-              "收纳包x1",
-              "128G内存卡x1",
-              "手绳x1",
-              "USB读卡器x1",
-              "长续航版在标准版基础上增加：",
-              "原厂续航手柄x1",
-              "全能套装在标准版基础上增加：",
-              " 原厂续航手柄x1",
-              "迷你三脚架x1",
-              "DJI Mic2发射器",
-              "Osmo pocket3增广镜",
-              "DJI Mic2防风毛套",
-              "DJI Mic2磁吸背夹"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "因为手持云台较为脆弱，请您在使用过程中爱护相机，请勿磕碰、严重划痕、丢失相机等 如有货损或丢失需要进行赔付。"
-          }
-        ]
-      },
-      {
-        "title": "相机首次开机使用说明",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "相机正面（有显示屏的页面）轻推屏幕向左旋转",
-              "轻推后显示屏会点亮云台会开启，开启后请不要使劲按压屏幕和掰动云台转轴",
-              "相机正面有摇杆，摇杆往上画面也会同步往上，同理摇杆往下画面也会往下",
-              "如需放大画面，可在相机开机后点击屏幕右侧的放大和方向按钮，再使用摇杆向上放大、向下缩小。",
-              "摇杆右侧是录制按钮。点击开始录制，再次点击结束录制。"
-            ]
-          },
-          {
-            "type": "video",
-            "className": "gimbal-start-video",
-            "src": "images/使用说明教程.mp4",
-            "caption": "相机使用说明教程"
-          },
-          {
-            "type": "warn",
-            "text": "如您在使用过程中相机使用出现任何意外情况请第一时间联系客服售后进处理。"
-          }
-        ]
-      },
-      {
-        "title": "相机可切换的模式",
-        "icon": "🎛️",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机开机后点击屏幕左下角可手动更改为直接需要的拍照/视频模式等其他等其他模式 具体如下："
-          },
-          {
-            "type": "table",
-            "head": [
-              "模式",
-              "可直接切换的模式"
-            ],
-            "rows": [
-              [
-                "普通视频录制",
-                "1080P——4K 60帧任意调节录制画质大小（画质越高耗电越高，占用存储也越高，设备也会发热）"
-              ],
-              [
-                "普通拍照",
-                "普通拍照，定格画面按下快门即可随拍"
-              ],
-              [
-                "全景模式",
-                "切换全景模式最高可支持180°拍摄照片"
-              ],
-              [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率"
-              ],
-              [
-                "低光视频",
-                "专为暗光环境设计，通过算法降低画面噪点、提升亮度（此模式仅在 4K 30即一下帧率才可启用"
-              ],
-              [
-                "慢动作",
-                "用于捕捉快速运动的瞬间，如运动、舞蹈、宠物奔跑等，最高拍摄支持4K 120帧率"
-              ],
-              [
-                "延时摄影",
-                "将长时间过程压缩为短视频，适合拍摄云卷云舒、日出日落、城市车流等"
-              ],
-              [
-                "智能跟随",
-                "双击屏幕中的目标即可开启，无论您如何握持或运镜，被追踪的主体（如人物）都会始终保持在画面中心，非常适合单人 Vlog 或拍摄运动对象。"
-              ],
-              [
-                "旋转运镜",
-                "支持一键完成 90° 或 180° 的平滑旋转拍摄，能创造出独特的镜头语言，增加画面动感。"
-              ],
-              [
-                "竖拍模式",
-                "通过旋转屏幕或锁定竖屏，可直接拍摄适合手机社交平台分享的竖版视频。注意：竖拍模式下的最高分辨率为 3K（由横向画面裁剪而来）"
-              ]
-            ]
-          }
-        ]
-      },
-      {
-        "title": "相机滤镜美颜调整",
-        "icon": "✨",
-        "body": [
-          {
-            "type": "p",
-            "text": "此列是相机如何设置美颜和滤镜的调整设置（请根据自己的需要调整，滤镜并不适用于所有场景）"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "将相机开机后，使用手指从屏幕右侧向左侧轻微滑动屏幕即可调出滤镜参数（美颜开关页面）",
-              "如您需要开启美颜即可在调出的页面点击美颜开关即可",
-              "需要调整滤镜参数，点击滑动后调出的页面 右上角有个 Pro 这个按钮选项 点击后即可进入滤镜调整页面",
-              "例如：需要调整曝光：点击曝光选项，弹出的页面有可调整的选项，按需要调整完成后点击确定就可以啦"
-            ]
-          },
-          {
-            "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
-            "alt": "相机滤镜参数推荐调整示意图",
-            "caption": "滤镜参数推荐调整参考（可根据实际拍摄场景自行微调）"
-          },
-          {
-            "type": "tip",
-            "text": "如有不清楚的地方请联系客服售后"
-          }
-        ]
-      },
-      {
-        "title": "相机收纳说明",
-        "icon": "🎒",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机收到后如无法开机可将相机连接充电线进行充电"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "相机完全关机（云台转轴也自动收纳完成）",
-              "将相机正面朝下（含显示屏的方向朝下）",
-              "拿起官方保护壳，将大疆pocket3对准保护壳进行收纳（云台转轴凸起对准保护壳缺口后轻轻按压机身即可完成收纳）",
-              "请勿随意收纳（正面朝上、侧放相机、反方向放置相机等）"
-            ]
-          },
-          {
-            "type": "video",
-            "src": "images/收纳说明.mp4",
-            "caption": "相机正确收纳说明"
-          },
-          {
-            "type": "tip",
-            "text": "如您不清楚如何进行收纳可联系售后客服进行咨询"
-          }
-        ]
-      },
-      {
-        "title": "常见问题排查",
-        "icon": "🛠️",
-        "body": [
-          {
-            "type": "p",
-            "text": "如您开拍摄过程中出现异常可尝试解决："
-          },
-          {
-            "type": "olist",
-            "items": [
-              "11相机无法关机可尝试进行强制关机：长按相机拍摄按钮至相机屏幕黑屏和云台回收完成  强制关机后稍等一会可尝试重新开机",
-              "如相机无法进行链接手机，可按此操作：相机开机——屏幕顶部向下滑动——点击齿轮图标（设置）——向下滑动菜单栏找到（无线连接）——点击Wi-Fi频段更改为2.4GHz 修改好后相机重启手机app重启进行连接。",
-              "拍摄的视频手机无法保存：下载DJI Mimo应用程序打开后，请把app所需的权限全部允许，如拒绝的情况可能会出现无法保存图像的情况。",
-              "如还有其他状况问题请及时联系客服售后进行处理解决。"
-            ]
-          },
-          {
-            "type": "code",
-            "lang": "bash",
-            "text": "# 查看设备 SN 码（位于机身底部标签或相机设置内查看）\nSN: 5WXXXXXXXXXXXXX"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-
-  
-/* ---------- 运动相机目录第一列（需增加复制以下整体进行修改即可） ----------
-*/
-
-  // 子目录内容：运动相机 · 影石ACEpro2
-  "action-standard": {
-    "desc": "影石 Ace Pro 2 标准版简易使用教程",
-    "keywords": "影石 Ace Pro 2 运动相机 开机 拍照 录像 充电 电池 内存卡",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "Ace Pro 2 用起来不复杂，先记住电源键、快门键和翻转屏的位置，后面操作就简单了。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-buttons-original.svg",
-            "alt": "Insta360 Ace Pro 2 按键示意图",
-            "caption": "官方按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：短按开机，再点一下可以切换拍摄模式。",
-              "长按电源键约 1 秒即可关机。",
-              "快门键：拍照、开始录像和停止录像都用它。",
-              "翻转屏：同时按屏幕两侧的按键，就可以把屏幕翻起来。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次拿到相机，建议先充满电再使用，避免拍到一半没电。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先把电池和内存卡装好，再开机使用。安装前记得让相机处于关机状态。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "安装电池步骤图",
-            "caption": "官方电池安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机侧边的电池仓保护盖。",
-              "按照电池上的方向标记，把电池平稳推进电池仓。",
-              "盖好电池仓盖，确认黄色标线没有露出来。",
-              "打开 MicroSD 卡槽盖，把内存卡按方向插入，听到轻轻一声后即可。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "请使用官方电池。内存卡建议使用正规品牌的高速卡，避免录像时提示卡速不足。"
-          }
-        ]
-      },
-      {
-        "title": "开机和简单设置",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "短按电源键开机。第一次使用，按照屏幕提示选择语言和时间即可。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "屏幕中间左右滑：切换拍摄模式。",
-              "屏幕顶部向下滑：打开相机设置。",
-              "屏幕左侧向右滑：进入相册。",
-              "屏幕底部向上滑：调整拍摄参数。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "固定机位长时间拍摄，可以在菜单里打开“长续航模式”，但部分语音和手势功能会暂时不能用。"
-          }
-        ]
-      },
-      {
-        "title": "开拍很简单",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "p",
-            "text": "开机后，屏幕里能看到画面就表示可以拍摄了。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "按一下快门键开始录像，再按一下停止录像。",
-              "在屏幕中间左右滑动，可以切换录像、拍照、慢动作等模式。",
-              "双击屏幕或点右下角按钮，可以在 1 倍和 2 倍画面之间切换。",
-              "从屏幕顶部向下滑，可以打开设置和快捷功能。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果担心错过精彩画面，可以打开“预录制”，它会保存按下快门前的一段视频。"
-          }
-        ]
-      },
-      {
-        "title": "充电、导出和保养",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机没电时，用 USB-C 充电线连接充电头即可充电。想导出照片和视频，可以用数据线连接电脑，也可以连接手机 App。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "连接电脑时，相机选择“U盘模式”，电脑里会出现相机文件夹。",
-              "连接手机时，先在手机安装 Insta360 App，再根据相机提示连接。",
-              "长时间不用时，每隔约 3 个月给电池充一次电。",
-              "镜头有灰尘时，用气吹或镜头布清理，不要用硬物刮擦。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  /* 运动相机 Vlog 套装独立教程内容 */
-  // 子目录内容：运动相机 · 影石ACEpro2手持lvog套装
-  "action-vlog": {
-    "desc": "影石 Ace Pro 2 手持 Vlog 套装简易使用教程",
-    "keywords": "影石 Ace Pro 2 手持Vlog套装 自拍杆 运动相机 拍Vlog 录像 充电",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "Ace Pro 2 用起来不复杂，先记住电源键、快门键和翻转屏的位置，后面操作就简单了。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-buttons-original.svg",
-            "alt": "Insta360 Ace Pro 2 按键示意图",
-            "caption": "官方按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：短按开机，再点一下可以切换拍摄模式。",
-              "长按电源键约 1 秒即可关机。",
-              "快门键：拍照、开始录像和停止录像都用它。",
-              "翻转屏：同时按屏幕两侧的按键，就可以把屏幕翻起来。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次拿到相机，建议先充满电再使用，避免拍到一半没电。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先把电池和内存卡装好，再开机使用。安装前记得让相机处于关机状态。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "安装电池步骤图",
-            "caption": "官方电池安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机侧边的电池仓保护盖。",
-              "按照电池上的方向标记，把电池平稳推进电池仓。",
-              "盖好电池仓盖，确认黄色标线没有露出来。",
-              "打开 MicroSD 卡槽盖，把内存卡按方向插入，听到轻轻一声后即可。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "请使用官方电池。内存卡建议使用正规品牌的高速卡，避免录像时提示卡速不足。"
-          }
-        ]
-      },
-      {
-        "title": "安装手持支架",
-        "icon": "🔧",
-        "body": [
-          {
-            "type": "p",
-            "text": "手持 Vlog 套装适合自拍、旅行记录和边走边拍，安装好支架后可以把相机举到合适的位置。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-quick-release-original.svg",
-            "alt": "快拆底座安装步骤图",
-            "caption": "官方快拆底座安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把快拆底座装到相机底部，确认听到“咔哒”声。",
-              "把底座连接到手持支架或自拍杆上并锁紧。",
-              "打开支架，调整到适合自拍的角度。",
-              "先拿稳再开机，避免相机晃动或碰到周围物品。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "伸长自拍杆后不要快速甩动，人多的景区和街道要注意周围是否安全。"
-          }
-        ]
-      },
-      {
-        "title": "拍一段简单 Vlog",
-        "icon": "🎙️",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "按快门键开始录像，再按一下结束。",
-              "左右滑动屏幕切换录像、拍照和慢动作。",
-              "说话时尽量靠近相机，风大时建议装好防风罩。",
-              "双击屏幕切换 2 倍画面，拍远景会更方便。",
-              "打开手势控制后，可以用手势开始或停止录像。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍 Vlog 不用一次拍很长，分成几段短视频，后期挑选会更轻松。"
-          }
-        ]
-      },
-      {
-        "title": "充电、导出和保养",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机没电时，用 USB-C 充电线连接充电头即可充电。想导出照片和视频，可以用数据线连接电脑，也可以连接手机 App。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "连接电脑时，相机选择“U盘模式”，电脑里会出现相机文件夹。",
-              "连接手机时，先在手机安装 Insta360 App，再根据相机提示连接。",
-              "长时间不用时，每隔约 3 个月给电池充一次电。",
-              "镜头有灰尘时，用气吹或镜头布清理，不要用硬物刮擦。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：运动相机 · 影石ACEpro2街拍套装
-  "action-street": {
-    "desc": "影石 Ace Pro 2 街拍套装简易使用教程",
-    "keywords": "影石 Ace Pro 2 街拍套装 街拍手柄 运动相机 拍照 录像 充电",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "Ace Pro 2 用起来不复杂，先记住电源键、快门键和翻转屏的位置，后面操作就简单了。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-buttons-original.svg",
-            "alt": "Insta360 Ace Pro 2 按键示意图",
-            "caption": "官方按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：短按开机，再点一下可以切换拍摄模式。",
-              "长按电源键约 1 秒即可关机。",
-              "快门键：拍照、开始录像和停止录像都用它。",
-              "翻转屏：同时按屏幕两侧的按键，就可以把屏幕翻起来。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次拿到相机，建议先充满电再使用，避免拍到一半没电。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先把电池和内存卡装好，再开机使用。安装前记得让相机处于关机状态。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "安装电池步骤图",
-            "caption": "官方电池安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机侧边的电池仓保护盖。",
-              "按照电池上的方向标记，把电池平稳推进电池仓。",
-              "盖好电池仓盖，确认黄色标线没有露出来。",
-              "打开 MicroSD 卡槽盖，把内存卡按方向插入，听到轻轻一声后即可。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "请使用官方电池。内存卡建议使用正规品牌的高速卡，避免录像时提示卡速不足。"
-          }
-        ]
-      },
-      {
-        "title": "连接街拍手柄",
-        "icon": "🧩",
-        "body": [
-          {
-            "type": "p",
-            "text": "街拍手柄连接好后，拍照和录像会更顺手，握持也更稳。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-handgrip-original.svg",
-            "alt": "Insta360 Ace Pro 2 专业街拍手柄",
-            "caption": "官方专业街拍手柄"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把街拍手柄的 Type-C 插头接到相机接口。",
-              "连接后按一下手柄快门键，确认相机能正常响应。",
-              "如果屏幕提示“未连接”，长按手柄快门键约 8 秒重置，再重新连接。",
-              "手柄长时间不用会休眠，点一下快门键就可以唤醒。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "建议用长按手柄快门键的方式开机，连接会更稳定。街拍手柄不防水，雨天和涉水场景要注意保护。"
-          }
-        ]
-      },
-      {
-        "title": "街拍时怎么拍",
-        "icon": "🚶",
-        "body": [
-          {
-            "type": "p",
-            "text": "边走边拍时，双手握稳手柄，眼睛看屏幕确认画面。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "按快门键开始或停止录像。",
-              "只拍瞬间画面时，直接按快门拍照。",
-              "需要看清远处时，双击屏幕切换到 2 倍画面。",
-              "担心错过画面时，打开预录制功能。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "骑行或走路拍摄时，不要一直盯着屏幕，要注意周围车辆和行人。"
-          }
-        ]
-      },
-      {
-        "title": "充电、导出和保养",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机没电时，用 USB-C 充电线连接充电头即可充电。想导出照片和视频，可以用数据线连接电脑，也可以连接手机 App。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "连接电脑时，相机选择“U盘模式”，电脑里会出现相机文件夹。",
-              "连接手机时，先在手机安装 Insta360 App，再根据相机提示连接。",
-              "长时间不用时，每隔约 3 个月给电池充一次电。",
-              "镜头有灰尘时，用气吹或镜头布清理，不要用硬物刮擦。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：运动相机 · 影石ACEpro2挂脖套装
-  "action-neck": {
-    "desc": "影石 Ace Pro 2 挂脖套装简易使用教程",
-    "keywords": "影石 Ace Pro 2 挂脖套装 第一视角 运动相机 拍照 录像 充电",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "Ace Pro 2 用起来不复杂，先记住电源键、快门键和翻转屏的位置，后面操作就简单了。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-buttons-original.svg",
-            "alt": "Insta360 Ace Pro 2 按键示意图",
-            "caption": "官方按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：短按开机，再点一下可以切换拍摄模式。",
-              "长按电源键约 1 秒即可关机。",
-              "快门键：拍照、开始录像和停止录像都用它。",
-              "翻转屏：同时按屏幕两侧的按键，就可以把屏幕翻起来。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次拿到相机，建议先充满电再使用，避免拍到一半没电。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先把电池和内存卡装好，再开机使用。安装前记得让相机处于关机状态。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "安装电池步骤图",
-            "caption": "官方电池安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机侧边的电池仓保护盖。",
-              "按照电池上的方向标记，把电池平稳推进电池仓。",
-              "盖好电池仓盖，确认黄色标线没有露出来。",
-              "打开 MicroSD 卡槽盖，把内存卡按方向插入，听到轻轻一声后即可。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "请使用官方电池。内存卡建议使用正规品牌的高速卡，避免录像时提示卡速不足。"
-          }
-        ]
-      },
-      {
-        "title": "安装挂脖支架",
-        "icon": "📿",
-        "body": [
-          {
-            "type": "p",
-            "text": "挂脖套装适合做饭、骑车、手工等第一视角拍摄，安装好以后不用一直用手拿相机。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-quick-release-original.svg",
-            "alt": "快拆底座安装步骤图",
-            "caption": "官方快拆底座安装步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先把快拆底座吸附到相机底部，按压到听见“咔哒”声。",
-              "用手轻轻拉一下，确认底座没有松动。",
-              "把快拆底座装到挂脖支架的接口上并锁紧。",
-              "把挂脖支架挂在脖子上，调整到胸前合适的位置。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "调节时不要夹到衣服和头发，也不要影响呼吸。剧烈运动前先检查卡扣是否锁紧。"
-          }
-        ]
-      },
-      {
-        "title": "第一视角拍摄",
+        "title": "拍照录像与常用模式",
         "icon": "🎥",
         "body": [
           {
             "type": "p",
-            "text": "相机固定好后，先用屏幕确认画面是否水平，再开始拍摄。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "按快门键开始录像，再按一下停止。",
-              "左右滑动屏幕可以切换拍照和录像。",
-              "双手不方便时，可以打开手势控制，用手掌开始或停止录像。",
-              "做饭或手工拍摄时，建议先试拍一小段，确认画面没有被手臂挡住。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "挂脖支架不防水，相机自身支持防水，但下水前仍要确认所有保护盖已经锁紧。"
-          }
-        ]
-      },
-      {
-        "title": "充电、导出和保养",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机没电时，用 USB-C 充电线连接充电头即可充电。想导出照片和视频，可以用数据线连接电脑，也可以连接手机 App。"
+            "text": "开机后点屏幕左下角就能切换模式，普通人最常用的就这几种。"
           },
           {
             "type": "list",
             "items": [
-              "连接电脑时，相机选择“U盘模式”，电脑里会出现相机文件夹。",
-              "连接手机时，先在手机安装 Insta360 App，再根据相机提示连接。",
-              "长时间不用时，每隔约 3 个月给电池充一次电。",
-              "镜头有灰尘时，用气吹或镜头布清理，不要用硬物刮擦。"
+              "**普通视频**：日常拍摄首选，默认设置跟手体验最好",
+              "**普通拍照**：一键定格，拍风景和合影够用",
+              "**低光视频**：光线暗的室内、夜晚街道可以用，画面会亮一些",
+              "**慢动作**：拍跑跳、宠物、玩水这类快速动作",
+              "**延时摄影**：拍云、日落、车流，把长时间压缩成一小段"
             ]
           },
           {
-            "type": "warn",
-            "text": "下水前一定要确认电池仓盖、USB 盖和镜头保护镜都装紧。麦克风防风罩不要带去潜水或冲浪。"
+            "type": "p",
+            "text": "模式的具体参数以机器屏幕实际可选范围为准；新手**别盲目拉满画质和帧率**，画质越高越占空间、越费电，机身也更容易发热。"
           }
         ]
       },
       {
-        "title": "如何导出照片和视频",
+        "title": "云台模式与智能跟随",
+        "icon": "✨",
+        "body": [
+          {
+            "type": "p",
+            "text": "云台是 Pocket 3 最重要的部分，开机后它会自动增稳，但模式不同，镜头的“脾气”也不同。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "模式",
+              "适合场景"
+            ],
+            "rows": [
+              [
+                "跟随（默认）",
+                "大多数时候就用它，镜头跟着你手的方向平滑转动"
+              ],
+              [
+                "俯仰锁定",
+                "需要画面高低稳住的镜头，比如上下楼、走路平移"
+              ],
+              [
+                "FPV",
+                "想要更强的第一视角和运镜感，画面会随手的倾斜一起转"
+              ]
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "单手拿稳机器，在屏幕下滑的控制中心里切换云台模式。",
+              "智能跟随：在屏幕上**点选人物或物体**，机器会自动把目标保持在画面里。",
+              "自拍跟随：把屏幕转成自拍朝向，人站到镜头前，机器会自动跟住你的脸。",
+              "竖拍模式：把屏幕转成竖屏，画面自动变成竖幅，适合发短视频。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "云台运转时**千万不要用手按压、掰动或强行停住镜头**，也不要挡在镜头前，容易造成云台损伤或卡死。"
+          }
+        ]
+      },
+      {
+        "title": "美颜滤镜参数参考",
+        "icon": "🌈",
+        "body": [
+          {
+            "type": "p",
+            "text": "屏幕往左或往右滑可以进到参数面板，美颜、滤镜、曝光都在这几页里调。"
+          },
+          {
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "Pocket 相机美颜与滤镜参数推荐参考图",
+            "caption": "美颜与滤镜参数推荐参考，照着微调即可，不要一次拉太满"
+          },
+          {
+            "type": "tip",
+            "text": "忘记怎么调回来时，直接点面板上的**重置**就能恢复默认，比乱试更快。"
+          }
+        ]
+      },
+      {
+        "title": "三种导出素材的方法",
         "icon": "📤",
         "body": [
           {
             "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
+            "text": "拍完想发朋友圈，机器里有三种导出方式，按手边有没有电脑、线来选。"
           },
           {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
+            "type": "olist",
+            "items": [
+              "**DJI Mimo App 无线下载**：手机连上机器的 Wi-Fi，在 App 里浏览素材下载到相册，出门在外最方便。",
+              "**USB-C 连电脑**：用数据线把机器接到电脑，当成移动硬盘拷素材，适合批量导出。",
+              "**读卡器**：把 MicroSD 卡取出插进读卡器，接手机或电脑都行，速度最稳。"
+            ]
           },
           {
             "type": "img",
             "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
+            "alt": "用 DJI Mimo App 无线下载素材的示意图",
+            "caption": "无线导出：手机连机器 Wi-Fi，在 App 里挑素材下载"
           },
           {
             "type": "img",
             "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
+            "alt": "用读卡器把素材导入手机的示意图",
+            "caption": "读卡器导出：取出 MicroSD 卡插读卡器，再连接手机"
           },
           {
             "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：微单相机 · 佳能微单+18-45mm入门套镜头
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  // 子目录内容：全景相机 · 影石Insta360 X6标准版
-  "insta360-x6-standard": {
-    "desc": "影石Insta360 X6标准版简易使用教程",
-    "keywords": "影石 Insta360 X6 全景相机 8K 电池 充电 内存卡 App",
-    "steps": [
-      {
-        "title": "先认识 X6",
-        "icon": "🌐",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
-          },
-          {
-            "type": "img",
-            "src": "images/insta360-x6-standard-original.svg",
-            "alt": "Insta360 X6 全景相机示意图",
-            "caption": "原创全景相机示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "两个镜头：拍摄时不要用手摸镜片。",
-              "触摸屏：查看画面、切换模式和调整设置。",
-              "快门键：开始和停止拍摄。",
-              "Type-C 接口：给相机充电和连接电脑。",
-              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
+            "text": "**先把素材确认导出到自己手机或电脑上，再考虑删卡里的文件**。卡插拔时动作要轻，插反、硬怼容易损坏卡槽。"
           }
         ]
       },
       {
-        "title": "充电和存储",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "约 24 分钟可以充到 80%，约 35 分钟充满。",
-              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
-              "卡槽方向和缺口对准后再插入，不要硬推。",
-              "内置存储快满时，先把素材导出到手机或电脑。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "边充边拍会让机身更热，建议保持通风。"
-          }
-        ]
-      },
-      {
-        "title": "开机和屏幕操作",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "点按电源键开机，屏幕亮起后就可以查看画面。X6 使用虚拟按键，很多操作可以直接在屏幕上完成。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "点按电源键开机，再点按可切换拍摄模式。",
-              "左右滑动屏幕切换全景视频、全景照片等模式。",
-              "从屏幕边缘滑动进入设置、相册或拍摄参数。",
-              "开始拍摄前，先确认两个镜头都没有被手指或配件挡住。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "屏幕按键不需要用力按压，轻触或滑动即可。"
-          }
-        ]
-      },
-      {
-        "title": "拍全景和导出",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "选择全景视频或全景照片模式。",
-              "按快门开始拍摄，再按一下停止。",
-              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
-              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
-              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
-          },
-          {
-            "type": "tip",
-            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
-          }
-        ]
-      },
-      {
-        "title": "镜头和日常保养",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "list",
-            "items": [
-              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
-              "不要用衣服、纸巾或手指反复摩擦镜片。",
-              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
-              "海边使用后，用淡水湿布擦净机身并晾干。",
-              "长期不用时，放在干燥阴凉处并定期充电。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
-          },
-          {
-            "type": "warn",
-            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：全景相机 · 影石Insta360 X6全能版
-  "insta360-x6-allround": {
-    "desc": "影石Insta360 X6全能版简易使用教程",
-    "keywords": "影石 Insta360 X6 全能版 配件 电池 手柄 全景相机",
-    "steps": [
-      {
-        "title": "先认识 X6",
-        "icon": "🌐",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
-          },
-          {
-            "type": "img",
-            "src": "images/insta360-x6-standard-original.svg",
-            "alt": "Insta360 X6 全景相机示意图",
-            "caption": "原创全景相机示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "两个镜头：拍摄时不要用手摸镜片。",
-              "触摸屏：查看画面、切换模式和调整设置。",
-              "快门键：开始和停止拍摄。",
-              "Type-C 接口：给相机充电和连接电脑。",
-              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
-          }
-        ]
-      },
-      {
-        "title": "充电和存储",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "约 24 分钟可以充到 80%，约 35 分钟充满。",
-              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
-              "卡槽方向和缺口对准后再插入，不要硬推。",
-              "内置存储快满时，先把素材导出到手机或电脑。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "边充边拍会让机身更热，建议保持通风。"
-          }
-        ]
-      },
-      {
-        "title": "使用全能版配件",
+        "title": "收纳归还与常见问题",
         "icon": "🎒",
         "body": [
           {
             "type": "p",
-            "text": "全能版配件以实际收到的套装为准，常见配件主要用来增加续航、稳定性和拍摄机位。"
+            "text": "用完别直接把机器扔包里，云台和屏幕都需要归位，按下面顺序来最稳。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先把屏幕顺时针转回机身，或者长按拍摄键关机，确认云台已收好。",
+              "关机后不要再推云台，把它放回保护壳里再装进收纳包。",
+              "清点配件是否齐全，尤其别落下续航手柄、麦克风、小螺丝类的小件。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "口袋云台正确收纳演示，照着做能避免云台受损"
+          },
+          {
+            "type": "table",
+            "head": [
+              "常见问题",
+              "怎么处理"
+            ],
+            "rows": [
+              [
+                "按开机没反应",
+                "多半是没电，接充电线充一会儿再开机"
+              ],
+              [
+                "提示没有存储空间",
+                "素材没导出就先把内容拷走，再清理卡"
+              ],
+              [
+                "画面一直在转停不下来",
+                "检查是否误触摇杆或开了 FPV，切换回跟随模式"
+              ],
+              [
+                "卡读不出来",
+                "重新插拔一次卡，仍不行请立刻联系客服"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "想要更详细的官方说明，可以去 [Osmo Pocket 3 官方下载页](https://www.dji.com/osmo-pocket-3/downloads) 查手册和固件信息。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "gimbal-one": {
+    "desc": "大疆 Osmo Pocket 3 长续航版教程，重点讲续航手柄的安装拆卸与使用。",
+    "keywords": "大疆 Pocket 3 长续航版 续航手柄 安装 拆卸 解锁键 手持增稳 内存卡 导出 DJI Mimo 租赁教程",
+    "steps": [
+      {
+        "title": "开箱核对与爱惜提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "租赁设备请务必爱护。云台和手柄接口都很精密，如有磕碰、进水或异常，请第一时间联系客服售后，不要自行拆开处理。"
+          },
+          {
+            "type": "p",
+            "text": "长续航版和标准版的机器本体一样，多出来的就是那根**续航手柄**，清点时重点确认它在不在。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Pocket 3 主机 1 台",
+              "续航手柄 1 根（长续航版专属配件）",
+              "官方保护壳、收纳包各 1 个",
+              "已装好的 MicroSD 卡 1 张",
+              "手绳、USB 读卡器、充电线"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "手柄个头不大，最容易在归还时落下。不用的时候**统一放回收纳包**，别随手塞口袋。"
+          }
+        ]
+      },
+      {
+        "title": "开机与首次充电",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "长续航版开机和标准版一样，转屏幕或用拍摄键都行。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "向左旋转触摸屏，屏幕点亮、云台展开即开机。",
+              "或者短按拍摄键开机。",
+              "关机：长按拍摄键，或开启**旋转屏幕关机**后顺时针收回屏幕。",
+              "收到设备开不了机，先接充电线充一会儿，低电量时是开不了的。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "Pocket 系列开机与摇杆操作演示，第一次用建议先看完"
+          },
+          {
+            "type": "warn",
+            "text": "开机后云台会自动展开，**别用手压着屏幕或推着云台**，给它的活动空间留出来。"
+          }
+        ]
+      },
+      {
+        "title": "续航手柄怎么装",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "续航手柄（约 950mAh）其实就是一个能握的“副电池 + 加长手柄”，主要作用是**延长拍摄时间、让握持更稳**。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "让机器关机，云台收回，屏幕朝向自己。",
+              "把机身底部对准手柄顶部的 USB-C 接口。",
+              "**直接向上垂直插入**，不要斜着硬怼。",
+              "确认手柄两侧的卡扣都卡进机身，机身与手柄贴合没有缝隙。",
+              "装好后试着轻轻晃一下，不松动就算装稳了。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "装的时候",
+              "要点"
+            ],
+            "rows": [
+              [
+                "方向",
+                "从底部 USB-C 口直接插入，不用拧任何螺丝"
+              ],
+              [
+                "到位标准",
+                "两侧卡扣都卡住、机身贴合无缝"
+              ],
+              [
+                "检查动作",
+                "轻晃不松动，就可以放心开机拍摄"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "**接口没对准就用力插，是损伤接口最常见的原因**。插不进去就退出来重新对准，别硬上。"
+          }
+        ]
+      },
+      {
+        "title": "续航手柄怎么拆",
+        "icon": "🔧",
+        "body": [
+          {
+            "type": "p",
+            "text": "拆手柄有固定手法，记住一句话：**先按解锁键，再往下拔**。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先关机，或者至少确认机器没有在录制。",
+              "找到手柄上的**解锁键**并按住不要松手。",
+              "同时顺着机身方向**向下拔出**手柄。",
+              "擦净接口处灰尘，手柄单独收好。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "**不按解锁键硬拽，很容易把卡扣或接口拉坏**，这属于人为损坏，需要照价赔付。"
+          },
+          {
+            "type": "tip",
+            "text": "只带机器出门、想轻一点的时候可以把手柄留在家里，但记得收进固定的包里，别丢。"
+          }
+        ]
+      },
+      {
+        "title": "摇杆屏幕与拍照录像",
+        "icon": "🎛️",
+        "body": [
+          {
+            "type": "p",
+            "text": "装了手柄后，操作其实更顺手：手柄加长，单手也能稳稳握住。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "操作",
+              "作用"
+            ],
+            "rows": [
+              [
+                "摇杆左右拨",
+                "镜头左右转，扫视画面"
+              ],
+              [
+                "摇杆上下拨",
+                "镜头上下俯仰"
+              ],
+              [
+                "拍摄键单击",
+                "拍照，或在录像时开始/停止录像"
+              ],
+              [
+                "屏幕顶部下滑",
+                "打开控制中心，调云台模式和设置"
+              ],
+              [
+                "屏幕左右滑动",
+                "调画质、曝光、美颜等参数"
+              ]
+            ]
+          },
+          {
+            "type": "p",
+            "text": "云台三种模式：**跟随**（默认增稳）、**俯仰锁定**、**FPV**。日常用跟随，要画面高低稳住的镜头用俯仰锁定，想要更自由的第一视角用 FPV。"
+          },
+          {
+            "type": "tip",
+            "text": "想让机器自动跟人拍，可以在屏幕上点选目标开启**智能跟随**，单人自拍也能一直居中。"
+          }
+        ]
+      },
+      {
+        "title": "长时间拍摄的小技巧",
+        "icon": "⏱️",
+        "body": [
+          {
+            "type": "p",
+            "text": "长续航版的意义就是让你少中断，几个小习惯能让体验好很多。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "出发前把机器和手柄分别充满，出门前看一眼电量。",
+              "拍摄间隔时间把屏幕收回或关机，能省不少电。",
+              "别把画质帧率长时间拉到最高档，机身发热明显，拍摄也会被打断。",
+              "拍摄中如果机身明显发烫，暂停几分钟让机器散热再用。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "美颜与滤镜参数推荐参考图",
+            "caption": "左右滑动调美颜滤镜的参数参考，长拍时不必反复调，定好就拍"
+          },
+          {
+            "type": "warn",
+            "text": "机身发热属于长时间录像的正常现象，**不要贴冰袋、不要进冰箱、不要拿湿巾捂镜头**，放阴凉处自然降温即可。"
+          }
+        ]
+      },
+      {
+        "title": "导出素材的三种方式",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "和标准版一样有三条路：无线、连线、读卡器。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**DJI Mimo App 无线下载**：手机连机器 Wi-Fi，在 App 里挑素材下载。",
+              "**USB-C 连电脑**：数据线接电脑，直接当移动硬盘拷。",
+              "**读卡器**：取出 MicroSD 卡，插读卡器接手机或电脑。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "DJI Mimo App 无线导出素材示意图",
+            "caption": "无线导出：装好 App，连上机器 Wi-Fi 就能直接下载"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "用数据线把素材导出到手机的示意图",
+            "caption": "数据线导出：直接一根线接手机或电脑，不需要取卡"
+          },
+          {
+            "type": "tip",
+            "text": "装着手柄也能充电和导出，接口都在手柄侧面，不用先拆。"
+          }
+        ]
+      },
+      {
+        "title": "收纳归还与常见问题",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "先关机，确认云台收回、屏幕归位。",
+              "拆下手柄（按住解锁键向下拔），接口朝上放好。",
+              "主机放保护壳，手柄和配件一起装进收纳包。",
+              "清点：主机、手柄、保护壳、收纳包、卡、手绳、读卡器、充电线。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "口袋云台收纳演示，装包前照着检查一遍"
+          },
+          {
+            "type": "table",
+            "head": [
+              "常见问题",
+              "怎么处理"
+            ],
+            "rows": [
+              [
+                "手柄装上后机器提示异常",
+                "先关机拆下重装，确认两侧卡扣到位再开机"
+              ],
+              [
+                "手柄拔不下来",
+                "确认按住了解锁键，垂直向下拔，不要左右扭"
+              ],
+              [
+                "拍一半自动停了",
+                "多半是过热或卡满了，先散热并导出素材"
+              ],
+              [
+                "按开机没反应",
+                "电量太低，接充电线充一会儿再开"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "归还前请务必把**续航手柄**一起放回，它是长续航版最容易被漏掉、也最难补的配件。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "gimbal-two": {
+    "desc": "大疆 Osmo Pocket 3 全能套装教程，讲手柄、三脚架、增广镜与麦克风。",
+    "keywords": "大疆 Pocket 3 全能套装 全能版 续航手柄 迷你三脚架 增广镜 磁吸 无线麦克风 DJI Mic 2 导出 租赁教程",
+    "steps": [
+      {
+        "title": "开箱核对与爱惜提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "租赁设备请务必爱护。配件多、件件都小，如有磕碰、进水或配件损坏丢失，请第一时间联系客服售后，不要自己拆件处理。"
+          },
+          {
+            "type": "p",
+            "text": "全能套装配件明显比标准版多，建议**边看清单边点一遍**，尤其小件，缺件当场联系客服。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Pocket 3 主机、保护壳、收纳包、MicroSD 卡、手绳、读卡器、充电线",
+              "续航手柄 1 根",
+              "迷你三脚架 1 个",
+              "增广镜 1 片（磁吸式）",
+              "无线麦克风发射器 1 个（DJI Mic 2 系列）",
+              "麦克风的防风毛套、磁吸背夹"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/category-icons/children/pocket3-standard.svg",
+            "alt": "Pocket 3 机身造型示意",
+            "caption": "Pocket 3 机身示意：清点主机时先确认云台和屏幕没有磕碰痕迹"
+          }
+        ]
+      },
+      {
+        "title": "开机与首次充电",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "向左旋转触摸屏即可开机，云台会自动展开。",
+              "也可以短按拍摄键开机。",
+              "关机用长按拍摄键；在设置里开启**旋转屏幕关机**后，顺时针收回屏幕也能关机。",
+              "开不了机多半是电量低，接充电线充一会儿再试。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "Pocket 系列开机、屏幕旋转与摇杆演示，装手柄前先看一遍"
+          },
+          {
+            "type": "warn",
+            "text": "开机后云台会展开，**别用手按屏幕、别推云台**，先让它自动归位再操作。"
+          }
+        ]
+      },
+      {
+        "title": "续航手柄与三脚架",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "这两个配件负责“续航”和“稳”，装法都不复杂，但要装对方向。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "续航手柄：对准机身底部 USB-C 口，**直接插入**，确认两侧卡扣卡入、机身贴合无缝。",
+              "拆手柄：按住手柄上的**解锁键**，同时向下拔出，不要硬拽。",
+              "迷你三脚架：把螺丝拧进手柄或机身的底部螺孔，拧到手紧即可。",
+              "三脚架支腿展开后放平，画面固定住，做延时或自拍合照很方便。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "配件",
+              "主要用途"
+            ],
+            "rows": [
+              [
+                "续航手柄",
+                "延长拍摄时间，同时让握持更稳，长镜头不容易抖"
+              ],
+              [
+                "迷你三脚架",
+                "定点机位，适合延时摄影、全家福自拍、直播"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "三脚架螺丝**别用蛮力拧死**，机身底部是金属螺孔，拧过头容易滑丝。桌面拍摄时也要防碰倒摔机。"
+          }
+        ]
+      },
+      {
+        "title": "磁吸增广镜怎么用",
+        "icon": "🔍",
+        "body": [
+          {
+            "type": "p",
+            "text": "增广镜就是一片**磁吸的广角附加镜**，盖上之后视野更宽，拍室内、自拍 Vlog 头肩更好看，画面也更“开阔”。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先把增广镜放在手边，保持镜头前没有手指和杂物。",
+              "让增广镜对准镜头前端，**靠近时会自动吸附对齐**。",
+              "确认吸附平整、贴合无缝，这时再开机拍摄。",
+              "不用时顺着边缘轻轻取下，放回保护套或小袋里。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "**不要用指甲抠镜片、不要用纸巾干擦**。有指纹就用擦镜布轻轻擦；吸附不平不要硬压，取下重贴一次。"
+          }
+        ]
+      },
+      {
+        "title": "无线麦克风怎么连",
+        "icon": "🎤",
+        "body": [
+          {
+            "type": "p",
+            "text": "套装里的无线麦克风可以夹在衣领上，人离机器远也收得清，拍 Vlog、采访、探店很实用。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先给麦克风和机器都开机，装上时需要接好接收器（按随机说明书操作）。",
+              "长按麦克风电源键开机，确认指示灯正常。",
+              "把麦克风用**磁吸背夹**夹在衣领处，麦头朝上、别被衣服盖住。",
+              "在机器屏幕上看到麦克风已连接后，再开始录制。",
+              "风大或有杂音时，套上防风毛套再录。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "录人物说话时，机器离人越远，越要依赖麦克风。**先录 10 秒回放听一下**，确认声音正常再正式拍。"
+          }
+        ]
+      },
+      {
+        "title": "摇杆屏幕与拍摄模式",
+        "icon": "🎥",
+        "body": [
+          {
+            "type": "p",
+            "text": "操作还是那套：拍摄键 + 五维摇杆，屏幕下滑是控制中心。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "操作",
+              "作用"
+            ],
+            "rows": [
+              [
+                "摇杆左右拨",
+                "镜头左右转"
+              ],
+              [
+                "摇杆上下拨",
+                "镜头上下俯仰"
+              ],
+              [
+                "拍摄键单击",
+                "拍照 / 开始或停止录像"
+              ],
+              [
+                "屏幕顶部下滑",
+                "控制中心，切云台模式与设置"
+              ],
+              [
+                "屏幕左右滑动",
+                "调参数、曝光、美颜"
+              ]
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "云台三模式：**跟随**（默认增稳）、**俯仰锁定**、**FPV**",
+              "想自动跟住人物：在屏幕上**点选目标**开启智能跟随",
+              "竖着拍短视频：把屏幕转成竖屏，画面自动变竖幅",
+              "在屏幕上点缩放按钮后**上下拨摇杆**即可变焦"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "导出素材的三种方式",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "**App 无线下载**：手机装 DJI Mimo，连上机器 Wi-Fi，在 App 里挑素材下载。",
+              "**USB-C 连电脑**：数据线直连电脑，当移动硬盘批量拷贝。",
+              "**读卡器**：取出 MicroSD 卡插读卡器，接手机或电脑读取。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "用数据线连接手机导出素材的示意图",
+            "caption": "数据线导出：手机和机器直连，适合导长视频"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "用读卡器导出素材的示意图",
+            "caption": "读卡器导出：卡取出来插读卡器，接手机或电脑都能用"
+          },
+          {
+            "type": "tip",
+            "text": "大批量素材优先用**读卡器或连电脑**，比无线更稳、更省时间；无线适合挑几条短的先发出去。"
+          }
+        ]
+      },
+      {
+        "title": "配件收纳与归还核对",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "关机，确认云台收回、屏幕归位。",
+              "取下增广镜、拆下三脚架和手柄，分开放进收纳包。",
+              "麦克风、毛套、背夹装进小袋，别散在包里。",
+              "按清单逐件核对：主机、手柄、三脚架、增广镜、麦克风及配件、卡、线、保护壳。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "收纳演示：配件多的套装尤其要按清单装包"
+          },
+          {
+            "type": "table",
+            "head": [
+              "常见问题",
+              "怎么处理"
+            ],
+            "rows": [
+              [
+                "增广镜吸不稳",
+                "取下重贴，确认没有异物夹在中间"
+              ],
+              [
+                "麦克风没声音",
+                "检查是否开机、是否已连接，并先试录 10 秒回放"
+              ],
+              [
+                "三脚架拧不紧",
+                "对准螺牙再拧，别硬怼滑丝"
+              ],
+              [
+                "手柄拔不下",
+                "按住解锁键再垂直向下拔"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "全能套装里的**增广镜和麦克风配件最容易丢失**，归还前一定逐件清点；损坏或丢失需要照价赔付。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "gimbal-pocket4pro-standard": {
+    "desc": "大疆 Pocket 4 Pro 标准套装教程，讲开机、摇杆、补光灯、竖拍与导出。",
+    "keywords": "大疆 Pocket 4 Pro 标准套装 口袋云台 开机 摇杆 补光灯 竖拍 拍照录像 导出 DJI Mimo 租赁教程",
+    "steps": [
+      {
+        "title": "开箱核对与爱惜提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "租赁设备请务必爱护。收到后如发现磕碰、进水或任何异常，请第一时间联系客服售后，不要自行拆机，也别继续带电操作。"
+          },
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 的配件以你收到的实物为准，先按随机清单点一遍再开机。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Pocket 4 Pro 主机 1 台（标准套装）",
+              "保护壳、收纳包各 1 个",
+              "已装好的 MicroSD 卡 1 张",
+              "充电线、手绳等随机配件",
+              "如有随机说明书，**以说明书与官方页面为准**"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "不同批次配件可能略有差异，**以你收到的实物随机清单为准**，拿不准就拍照问客服，别凭经验猜。"
+          }
+        ]
+      },
+      {
+        "title": "开机与首次充电",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 的开机思路和 Pocket 系列一致：转屏或按键都能唤醒。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把触摸屏旋转出来，屏幕点亮、云台展开即开机。",
+              "也可以短按拍摄键开机。",
+              "关机：长按拍摄键，或在设置里开启旋转屏幕关机后，顺时针收回屏幕。",
+              "按了没反应通常是电量低，先接充电线充一会儿再开。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "Pocket 系列开机、转屏与摇杆操作演示，第一次开机前先看"
+          },
+          {
+            "type": "warn",
+            "text": "云台展开的瞬间**别用手指挡在镜头前**，也别压着屏幕，避免云台被别住。"
+          }
+        ]
+      },
+      {
+        "title": "按键摇杆与屏幕操作",
+        "icon": "🎛️",
+        "body": [
+          {
+            "type": "p",
+            "text": "机身外露的操作就两处：拍摄键和五维摇杆，其余都在屏幕里。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "操作",
+              "作用"
+            ],
+            "rows": [
+              [
+                "摇杆左右拨",
+                "镜头左右转，扫视画面"
+              ],
+              [
+                "摇杆上下拨",
+                "镜头上下俯仰"
+              ],
+              [
+                "拍摄键单击",
+                "拍照，或在录像时开始/停止录像"
+              ],
+              [
+                "拍摄键长按",
+                "关机"
+              ],
+              [
+                "屏幕顶部下滑",
+                "打开控制中心，调设置与云台模式"
+              ],
+              [
+                "屏幕左右滑动",
+                "调画质、曝光、美颜等参数"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "想放大画面，点屏幕上的缩放按钮，再用摇杆向上放大、向下缩小，比用手拧镜头安全得多。"
+          }
+        ]
+      },
+      {
+        "title": "补光灯怎么用",
+        "icon": "💡",
+        "body": [
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 带补光灯，**它的具体档位、色温和开关方式以随机说明书与官方页面为准**，这里只讲通用用法。"
+          },
+          {
+            "type": "img",
+            "src": "images/pocket4pro-fill-light-original.svg",
+            "alt": "Pocket 4 Pro 补光灯位置与使用示意",
+            "caption": "补光灯示意：先看说明书确认开关和亮度调节方式，再决定拍摄时怎么补光"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先在说明书或设置界面里找到补光灯的开关，确认灯能正常亮。",
+              "补光只**补一点就够**，别开到最亮，人脸容易发白、发油。",
+              "拍室内人物时灯对着脸侧一点打，阴影更自然。",
+              "不用的时候记得关灯，灯一直亮会明显耗电。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "**不要用手去贴补光灯灯珠**，刚用过会发烫；也不要对着眼睛近距离直射。具体操作请按官方说明书进行。"
+          }
+        ]
+      },
+      {
+        "title": "竖拍与云台模式",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "发短视频基本都要竖屏，Pocket 4 Pro 转个屏幕就能切。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把触摸屏转成竖屏朝向，画面自动变竖幅。",
+              "竖拍时手握住机身下半部分，重心更稳。",
+              "屏幕顶部下滑进控制中心，按场景切云台模式。",
+              "想在画面里稳住人物，可在屏幕上点选目标开启跟随。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "云台模式",
+              "什么时候用"
+            ],
+            "rows": [
+              [
+                "跟随（默认）",
+                "大部分日常拍摄，手怎么转画面平滑跟着转"
+              ],
+              [
+                "俯仰锁定",
+                "上下楼梯、步行移动时画面高低不晃"
+              ],
+              [
+                "FPV",
+                "想要更自由的第一视角运镜效果"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "切换模式或转屏时**别用手扶着云台**，让它自己转到位；强行按住会导致云台过载保护停机。"
+          }
+        ]
+      },
+      {
+        "title": "拍照录像与参数参考",
+        "icon": "🎥",
+        "body": [
+          {
+            "type": "p",
+            "text": "点屏幕上的模式按钮切换拍照与录像，日常就用默认设置最省心。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**录像**：拍摄前先在屏幕上对一下曝光，太暗太亮都在参数面板里调",
+              "**拍照**：单击拍摄键即可定格",
+              "**参数**：左右滑动屏幕进面板，曝光、美颜、色彩都在里面调",
+              "具体可选画质与帧率**以机器屏幕实际显示为准**，不要盲目拉满，画质越高越占空间也越容易发热"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/滤镜参数推荐.jpg",
+            "alt": "美颜与滤镜参数推荐参考图",
+            "caption": "美颜与滤镜参考参数，按场景小幅调整，不用一次拉到最大"
+          },
+          {
+            "type": "tip",
+            "text": "参数调乱了找不回来，直接点面板上的**重置**恢复默认，比一个个试回来快。"
+          }
+        ]
+      },
+      {
+        "title": "导出素材与连接电脑",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 一样**没有内置存储**，素材都在 MicroSD 卡里。卡建议用 UHS-I Speed Grade 3 这一类，读写更稳。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**App 无线下载**：手机装 DJI Mimo，连上机器的 Wi-Fi 直接下载。",
+              "**USB-C 连电脑**：数据线连接电脑当移动硬盘，批量拷贝。",
+              "**读卡器**：取出卡插读卡器，接手机或电脑读取。",
+              "还能当**网络摄像头**用：用线连上电脑，在会议软件里选它当摄像头。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "用 DJI Mimo 无线导出的示意图",
+            "caption": "无线导出：手机装 App 连上机器，挑好素材直接下载到相册"
+          },
+          {
+            "type": "warn",
+            "text": "**先确认素材已经导出去，再删卡里的文件**。取卡时轻按弹出，不要硬抠，插反容易损坏卡槽。"
+          }
+        ]
+      },
+      {
+        "title": "收纳归还与常见问题",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "关机，确认云台收回、屏幕归位。",
+              "放进保护壳，再装进收纳包，别把机器和硬物挤在一起。",
+              "清点主机、保护壳、收纳包、卡、充电线和其余随机配件。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "收纳演示：云台收回、装壳再入包，能避免镜头被磕碰"
+          },
+          {
+            "type": "table",
+            "head": [
+              "常见问题",
+              "怎么处理"
+            ],
+            "rows": [
+              [
+                "按开机没反应",
+                "电量低，接充电线充一会儿再开"
+              ],
+              [
+                "云台不动了",
+                "可能是过载保护，关机重启，别用手去掰"
+              ],
+              [
+                "补光灯不亮",
+                "按说明书确认开关方式和电量，仍不亮请联系客服"
+              ],
+              [
+                "电脑认不到机器",
+                "换一根数据线或换个 USB 口，再试一次"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Pocket 4 Pro 的详细参数和固件信息，以随机说明书和 [DJI 官方下载支持页](https://www.dji.com/downloads) 的最新页面为准。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "gimbal-pocket4pro-combo": {
+    "desc": "大疆 Pocket 4 Pro 全能套装教程，讲配件组合、补光灯联动与竖拍玩法。",
+    "keywords": "大疆 Pocket 4 Pro 全能套装 全能版 配件组合 补光灯 竖拍 无线麦克风 三脚架 导出 DJI Mimo 租赁教程",
+    "steps": [
+      {
+        "title": "开箱核对与爱惜提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "租赁设备请务必爱护。全能套装配件多、单件都小，如有磕碰、进水或配件损坏丢失，请第一时间联系客服售后，不要自行处理。"
+          },
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 全能套装的配件以随机清单和官方页面为准，**边看清单边点件**最稳妥。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Pocket 4 Pro 主机 1 台",
+              "保护壳、收纳包",
+              "续航类配件（如手柄）与底部安装配件",
+              "迷你三脚架",
+              "无线麦克风及其防风毛套、背夹",
+              "随机说明书 —— **所有配件细节以它为准**"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "开机与首次充电",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "旋转触摸屏即可开机，云台自动展开。",
+              "或者短按拍摄键开机。",
+              "关机长按拍摄键；开启旋转屏幕关机后，顺时针收回屏幕也能关机。",
+              "开不了机先接充电线充一会儿，低电量时开不了。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "Pocket 系列开机与摇杆操作演示，装配件前先看一遍"
+          },
+          {
+            "type": "warn",
+            "text": "开机时云台会转动自检，**别用手挡着镜头或按住云台**，等它归位再开始操作。"
+          }
+        ]
+      },
+      {
+        "title": "配件怎么组合最顺手",
+        "icon": "🧩",
+        "body": [
+          {
+            "type": "p",
+            "text": "全能套装的思路是：**底部加手柄、手柄接三脚架、上方配麦克风、镜头前面可以加配件**，按需要组合，不用全装。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "手持移动拍摄：主机 + 续航手柄，握持更稳、也更耐用。",
+              "定点拍摄：手柄底部拧上迷你三脚架，画面固定住。",
+              "要收人声：把无线麦克风夹在衣领，机器远一点也能收清。",
+              "要更宽的视角：镜头前加装广角类配件（如有随机配备）。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "拍摄场景",
+              "推荐组合"
+            ],
+            "rows": [
+              [
+                "街拍行走",
+                "主机 + 续航手柄 + 无线麦克风"
+              ],
+              [
+                "延时 / 全家福",
+                "主机 + 手柄 + 迷你三脚架"
+              ],
+              [
+                "室内 Vlog",
+                "主机 + 补光灯 + 无线麦克风"
+              ],
+              [
+                "轻装出门",
+                "只带主机，配件留包内"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "配件安装都讲究**对准再装**：接口没对好就用力插、螺丝没对准硬拧，是最常见的损坏原因。"
+          }
+        ]
+      },
+      {
+        "title": "补光灯与套装联动",
+        "icon": "💡",
+        "body": [
+          {
+            "type": "p",
+            "text": "Pocket 4 Pro 的补光灯是这一代主打的功能之一。**开关方式、亮度档位与色温请在随机说明书里确认**，不要凭手感乱按。"
+          },
+          {
+            "type": "img",
+            "src": "images/pocket4pro-fill-light-original.svg",
+            "alt": "Pocket 4 Pro 补光灯位置与按键示意",
+            "caption": "补光灯示意：位置和开关方式以随机说明书为准，拍摄前先试亮一次"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先在说明书里找到补光灯开关，开机后试亮一次确认正常。",
+              "夜拍或室内，补光灯只补到人物面部清晰即可，别开到最大。",
+              "配合三脚架定点拍，补光效果最稳定，画面也不会随手动。",
+              "拍完记得关灯，长时间亮灯会明显加快耗电。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "**补光灯灯珠会发热，别用手直接贴、别贴脸、别对眼睛直射**。Pocket 4 Pro 的具体功能与参数均以官方说明书和官方页面为准。"
+          }
+        ]
+      },
+      {
+        "title": "竖拍与无线麦克风",
+        "icon": "🎤",
+        "body": [
+          {
+            "type": "p",
+            "text": "竖拍 + 麦克风，是全能套装发短视频最省事的组合。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把屏幕转成竖屏，画面自动变竖幅。",
+              "竖拍时手握机身下半部，或装上手柄让重心下移。",
+              "麦克风开机，用磁吸背夹夹在衣领，麦头朝上别被衣服遮住。",
+              "屏幕里看到麦克风已连接后，**先试录 10 秒回放听声音**。",
+              "风大时套上防风毛套再录。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "竖拍发短视频时，人物最好留在画面**中上部**，下面留出字幕位置，后期加文字不会被挡住。"
+          }
+        ]
+      },
+      {
+        "title": "摇杆屏幕与拍摄模式",
+        "icon": "🎥",
+        "body": [
+          {
+            "type": "table",
+            "head": [
+              "操作",
+              "作用"
+            ],
+            "rows": [
+              [
+                "摇杆左右拨",
+                "镜头左右转"
+              ],
+              [
+                "摇杆上下拨",
+                "镜头上下俯仰"
+              ],
+              [
+                "拍摄键单击",
+                "拍照 / 开始或停止录像"
+              ],
+              [
+                "屏幕顶部下滑",
+                "控制中心，切云台模式与设置"
+              ],
+              [
+                "屏幕左右滑动",
+                "调画质、曝光、美颜"
+              ]
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "云台三模式：**跟随**（默认增稳）、**俯仰锁定**、**FPV**",
+              "跟人拍：在屏幕上**点选目标**开启智能跟随，人物始终居中",
+              "自拍：把屏幕转向自己，开启自拍跟随即可",
+              "具体画质与帧率**以机器屏幕可选范围为准**，别盲目拉满"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "导出素材与网络摄像头",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "机器**没有内置存储**，素材都在 MicroSD 卡（建议 UHS-I Speed Grade 3）里，导出有三种办法。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**DJI Mimo App 无线下载**：手机连机器 Wi-Fi，在 App 里挑素材下载。",
+              "**USB-C 连电脑**：数据线当移动硬盘批量拷。",
+              "**读卡器**：取卡插读卡器，接手机或电脑读取。",
+              "开会直播：连电脑切到**网络摄像头模式**，在软件里选它当摄像头。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "DJI Mimo App 无线下载素材示意图",
+            "caption": "无线导出：套装出门在外最方便的一条路，连上 Wi-Fi 就能下"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "用数据线导出素材到手机的示意图",
+            "caption": "数据线导出：长视频和大量素材用它更稳"
+          },
+          {
+            "type": "warn",
+            "text": "**素材必须先导出确认，再清卡**。取卡时轻按弹出，动作要轻，别硬抠卡槽。"
+          }
+        ]
+      },
+      {
+        "title": "收纳与整套归还核对",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "关机，确认云台收回、屏幕归位。",
+              "拆下三脚架、手柄、麦克风，分类放进收纳包隔层。",
+              "麦克风毛套、背夹这类小件单独装小袋，别散在包里。",
+              "对照随机清单**逐件核对**，特别确认补光灯相关配件与麦克风是否齐全。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "收纳演示：先收云台再装壳，配件分格装好再合包"
+          },
+          {
+            "type": "table",
+            "head": [
+              "常见问题",
+              "怎么处理"
+            ],
+            "rows": [
+              [
+                "配件装不上去",
+                "退回来重新对准接口，不要斜插硬怼"
+              ],
+              [
+                "麦克风没声音",
+                "确认开机与连接状态，先试录回放"
+              ],
+              [
+                "补光灯不亮",
+                "按说明书确认开关与电量，仍不亮联系客服"
+              ],
+              [
+                "云台卡住不动",
+                "可能是过载保护，关机重启，别用手掰"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "Pocket 4 Pro 的完整功能与配件说明，以随机说明书和 [DJI 官方下载与支持页](https://www.dji.com/downloads) 为准。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "action-standard": {
+    "desc": "影石 Insta360 Ace Pro 2 标准版入门教程：从装电池内存卡、开机认键，到翻转屏构图、拍照录像和导出素材，照着做一遍就能上手。",
+    "keywords": "影石 Ace Pro 2 标准版 运动相机 开机 快门 电源键 翻转屏 快速拍摄 标记片段 导出素材 充电保养",
+    "steps": [
+      {
+        "title": "租赁设备请先看这里",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "你拿到的是一台**租赁相机**，不是自己的新机器。开箱后先对着清单点一遍：主机、电池、内存卡、数据线是否齐全，外观有没有划痕或磕碰，屏幕和镜头有没有裂纹。"
+          },
+          {
+            "type": "warn",
+            "text": "这台相机是租赁设备，请轻拿轻放、爱护使用。一旦进水、摔落或出现明显磕碰，**请立即停止使用并联系客服售后**，不要自己拆机或尝试修复。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "镜头和屏幕不要用手直接擦，指纹用软布轻擦即可。",
+              "不要在开机状态下拔电池或内存卡。",
+              "归还前把电量充到一半以上，并删掉不需要的素材。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "先用手机拍一张相机外观照片留存，归还时对得上，双方都省心。"
+          }
+        ]
+      },
+      {
+        "title": "先认识四个关键位置",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "Ace Pro 2 上手不难，先记住**电源键**、**快门键**、**翻转屏**和**电池仓**这四个位置，后面所有操作都围绕它们展开。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-buttons-original.svg",
+            "alt": "Insta360 Ace Pro 2 按键位置示意图",
+            "caption": "看图找位置：重点看电源键、快门键和左右两侧的屏幕释放键，用之前先花一分钟熟悉手感。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：开关机，开机后还能切换拍摄模式。",
+              "**快门键**：拍照、开始录像、停止录像。",
+              "**翻转屏**：屏幕上翻后可以看自己，方便自拍和 Vlog 构图。",
+              "**电池仓 / 卡槽**：都在机身侧面，有防水盖保护，用完一定要扣紧。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "装电池和内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "先关机，再装电池和内存卡。装好、盖紧，确认防水盖扣到位后再开机。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图对齐：电池和卡的数据金手指朝向机身内部，插到底会听到轻微一声或感到到位感。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "打开机身侧面的电池仓盖。",
+              "电池按方向标记推进去，推到卡紧为止。",
+              "合上电池仓盖，确认卡扣扣紧、没有翘边。",
+              "打开独立的内存卡槽盖，把卡按方向插到底。",
+              "盖上卡槽盖，同样确认扣紧。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "防水盖没扣紧时千万不要下水或雨天使用。内存卡请用正规品牌的高速卡，卡速太低会出现录像中断或提示存储错误。"
+          }
+        ]
+      },
+      {
+        "title": "开机与按键用法",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "**关机状态短按电源键 = 开机**。开机后屏幕亮起，向下滑动就能进入控制中心和设置。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "按键",
+              "什么时候按",
+              "会发生什么"
+            ],
+            "rows": [
+              [
+                "电源键",
+                "关机时短按",
+                "开机"
+              ],
+              [
+                "电源键",
+                "开机时短按",
+                "切换拍摄模式或预设"
+              ],
+              [
+                "电源键",
+                "录制中短按",
+                "打上标记，方便后期挑精彩片段"
+              ],
+              [
+                "电源键",
+                "长按约 1 秒",
+                "正常关机"
+              ],
+              [
+                "电源键",
+                "长按约 5 秒",
+                "强制关机（卡死时再用）"
+              ],
+              [
+                "快门键",
+                "预览页短按",
+                "拍照 / 开始录像，再按一次停止"
+              ],
+              [
+                "快门键",
+                "长按",
+                "取消并删除当前这段录制"
+              ],
+              [
+                "快门键",
+                "关机状态短按",
+                "快速拍摄（需先在控制中心开启）"
+              ]
+            ]
+          },
+          {
+            "type": "p",
+            "text": "翻转屏要调整角度时，**同时按住屏幕两侧的释放键**，再轻轻把屏幕翻起来，松手后会停在新角度。"
+          },
+          {
+            "type": "warn",
+            "text": "强制关机是应急手段，不要每次都这么关。翻转屏不要单手硬掰，先按释放键再翻。"
+          }
+        ]
+      },
+      {
+        "title": "拍照录像与模式切换",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "p",
+            "text": "开机后屏幕显示画面，就说明可以拍了。最常用的就两个动作：按快门拍照、再按快门停止录像。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "按一下快门拍照；按住快门直接开始录像。",
+              "录像中再按一次快门，停止并保存。",
+              "想换模式就短按电源键，在常用模式之间快速切换。",
+              "看到特别精彩的瞬间，录制中短按电源键打标记，后期剪辑时一眼就能找到。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**拍运动**：多用中近景，把人物放在画面中间偏下，留出动作空间。",
+              "**拍风景**：屏幕下翻取景更稳，双手握持或直接放在平面拍摄。",
+              "**自拍**：翻转屏朝自己，注意看屏幕里的构图，别把脸放到画面边缘。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "经常来不及开机？在控制中心打开“快速拍摄”，关机状态短按快门就能立刻开录，抓住瞬间。"
+          },
+          {
+            "type": "warn",
+            "text": "长按快门会取消并删除当前这段录制，这个操作没有二次确认，按之前一定看清楚。"
+          }
+        ]
+      },
+      {
+        "title": "装入手柄更好握",
+        "icon": "🖐️",
+        "body": [
+          {
+            "type": "p",
+            "text": "标准版可以配合手柄使用。装上手柄后重心更稳，长时间举着拍摄不容易累，手持画面也更平顺。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-handgrip-original.svg",
+            "alt": "连接手柄示意图",
+            "caption": "看图安装：底部螺纹是主要连接口，装好后再拧一次确认紧固，不要用力过猛。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机状态下，把相机底部对准手柄的连接口。",
+              "顺着螺纹轻轻旋入，拧到紧固即可，不要硬拧。",
+              "检查是否晃动，轻微晃就再紧一点。",
+              "拍摄时手柄朝向自己，快门键正好在拇指位置。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拆手柄前先把相机放下再操作，避免悬空拧动导致相机滑落。"
+          }
+        ]
+      },
+      {
+        "title": "导出素材的三种方式",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "拍完想发朋友圈或剪片，可以用官方 App 无线导出，也可以用数据线或读卡器导到电脑。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线导出示意图",
+            "caption": "看图走无线导出：手机装 Insta360 App，连上相机后勾选素材下载，适合现场快速出片。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合场景",
+              "注意"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "现场快速修图、发社交平台",
+                "手机和相机保持近距离，导出时别锁屏"
+              ],
+              [
+                "数据线连电脑",
+                "导出较多文件",
+                "用官方或品质可靠的线，别边导边拔"
+              ],
+              [
+                "读卡器",
+                "大容量素材批量拷",
+                "先在电脑上安全弹出，再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "官方 App 和在线手册可以在这里查看：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "充电保养常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "充电用原装或品质可靠的充电器和数据线，关机充电更快。拍摄时如果机身发烫，先停下来放凉再用。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**开不了机**：先充电 10 分钟再试；仍无反应就长按电源键 5 秒强制关机后重开。",
+              "**提示存储错误**：关机后重新插拔内存卡，或在设置里格式化（会清空素材，先导出）。",
+              "**录像自动中断**：多为卡速不足或过热，换高速卡，避免长时间 4K 连续录制。",
+              "**屏幕没反应**：确认不是锁屏或息屏，轻点屏幕唤醒。",
+              "**画面糊**：检查镜头是否有指纹或水雾，用软布擦干净。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要用湿手拔插卡和电池，也不要放在暴晒的车里或沙滩上。任何异常都请先联系客服，不要自行拆机。"
+          },
+          {
+            "type": "tip",
+            "text": "关键说明书可在 [在线手册](https://onlinemanual.insta360.com) 查看，也可以到 [Insta360 官网](https://www.insta360.com) 找对应机型。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "action-street": {
+    "desc": "影石 Insta360 Ace Pro 2 街拍套装教程：用手柄和竖拍构图拍出街拍大片，从按键、快速抓拍、手柄手持技巧到导出成片，一次讲清。",
+    "keywords": "影石 Ace Pro 2 街拍套装 竖拍 手柄 街拍 抓拍 快速拍摄 拍摄模式 导出素材 租赁相机",
+    "steps": [
+      {
+        "title": "租赁设备先检查",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请像对待自己的相机一样爱护。如果进水、磕碰或发现屏幕镜头破损，请**立即停用并联系客服售后**，不要自己拆机处理。"
+          },
+          {
+            "type": "p",
+            "text": "街拍要带着相机到处走，出门前先在室内把外观和配件点清楚：主机、手柄、电池、内存卡是否齐，手柄螺丝有没有缺。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "相机和手柄外观拍照留存，避免归还时说不清。",
+              "手柄螺纹处不要沾沙子和水。",
+              "街拍常换地点，每次收包都确认电池仓盖已经扣紧。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "街拍先认清键位",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "街头拍摄节奏快，手指要先形成肌肉记忆：右手食指管快门，左手拇指管电源键切模式，屏幕两侧释放键管翻转屏。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-buttons-original.svg",
+            "alt": "Ace Pro 2 按键位置示意图",
+            "caption": "看图记位置：出门前对着这张图空按几次快门键和电源键，街拍时不至于手忙脚乱。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图装卡：街拍连拍连录很吃卡，确认内存卡已插到底、防水盖扣好再出门。"
+          },
+          {
+            "type": "tip",
+            "text": "街拍常常抬手就拍，建议提前把常用模式调好，别到现场才翻菜单。"
+          }
+        ]
+      },
+      {
+        "title": "开机与快速抓拍设置",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "**关机状态短按电源键 = 开机**，开机状态下短按电源键 = 切换拍摄模式或预设。街拍最怕错过瞬间，先把“快速拍摄”打开。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "开机后向下滑动屏幕，进入控制中心。",
+              "找到“快速拍摄”并开启。",
+              "之后关机状态短按快门键，相机会直接进入拍摄状态。",
+              "拨动屏幕两侧释放键，把翻转屏调到舒服的角度。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键短按**：切换预设，街拍常用「照片」和「普通录像」两个来回切。",
+              "**电源键长按 1 秒**：正常关机。",
+              "**电源键长按 5 秒**：强制关机，只在卡死时用。",
+              "**快门键长按**：取消并删除当前录制，街头拍摄不要误触。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "拍摄中短按电源键是给视频“打标记”，不是切换模式。录像时按错键别慌，标记不影响成片，后期可以不管它。"
+          }
+        ]
+      },
+      {
+        "title": "竖拍构图与小技巧",
+        "icon": "📐",
+        "body": [
+          {
+            "type": "p",
+            "text": "街拍套装最大的优势就是**竖拍**：画面直接适配社交平台，人像、街景、招牌都能装进竖向画幅里。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**三分法**：把画面想成九宫格，人物眼睛或主体放在交叉点上。",
+              "**前景遮挡**：借门框、树叶、栏杆做前景，层次会立刻丰富。",
+              "**低角度**：蹲低一点仰拍，显得腿长、建筑更有气势。",
+              "**等光线**：黄昏侧光拍人最讨喜，正午硬光容易在脸上留阴影。",
+              "**抓拍到就走**：街头拍摄保持自然，不要长时间举着相机对准陌生人。"
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "构图时先看主体位置，再看背景有没有杂物。",
+              "想连拍就按住快门；想录一小段就短按开始、再按停止。",
+              "遇到精彩瞬间，录像中短按电源键打标记，回头好找。",
+              "每拍十几张就回看一下，及时调整曝光和角度。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "竖拍时手肘贴着身体，呼吸放缓再按快门，画面会稳很多。"
+          }
+        ]
+      },
+      {
+        "title": "手柄竖拍握持",
+        "icon": "🖐️",
+        "body": [
+          {
+            "type": "p",
+            "text": "把手柄拧到相机底部，就成了街拍专用握持方式：一手握柄，一手扶机身，抬起来快、放下也稳。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-handgrip-original.svg",
+            "alt": "连接手柄示意图",
+            "caption": "看图连接：对准底部螺纹轻旋紧固，装好后轻摇一下确认不松动，再开始街拍。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机状态下，将相机底部对准手柄接口。",
+              "顺时针轻旋至紧固，不要用力硬拧。",
+              "握柄时拇指自然落在快门键附近，食指辅助机身。",
+              "行走拍摄时手柄略向外倾，避免画面随步伐上下颠。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**单手拍摄**：另一只手随时注意挡人流，避免被撞到。",
+              "**收纳**：拆下时先把相机放在包里再拧，防止滑落。",
+              "**防丢**：长途街拍可以给手柄加一条手绳。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "手柄只是辅助握持，不要把它当自拍杆举高甩动，也不要在人多的地方快速转身，避免撞到他人或摔机。"
+          }
+        ]
+      },
+      {
+        "title": "导出成片快速发布",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "街拍讲究时效，拍完立刻用手机导出来修一修就能发。想省流量、批量拷贝就换线或读卡器。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线导出示意图",
+            "caption": "看图走无线流程：手机装 Insta360 App，连相机后挑几张精选下载，比全量导出快得多。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合",
+              "提示"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "现场选片、快速发图",
+                "只导精选，导出时手机别锁屏"
+              ],
+              [
+                "数据线连手机 / 电脑",
+                "批量拷素材",
+                "用可靠数据线，传输中不要拔线"
+              ],
+              [
+                "读卡器",
+                "一次性导出所有素材",
+                "电脑上先安全弹出再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "App 下载与说明书入口：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "充电保养与常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "街拍一天下来电池消耗很快，回到住处就充上电。机身发热时先放凉，不要在发烫状态下继续录制。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**照片糊了**：街拍多在走动中拍，先停半步再按快门。",
+              "**屏幕反光看不清**：调一下翻转屏角度，或用另一只手遮挡光线。",
+              "**突然关机**：多为电量低，备一块满电电池再出门。",
+              "**模式切错**：短按电源键在预设之间轮流切换，多按几次就回来了。",
+              "**手柄松动**：重新拧紧螺纹，不要用工具加力。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "雨天街拍请加防水保护并尽快擦干。相机进水、摔落后请立刻停用并联系客服，不要开机试运气。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "action-neck": {
+    "desc": "影石 Insta360 Ace Pro 2 挂脖套装教程：解放双手拍第一视角，从开箱检查、挂脖佩戴、免手拍设置到导出成片，跟着做就能拍出生活记录镜头。",
+    "keywords": "影石 Ace Pro 2 挂脖套装 第一视角 挂脖支架 免手拍 生活记录 Vlog 开机 导出素材 充电",
+    "steps": [
+      {
+        "title": "租赁设备开箱检查",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请爱护使用。挂脖支架会经常贴身佩戴，佩戴前检查挂绳和卡扣是否完好；如遇进水、磕碰或配件损坏，请**立即联系客服售后**，不要自行拆修。"
+          },
+          {
+            "type": "p",
+            "text": "挂脖套装多了一个挂脖支架，开箱时除了主机、电池、内存卡，还要确认挂脖支架的软胶和卡扣是否完整。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "佩戴前试拉一下挂脖支架，检查有没有开裂。",
+              "相机外观拍照留存，配件一起入镜更清楚。",
+              "贴身使用的软胶部分，脏了用湿布轻擦后再用。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "认一下键位和接口",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "挂脖拍摄时你看不到相机正面，操作全靠手感。先记住电源键在侧面、快门键在上方，底部是装支架的接口。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-buttons-original.svg",
+            "alt": "Ace Pro 2 按键位置示意图",
+            "caption": "看图记键位：挂着拍照时拇指摸电源键、食指摸快门键，摸熟位置就不用低头看。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：侧边，开关机和切模式都靠它。",
+              "**快门键**：顶部，拍照和开始/停止录像。",
+              "**翻转屏**：屏幕两侧各有一个释放键。",
+              "**电池仓 / 卡槽**：机身侧面防水盖内。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "装电池与内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "挂脖拍摄常常录很久，电量要提前备足。**先关机**，再装电池和内存卡，盖紧防水盖后再挂到脖子上。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图确认方向：电池和卡按标记插到底，盖子扣紧听不到松动声才算装好。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，打开电池仓盖。",
+              "把电池顺着卡槽推到底。",
+              "合盖并扣紧卡扣。",
+              "插入内存卡，盖好卡槽盖。",
+              "轻摇相机，确认电池和卡都不会晃动。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "挂脖时相机贴着身体，防水盖没扣好容易进汗进水。每次上身前都顺手压一遍盖子。"
+          }
+        ]
+      },
+      {
+        "title": "开机与免手拍设置",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "**关机状态短按电源键 = 开机**。挂脖拍摄最好先把画面角度和模式调好，再挂上去就不再折腾。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键短按开机**，开机后短按切换拍摄模式或预设。",
+              "**录制中短按电源键**：给视频打标记，方便后期挑片段。",
+              "**长按 1 秒**：关机；**长按 5 秒**：强制关机。",
+              "**快门键短按**：拍照 / 开始录像，再按一次停止，长按会取消并删除当前录制。"
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "开机后向下滑动屏幕进控制中心，开启“快速拍摄”。",
+              "把常用的广角模式设成默认，第一视角能装下更多环境。",
+              "把翻转屏调到能看到自己的角度，方便确认构图。",
+              "确认无误后再挂到脖子上开始拍。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "翻转屏调整前，先同时按屏幕两侧的释放键，再翻起屏幕，不要硬掰。"
+          }
+        ]
+      },
+      {
+        "title": "挂脖佩戴与第一视角",
+        "icon": "🧣",
+        "body": [
+          {
+            "type": "p",
+            "text": "挂脖支架让相机贴着胸前，拍出来的画面接近你的视线，是最自然的**第一视角生活记录**。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-quick-release-original.svg",
+            "alt": "挂脖与快拆佩戴示意图",
+            "caption": "看图佩戴：相机朝向正前方、略向上仰，镜头别被衣服领口挡住，支架贴合肩颈最舒服。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把挂脖支架套过头顶，软胶部分落在后颈。",
+              "调整前后距离，让相机在锁骨位置。",
+              "把相机仰角调高一点，拍出来画面不会一直盯着地面。",
+              "收紧卡扣，让支架贴住身体不晃动。",
+              "低头确认镜头没被衣服或拉链遮挡。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**走路拍摄**：左右看的动作放慢，画面不会甩得头晕。",
+              "**做饭骑车**：双手空出来更安全，车速快或颠簸路段请慎重。",
+              "**长时间佩戴**：每隔一会儿放松一下脖子，避免勒肩。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "挂脖拍摄请避开人多拥挤、上下楼梯和剧烈运动的场合，避免相机甩动撞到他人或造成受伤。"
+          }
+        ]
+      },
+      {
+        "title": "导出素材",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "第一视角素材往往很长，别整段导。先在相机或 App 里挑出想要的片段，导出效率高很多。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "数据线连接手机导出示意图",
+            "caption": "看图连线：数据线一头接相机、一头接手机或电脑，选中素材直接拷出来，适合导大段视频。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合",
+              "注意"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "现场挑片、简单剪辑",
+                "保持近距，导出中别乱走"
+              ],
+              [
+                "数据线",
+                "长时间录制的整段视频",
+                "用可靠线材，传输中不要拔线"
+              ],
+              [
+                "读卡器",
+                "素材很多要一次性备份",
+                "安全弹出后再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "App 与说明书入口：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "充电保养与常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "挂脖拍摄常把相机贴身挂着，机身容易被汗气捂热。拍完记得取下清擦，再单独放好充电。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**画面总是拍地面**：把相机仰角调高，或把支架往前拉一些。",
+              "**镜头被挡**：低头看一眼镜头位置，避开衣领和背包带。",
+              "**录着录着没电**：挂脖长时间录制耗电快，备一块满电电池。",
+              "**画面抖**：收紧扣具，走路脚步放轻。",
+              "**开不了机**：先充电 10 分钟；不行就长按电源键 5 秒强制关机再开。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "出汗后请先擦干机身和防水盖再收纳，不要让汗液长期留在缝隙里。出现进水或磕碰立即停用并联系客服售后。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "action-vlog": {
+    "desc": "影石 Insta360 Ace Pro 2 手持 Vlog 套装教程：用手柄取景、边拍边说，讲清按键、翻转屏自拍构图、口播收音和素材导出，新手也能拍出口播视频。",
+    "keywords": "影石 Ace Pro 2 手持 Vlog 套装 手柄 Vlog 口播 收音 翻转屏 自拍 开机 导出素材 保养",
+    "steps": [
+      {
+        "title": "租赁设备先验机",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请爱惜使用。手柄和相机都容易磕碰，一旦进水、摔落或屏幕镜头受损，请**立即停止使用并联系客服售后**，不要自行拆机。"
+          },
+          {
+            "type": "p",
+            "text": "Vlog 套装多了手持配件，开箱时对着清单点一遍：主机、手柄、电池、内存卡、数据线都齐不齐，手柄螺纹和手柄上的按键有没有损坏。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "先给整套设备拍一张照片，方便归还比对。",
+              "手柄不要随意丢弃或坐压，螺纹变形会影响安装。",
+              "外出拍摄建议装进软包，避免和其他硬物挤压。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "认键位与翻转屏",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "Vlog 最重要的两个动作：**看屏幕确认自己入镜**，**按快门开始和停止**。所以先熟悉翻转屏和快门键。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-buttons-original.svg",
+            "alt": "Ace Pro 2 按键与屏幕释放键位置示意图",
+            "caption": "看图重点看两处：屏幕左右两侧的释放键，以及顶部快门键，Vlog 拍摄基本只用这两个。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**翻转屏**：翻转后屏幕朝向你，可以边拍边看自己。",
+              "**释放键**：屏幕两侧各一颗，要**同时按住**才能调整屏幕角度。",
+              "**快门键**：开始/停止录制，Vlog 里最常用的键。",
+              "**电源键**：开关机和切模式。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "第一次翻屏时动作慢一点，摸清两侧释放键的手感，熟了就能单手完成。"
+          }
+        ]
+      },
+      {
+        "title": "装电池和内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "口播视频时长动辄十几分钟，电量和大容量内存卡都要准备好。**关机后再装**，装好扣紧防水盖。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图装电池和卡：按标记方向插到底，盖好后轻轻晃一下相机，没有松动感才算到位。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，打开电池仓盖。",
+              "电池沿卡槽推到底，合盖并扣紧。",
+              "打开内存卡槽盖，插卡到底。",
+              "盖好卡槽盖，压一压确认平整。",
+              "装好后把相机接到手柄上再开机。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "开机状态下不要拔卡或换电池，容易损坏文件甚至丢素材。"
+          }
+        ]
+      },
+      {
+        "title": "手柄连接与开机",
+        "icon": "🖐️",
+        "body": [
+          {
+            "type": "p",
+            "text": "手柄是 Vlog 的手臂延长线：举得稳、看得清、按得准。把手柄装好，再开机开始调试画面。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-handgrip-original.svg",
+            "alt": "连接手柄示意图",
+            "caption": "看图安装：相机底部对准手柄接口，顺时针轻旋到紧固，不要用蛮力，装好先摇一摇测试。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机状态下连好手柄，拧紧连接处。",
+              "短按电源键开机（**关机时短按 = 开机**）。",
+              "同时按住屏幕两侧释放键，把翻转屏朝自己翻开。",
+              "向下滑动屏幕进控制中心，把常用拍摄模式准备好。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**开机**：关机短按电源键。",
+              "**切模式**：开机短按电源键。",
+              "**录像中短按电源键**：打标记，口播卡壳时特别好用。",
+              "**关机**：长按电源键约 1 秒；卡死时长按 5 秒强制关机。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "手持 Vlog 拍摄技巧",
+        "icon": "🎙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "手持手柄拍摄，最好的状态是“手稳、话清、人入画”。下面这套动作练三遍就能顺。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把相机举到眼睛略高，屏幕朝自己，脸放在画面上方三分之一处。",
+              "手肘贴近身体当支撑，走一步说一句，避免边走边晃。",
+              "短按快门开始录制，说完一段再短按停止，分段录后期好剪。",
+              "每段开头停半秒再说第一句，方便后期裁剪。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**口播收音**：离镜头 30 至 50 厘米说话，声音最清楚；别让手挡住机身。",
+              "**环境杂音**：风大时背对风口，尽量避开路边高噪音。",
+              "**说错台词别慌**：短按电源键打个标记，回头直接跳过这一段。",
+              "**镜面自检**：开始前看一眼屏幕里的自己，头发、口型和背景是否满意。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "长按快门会取消并删除当前录制，讲得正投入时别按住不放，这个动作没有二次确认。"
+          },
+          {
+            "type": "tip",
+            "text": "录完先回看一眼回放，确认画面和声音都对，再挪地方继续拍。"
+          }
+        ]
+      },
+      {
+        "title": "导出素材剪成片",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "口播视频文件大，建议先用数据线拷到电脑上剪；只想发一条短的，就用 App 无线传。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "数据线连接手机或电脑导出示意图",
+            "caption": "看图连线：数据线一头连相机、一头连手机或电脑，选中视频拷出，长片用这种方式最稳。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合场景",
+              "小提醒"
+            ],
+            "rows": [
+              [
+                "数据线连电脑",
+                "整段口播视频剪辑",
+                "传输中不要拔线、别让电脑休眠"
+              ],
+              [
+                "Insta360 App 无线",
+                "手机快速剪一段发出来",
+                "保持靠近，导出时不要切后台"
+              ],
+              [
+                "读卡器",
+                "多个视频一次性备份",
+                "先安全弹出再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "App 下载和操作说明请看 [Insta360 官网](https://www.insta360.com) 与 [在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "充电保养常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "口播常常一录就是半小时，机身在掌心会明显发热，这属于正常现象。录完取下放凉再充电更稳妥。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**画面里没有自己**：检查翻转屏是否看向你，或相机角度太低。",
+              "**声音小、发闷**：靠近一点说话，别用手掌捂住机身侧面的收音孔。",
+              "**录到一半停止**：检查电量、卡速和温度，换满电电池再试。",
+              "**手柄拧不紧**：检查螺纹有没有沙子卡住，清干净再试。",
+              "**屏幕黑掉**：短按电源键唤醒，不是坏了。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要边充电边拍摄，容易过热。任何进水、摔落情况请立即停用并联系客服售后。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "insta360-x6-standard": {
+    "desc": "影石 Insta360 X6 标准版新手教程：从认识机身、装电池内存卡，到 Q 键切换全景与平面模式、云台模式 2.0 稳拍，再到 App 导出与保养，一篇看懂。",
+    "keywords": "Insta360 X6 标准版 全景相机 电源键 Q键 云台模式 360模式 平面模式 5.7K 导出素材 租赁相机",
+    "steps": [
+      {
+        "title": "租赁设备先检查",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请务必爱护使用。全景相机的**两侧镜头最怕刮擦**，一旦进水、镜头或机身磕碰受损，请**立即停止使用并联系客服售后**，不要自行拆机。"
+          },
+          {
+            "type": "p",
+            "text": "X6 是一台能拍 360° 全景的小相机，两个镜头一左一右。开箱后先检查镜头有没有划痕、镜头盖是否完好，再点清电池、内存卡等配件。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "两支镜头都是凸起的，放下时一定要摆正或放回保护套。",
+              "开机前先拍一张机身照片留存。",
+              "配件清点齐全后再出门拍摄。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "认识机身与 Q 键",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 面板很简单：**电源键**、**Q 键**、**快门键**，加一块触控屏。记住这三个键，就能玩转 360° 与平面两种模式。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-standard-original.svg",
+            "alt": "Insta360 X6 机身与按键示意图",
+            "caption": "看图找位置：重点看正面的 Q 键与快门键、侧面的电源键，以及左右两支全景镜头。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：开关机、息屏亮屏。",
+              "**Q 键**：一键切换拍摄模式，最常按的键。",
+              "**快门键**：拍照、开始和停止录像。",
+              "**触控屏**：滑动切换模式、调整参数、进设置。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "装电池与内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "360° 素材体积大，建议用大容量高速卡。**关机状态**下装电池和卡，装好扣紧仓盖，因为机身防水靠盖子的密封圈。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图确认方向：电池和卡按标记朝里插到底，仓盖扣紧后检查密封圈是否平整压合。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，打开电池仓盖。",
+              "电池对准触点推入，听到或感到到位为止。",
+              "合上仓盖，确认卡扣锁紧、缝隙里没有沙粒。",
+              "打开内存卡槽，插卡到底。",
+              "盖好卡槽盖，轻压确认平整。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "密封圈上若有沙粒或水渍，防水就会失效。每次下水前都检查一遍仓盖是否扣紧。"
+          }
+        ]
+      },
+      {
+        "title": "开机与 Q 键切换模式",
+        "icon": "⚙️",
+        "body": [
+          {
+            "type": "p",
+            "text": "**短按电源键开机**。开机状态下短按电源键是息屏/亮屏，长按约 1 秒关机，长按约 7 秒是强制关机。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "按键",
+              "操作",
+              "效果"
+            ],
+            "rows": [
+              [
+                "电源键",
+                "关机时短按",
+                "开机"
+              ],
+              [
+                "电源键",
+                "开机时短按",
+                "息屏 / 亮屏"
+              ],
+              [
+                "电源键",
+                "长按约 1 秒",
+                "关机"
+              ],
+              [
+                "电源键",
+                "长按约 7 秒",
+                "强制关机（应急）"
+              ],
+              [
+                "Q 键",
+                "短按",
+                "切换全景录像 / 平面录像 / 云台模式 2.0"
+              ],
+              [
+                "快门键",
+                "预览界面点按",
+                "拍照或开始录像，录像中再按停止"
+              ],
+              [
+                "快门键",
+                "关机时短按",
+                "快速拍摄（需先开启，5 秒无操作自动关机）"
+              ]
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Q 键的切换顺序可以在**设置里自定义**。如果觉得默认顺序不顺手，去设置里换成自己最常用的模式。"
+          },
+          {
+            "type": "tip",
+            "text": "开启快速拍摄后，关机状态短按快门马上就能录，但停下 5 秒没操作会自动关机，记得及时按快门。"
+          }
+        ]
+      },
+      {
+        "title": "全景与平面怎么选",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 有两种拍法：**360° 全景**先拍后构图，**平面模式**所见即所得。选错不要紧，模式随时切。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "模式",
+              "拍出来是什么",
+              "适合场景"
+            ],
+            "rows": [
+              [
+                "全景录像（360°）",
+                "一整圈画面，后期可以任意取景",
+                "骑行、滑雪、手持自拍、走位复杂的环境"
+              ],
+              [
+                "平面录像",
+                "普通平面画面，镜头朝哪拍哪",
+                "固定机位、访谈、竖屏短视频"
+              ],
+              [
+                "云台模式 2.0",
+                "自动稳像，画面像装了云台一样顺",
+                "走路、跑步、手持移动拍摄"
+              ]
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "短按 Q 键，在三种模式之间轮流切换。",
+              "全景模式下举高相机，两支镜头都要露出来，别用手挡住。",
+              "平面模式下先看好屏幕里的构图，再按快门。",
+              "云台模式适合边走边拍，步伐放慢画面更稳。",
+              "同一场景想保险，就两种模式各录一段，后期挑好的用。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**自拍**：全景模式下把相机举到手伸直，后期可以选任何角度。",
+              "**坐着拍**：放平稳的表面或用支架，云台模式能省掉很多抖动。",
+              "**拍运动**：全景模式能追上快速转向的队友。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "全景拍摄时手指、支架、自拍杆如果出现在镜头前，会在画面里留下明显遮挡，举起前先确认握持位置。"
+          }
+        ]
+      },
+      {
+        "title": "导出与后期取景",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "全景视频的乐趣在后期：导出后能在 App 里拖动画面，选出你想要的视角，再导出成普通视频。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "官方 App 无线导出示意图",
+            "caption": "看图走无线流程：手机连上相机的 WiFi 后打开 Insta360 App，选中素材下载，再在 App 里取景剪辑。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合",
+              "注意"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "全景素材取景剪辑",
+                "导出时手机和相机保持近距离、别锁屏"
+              ],
+              [
+                "数据线连电脑",
+                "批量备份原始素材",
+                "传输中不要拔线"
+              ],
+              [
+                "读卡器",
+                "大量素材一次性拷出",
+                "先在电脑上安全弹出再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "App 和在线手册入口：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "充电保养常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "用完先擦干净再收纳，尤其是镜头和密封圈。充电用原装或品质可靠的充电器，机身发烫时先放凉。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**画面中间有洞**：手指或自拍杆挡住了镜头，调整握持位置。",
+              "**开不了机**：先充电 10 分钟再试，仍不行就长按电源键 7 秒强制关机后重开。",
+              "**模式总切错**：Q 键短按轮流切换，或在设置里改自定义顺序。",
+              "**导出很慢**：素材文件大，尽量只导精选或在电脑上取景。",
+              "**镜头有指纹**：用软布擦拭，不要干擦或用纸巾刮。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要把凸起的镜头直接放在桌面或沙地上。相机进水、摔落后请立即停用并联系客服售后。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "insta360-x6-allround": {
+    "desc": "影石 Insta360 X6 全能版教程：除了主机，还多了备用电池与手柄等配件，讲清配件搭配、开机按键、云台模式稳拍、换电池续拍和素材导出。",
+    "keywords": "Insta360 X6 全能版 配件 备用电池 手柄 云台模式 换电池 全景 平面 导出素材 租赁设备",
+    "steps": [
+      {
+        "title": "租赁配件先点清",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，配件多，请爱护使用。若进水、磕碰或配件损坏，请**立即停止使用并联系客服售后**，不要自行拆机或尝试修复。"
+          },
+          {
+            "type": "p",
+            "text": "全能版最大的特点就是配件齐：主机之外通常还配有备用电池和手柄。开箱时一定要逐件点清楚，归还时按同样清单核对。"
           },
           {
             "type": "img",
             "src": "images/insta360-x6-allround-original.svg",
             "alt": "Insta360 X6 全能版配件示意图",
-            "caption": "原创全能版配件示意图"
+            "caption": "看图点件：对照这张图把电池、手柄、线材等都找出来，缺件当场联系客服说明。"
           },
           {
             "type": "list",
             "items": [
-              "备用电池：长时间拍摄时轮换使用。",
-              "扩展手柄：手持和自拍时更稳。",
-              "充电管家：方便同时整理和充电多块电池。",
-              "收纳包：不用时保护相机和镜头。"
+              "先给整套配件拍一张全家福照片。",
+              "备用电池平时放进保护袋，避免和钥匙等硬物放在一起。",
+              "手柄螺纹口要保持干净，进沙会拧不紧。"
             ]
-          },
-          {
-            "type": "tip",
-            "text": "安装配件时不要挡住镜头，也不要把过重的设备挂在相机上。"
           }
         ]
       },
       {
-        "title": "拍全景和导出",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "选择全景视频或全景照片模式。",
-              "按快门开始拍摄，再按一下停止。",
-              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
-              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
-              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
-          },
-          {
-            "type": "tip",
-            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
-          }
-        ]
-      },
-      {
-        "title": "镜头和日常保养",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "list",
-            "items": [
-              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
-              "不要用衣服、纸巾或手指反复摩擦镜片。",
-              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
-              "海边使用后，用淡水湿布擦净机身并晾干。",
-              "长期不用时，放在干燥阴凉处并定期充电。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
-          },
-          {
-            "type": "warn",
-            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：全景相机 · 影石Insta360 X6旅拍套装
-  "insta360-x6-travel": {
-    "desc": "影石Insta360 X6旅拍套装简易使用教程",
-    "keywords": "影石 Insta360 X6 旅拍套装 自拍杆 三脚架 全景相机",
-    "steps": [
-      {
-        "title": "先认识 X6",
-        "icon": "🌐",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 有两个镜头，能一次记录周围 360° 的画面。拍完以后可以在手机里自由选择想看的视角。"
-          },
-          {
-            "type": "img",
-            "src": "images/insta360-x6-standard-original.svg",
-            "alt": "Insta360 X6 全景相机示意图",
-            "caption": "原创全景相机示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "两个镜头：拍摄时不要用手摸镜片。",
-              "触摸屏：查看画面、切换模式和调整设置。",
-              "快门键：开始和停止拍摄。",
-              "Type-C 接口：给相机充电和连接电脑。",
-              "内置存储：X6 可用约 47GB，忘记带内存卡也能先拍。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "两个镜头都关系到全景画面，使用时避免磕碰。镜片破裂或固定环变形时不要自己拆，直接联系售后。"
-          }
-        ]
-      },
-      {
-        "title": "充电和存储",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "X6 使用 Type-C 充电。推荐使用支持 PD 3.0 PPS 的 30W 充电器，充电速度会更快。"
-          },
-          {
-            "type": "list",
-            "items": [
-              "约 24 分钟可以充到 80%，约 35 分钟充满。",
-              "建议使用 UHS-I V30 或更高等级的 microSD 卡。",
-              "卡槽方向和缺口对准后再插入，不要硬推。",
-              "内置存储快满时，先把素材导出到手机或电脑。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "边充边拍会让机身更热，建议保持通风。"
-          }
-        ]
-      },
-      {
-        "title": "旅拍套装使用",
-        "icon": "✈️",
-        "body": [
-          {
-            "type": "p",
-            "text": "旅拍套装适合旅行、Vlog 和多人合影，通常搭配自拍杆、三脚架和收纳包，以实际套装为准。"
-          },
-          {
-            "type": "img",
-            "src": "images/insta360-x6-travel-original.svg",
-            "alt": "Insta360 X6 旅拍套装示意图",
-            "caption": "原创旅拍套装示意图"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把相机固定到自拍杆或三脚架上，确认螺丝拧紧。",
-              "先试拍一小段，检查相机有没有挡镜头。",
-              "拍全景视频时慢慢移动，画面后期更容易调整。",
-              "旅行结束后先备份素材，再清空内存卡。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "人多的地方使用自拍杆时，注意周围行人，避免碰到别人或相机。"
-          }
-        ]
-      },
-      {
-        "title": "拍全景和导出",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "选择全景视频或全景照片模式。",
-              "按快门开始拍摄，再按一下停止。",
-              "拍摄时尽量保持相机稳定，手拿自拍杆转动更容易保持水平。",
-              "打开手机蓝牙和 Wi-Fi，使用 Insta360 App 连接 X6。",
-              "在 App 里导出素材，并自由改变画面方向、比例和视角。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看影石 Insta360 X6 官方教程](https://onlinemanual.insta360.com/x6/zh-cn)"
-          },
-          {
-            "type": "tip",
-            "text": "全景素材不要直接在普通播放器里看，使用 Insta360 App 或官方 Studio 工具才能自由转动视角。"
-          }
-        ]
-      },
-      {
-        "title": "镜头和日常保养",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "list",
-            "items": [
-              "镜头有灰尘时，先用气吹，再用干净镜头布轻擦。",
-              "不要用衣服、纸巾或手指反复摩擦镜片。",
-              "只在镜片有刮痕时使用官方维修套装更换，破裂请直接联系售后。",
-              "海边使用后，用淡水湿布擦净机身并晾干。",
-              "长期不用时，放在干燥阴凉处并定期充电。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看 Insta360 X6 官方产品页](https://www.insta360.com/cn/product/insta360-x6)"
-          },
-          {
-            "type": "warn",
-            "text": "水下或雨天使用前，确认接口盖、电池盖和镜头保护件都安装到位。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Insta360 App](https://www.insta360.com/cn/download)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Insta360 App，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  "mirrorless-entry": {
-    "desc": "佳能微单 + 18-45mm 入门套机简易教程",
-    "keywords": "佳能微单 R50 18-45mm 入门 拍照 录像 电池 内存卡",
-    "steps": [
-      {
-        "title": "先认识相机",
+        "title": "认识机身按键",
         "icon": "📷",
         "body": [
           {
             "type": "p",
-            "text": "佳能微单看着按键多，其实常用功能就几个。先认准电源、快门、模式转盘和屏幕，拍起来就不难。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
-            "alt": "佳能 EOS R50 机身正面部件图",
-            "caption": "官方机身正面部件图"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
-            "alt": "佳能 EOS R50 机背按键图",
-            "caption": "官方机背按键示意图"
+            "text": "X6 的按键就三个：电源键、Q 键、快门键。配件再多，操作逻辑都还是这一套。"
           },
           {
             "type": "list",
             "items": [
-              "电源开关：开机和关机。",
-              "快门按钮：拍照用；轻按对焦，按到底拍照。",
-              "短片拍摄按钮：按一下开始录像，再按一下停止。",
-              "模式转盘：新手先放在绿色 A+ 全自动模式。",
-              "回放按钮：用来查看已经拍好的照片和视频。"
+              "**电源键**：关机短按开机；开机短按息屏/亮屏；长按约 1 秒关机，约 7 秒强制关机。",
+              "**Q 键**：短按切换全景录像 / 平面录像 / 云台模式 2.0，顺序可在设置里自定义。",
+              "**快门键**：预览界面点按开始拍照或录像，录像中再点停止；关机时短按可快速拍摄。"
             ]
           },
           {
             "type": "tip",
-            "text": "第一次使用前先给电池充电。电池充满后，充电器的指示灯会变绿。"
+            "text": "快速拍摄要在设置里先开启，开启后关机状态短按快门就能录，但 5 秒没操作会自动关机，拍完记得补按快门。"
           }
         ]
       },
       {
-        "title": "装电池和内存卡",
+        "title": "装电池内存卡与换电",
         "icon": "🔋",
         "body": [
           {
             "type": "p",
-            "text": "相机底部是电池和内存卡的仓盖。安装前先关机，避免相机读不到卡。"
+            "text": "全能版标配备用电池，这是它最大的价值：一块没电立刻换另一块，拍摄不中断。换电池前**一定先关机**。"
           },
           {
             "type": "img",
             "src": "images/camera-battery-card-original.svg",
-            "alt": "佳能 EOS R50 电池和存储卡安装图",
-            "caption": "官方电池与存储卡安装示意"
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图装卡：电池和内存卡按标记插到底，仓盖密封圈压紧。换电时同样先关机再开仓盖。"
           },
           {
             "type": "olist",
             "items": [
-              "打开电池仓盖。",
-              "按电池仓里的方向标记，把电池平稳放进去。",
-              "打开旁边的内存卡槽，把卡按方向插到底。",
-              "盖好仓盖，确认卡扣已经扣紧。"
+              "关机，打开电池仓盖取出电池。",
+              "把备用电池对准触点推入到底。",
+              "合盖扣紧，检查密封圈没有异物。",
+              "换完电池后重新开机，确认电量与时间正常。",
+              "没电的电池收进保护袋，回到住处统一充电。"
             ]
           },
           {
             "type": "warn",
-            "text": "不要强行插电池和内存卡。方向不对时不要硬按，翻个方向再试。"
+            "text": "不要在录像途中开盖换电池，会导致文件损坏。电池也不要与金属物品一起放，避免短路发热。"
           }
         ]
       },
       {
-        "title": "安装18-45mm镜头",
-        "icon": "🔘",
+        "title": "手柄安装与稳拍",
+        "icon": "🖐️",
         "body": [
           {
             "type": "p",
-            "text": "这个镜头适合日常、旅行和 Vlog，安装镜头时一定要先关机。"
+            "text": "手柄是全能版里最提升体验的配件：举得高、甩得远，全景拍自拍能把人和环境一起拍进去，还比徒手稳。"
           },
           {
             "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
-            "alt": "佳能 RF 镜头安装图",
-            "caption": "官方镜头安装示意"
+            "src": "images/camera-handgrip-original.svg",
+            "alt": "连接手柄示意图",
+            "caption": "看图安装：相机底部对准手柄接口，轻旋紧固后摇一摇测试，再把画面和模式调好开拍。"
           },
           {
             "type": "olist",
             "items": [
-              "取下机身盖和镜头后盖。",
-              "把镜头上的红点对准机身上的红点。",
-              "轻轻放入后顺时针转动，听到“咔哒”声就装好了。",
-              "拆镜头时按住镜头释放按钮，再逆时针转动。"
+              "关机状态下把手柄接到相机底部，顺时针拧到紧固。",
+              "开机，短按 Q 键选到「云台模式 2.0」或「全景录像」。",
+              "手持手柄举高，注意别让手柄下端进入视野。",
+              "边走边拍时步伐放慢，手柄略前倾能减少画面晃动。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**徒步记录**：手柄 + 全景模式，后期可以随便选视角。",
+              "**Vlog 自拍**：把相机举到略高于头顶，手伸直，画面更宽松。",
+              "**固定机位**：手柄配三脚架底座放在桌面上，云台模式自动稳像。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "举高拍摄时注意头顶和周围空间，避免撞到树枝、门框或人群。不要把手柄当自拍杆大幅甩动。"
+          }
+        ]
+      },
+      {
+        "title": "模式选择与拍摄节奏",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "配件备好了，剩下就是选对模式。三句话记住：想后期有二创空间就用**全景**，想直接出片用**平面**，想画面稳就用**云台模式 2.0**。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "场景",
+              "推荐模式",
+              "理由"
+            ],
+            "rows": [
+              [
+                "骑行、滑雪、登山",
+                "全景录像",
+                "事后任意选角度，不错过任何一边"
+              ],
+              [
+                "访谈、固定讲解",
+                "平面录像",
+                "构图直观，文件更小"
+              ],
+              [
+                "手持边走边说",
+                "云台模式 2.0",
+                "自动稳像，减少抖动"
+              ],
+              [
+                "电量紧张",
+                "平面录像",
+                "续航压力更小"
+              ]
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "拍摄前短按 Q 键确认当前模式。",
+              "按快门开始，拍一段就停一段，不要一按到底。",
+              "换场景时先看电量，低于提示就换备用电池。",
+              "一段素材拍完在屏幕里回看，确认镜头没被挡住。"
             ]
           },
           {
             "type": "tip",
-            "text": "18mm 拍风景和室内更宽敞，45mm 拍人像和近景更自然。"
+            "text": "同一场景先用一种模式录，觉得不放心再用另一种补一条，后期选更好的那条。"
           }
         ]
       },
       {
-        "title": "用全自动模式拍照",
-        "icon": "📸",
+        "title": "导出素材",
+        "icon": "📤",
         "body": [
           {
             "type": "p",
-            "text": "新手直接把模式转盘转到绿色 A+，相机会自动帮你调好亮度、对焦和颜色。"
+            "text": "素材量大时，用读卡器或数据线导到电脑最省时间；想马上发，就用 App 无线传一段精选。"
           },
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
-            "alt": "佳能 EOS R50 全自动模式图",
-            "caption": "官方全自动拍摄模式"
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器导出示意图",
+            "caption": "看图用读卡器：拔出内存卡插入读卡器，再接电脑或手机。全景素材多，这种方式最适合批量拷贝。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "适合",
+              "注意"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "手机端取景和剪辑",
+                "保持近距离，别中途离开"
+              ],
+              [
+                "数据线",
+                "导到电脑做精剪",
+                "传输中不要拔线"
+              ],
+              [
+                "读卡器",
+                "多卡多素材批量备份",
+                "安全弹出后再拔卡"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "官方 App 与手册：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "配件收纳与常见问题",
+        "icon": "🔌",
+        "body": [
+          {
+            "type": "p",
+            "text": "配件多，最怕丢件和磕碰。每次收工前做一次“清点动作”，把电池、手柄、线材放回原位。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**换电后时间不对**：重新开机后检查时间设置，必要时在 App 里同步。",
+              "**手柄拍进去**：举高时把手柄下端移出双镜头范围。",
+              "**续航不够**：带满两块电池，平面模式比全景更省电。",
+              "**画面有接缝**：全景模式在主体贴近镜头时更明显，拉开一点距离。",
+              "**充电发烫**：放在通风处关机充电，别边拍边充。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "所有配件都没做防水，别和湿的相机一起塞进包里。进水、摔落请联系客服售后，不要自行处理。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "insta360-x6-travel": {
+    "desc": "影石 Insta360 X6 旅拍套装教程：带上自拍杆和三脚架出门旅行，讲清旅拍前准备、开机按键、全景与云台模式拍法、自拍杆与三脚架用法、导出和收纳保养。",
+    "keywords": "Insta360 X6 旅拍套装 自拍杆 三脚架 旅拍 全景 云台模式 收纳 导出素材 租赁相机",
+    "steps": [
+      {
+        "title": "旅拍出发前检查",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请爱护使用。旅行中磕碰风险高，一旦进水、摔机或配件损坏，请**立即停用并联系客服售后**，不要自行拆机。"
+          },
+          {
+            "type": "p",
+            "text": "X6 旅拍套装配有自拍杆、三脚架收纳配件，出发前把整套东西点清楚，比到景点才发现少件要省心得多。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-travel-original.svg",
+            "alt": "Insta360 X6 旅拍套装配件示意图",
+            "caption": "看图点件：对照这张图确认主机、自拍杆、三脚架底座等配件都在，拍照留存方便归还核对。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "行李托运时把相机和配件放随身包，不要塞进托运行李。",
+              "自拍杆伸缩节收到底再收纳，避免弯折。",
+              "三脚架底座螺口处保持干净，进沙会影响固定。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "认识机身与按键",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "X6 的三个按键就是旅拍的全部操作入口：电源键、Q 键、快门键，另外还有摸得到的触控屏。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：关机短按开机，开机短按息屏/亮屏，长按约 1 秒关机，约 7 秒强制关机。",
+              "**Q 键**：短按在「全景录像 / 平面录像 / 云台模式 2.0」之间切换，可在设置里改顺序。",
+              "**快门键**：预览界面点按拍照或开始录像，录像中再点停止。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "在设置里开启快速拍摄后，关机状态短按快门就能开拍；但停下来 5 秒没操作会自动关机，别举着杆发呆。"
+          }
+        ]
+      },
+      {
+        "title": "装电池与内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅行素材量最大，一定要用大容量高速卡。**关机后**装电池和内存卡，装好检查仓盖密封圈，海边和雨天尤其重要。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装示意图",
+            "caption": "看图装卡：按标记方向插到底，仓盖一定要扣紧压平，密封圈有沙粒就会漏气进水。"
           },
           {
             "type": "olist",
             "items": [
-              "眼睛看屏幕取景，想让哪里清楚就点一下屏幕上的位置。",
-              "轻按快门对焦，按到底完成拍照。",
-              "按短片拍摄按钮开始录像，再按一下停止。",
+              "关机，打开电池仓盖装入电池。",
+              "合盖并扣紧，检查是否平整。",
+              "打开卡槽盖，插入内存卡到底。",
+              "盖好卡槽盖，用手指压一遍确认闭合。",
+              "出门前满电，回到酒店就充。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "在海边、沙地换卡时先遮挡风沙再开盖。仓盖未扣紧时不要下水、不要在雨天使用。"
+          }
+        ]
+      },
+      {
+        "title": "旅拍模式怎么选",
+        "icon": "🌐",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅行拍摄场景变化快，**短按 Q 键**就能在两种 360° 与平面之间切换，还有适合移动拍摄的云台模式。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "模式",
+              "旅拍时的用法"
+            ],
+            "rows": [
+              [
+                "全景录像",
+                "地标打卡、街景、举杆自拍，后期随意选角度"
+              ],
+              [
+                "平面录像",
+                "博物馆讲解、餐厅探店、竖屏短视频"
+              ],
+              [
+                "云台模式 2.0",
+                "边走边拍、爬坡、逛市集，画面更稳"
+              ]
+            ]
+          },
+          {
+            "type": "olist",
+            "items": [
+              "举高相机前先确认两支镜头都露出来，手别挡。",
+              "地标打卡建议全景录一段，再让朋友用平面模式拍一张。",
+              "移动拍摄优先云台模式，脚步放慢、节奏均匀。",
+              "换景点时先息屏省电，短按电源键即可。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**人群景点**：把自拍杆举过头顶，能拍到前方人群之外的风景。",
+              "**窄巷古建**：全景模式能同时收进两侧墙面，比平面更有空间感。",
+              "**合影**：用三脚架固定，全景对准自己，朋友站两侧都能入画。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "自拍杆与三脚架用法",
+        "icon": "📏",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅拍套装的核心就两样：**自拍杆拍自己**，**三脚架拍别人和景**。都接在相机底部接口上，先对准再拧紧。"
+          },
+          {
+            "type": "img",
+            "src": "images/insta360-x6-travel-original.svg",
+            "alt": "X6 旅拍套装自拍杆与三脚架示意图",
+            "caption": "看图辨配件：自拍杆负责举高拍自己，三脚架底座负责稳稳站住；使用前先确认接好、拧紧。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机状态下把相机拧到自拍杆或三脚架接口上。",
+              "自拍杆逐节拉出，不要一次拉到最长，先拍一条试试。",
+              "拍自己时把杆举到略高于头顶，稍微向外倾。",
+              "用三脚架时先打开三脚、放平稳，再放相机。",
+              "风大地点给三脚架加配重或降低高度，防止被吹倒。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**收杆**：从最细的一节开始往里收，收到底再拧紧锁扣。",
+              "**离手**：相机不要长时间挂在自拍杆上离位，容易被碰倒。",
+              "**人多处**：把杆收短，避免扫到别人。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "高举自拍杆时避开电线、吊灯、树枝和人群头部，进入场馆前先确认是否允许使用杆类器材。"
+          }
+        ]
+      },
+      {
+        "title": "导出与旅拍整理",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅行每天都在积累素材，建议每天回酒店就导一份，既及时又防丢。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "数据线连接手机导出示意图",
+            "caption": "看图连线：数据线一头连相机一头连手机或电脑，选中素材拷出；酒店里这样备份最方便。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "方式",
+              "旅行中的用法"
+            ],
+            "rows": [
+              [
+                "Insta360 App 无线",
+                "随时挑一段发朋友圈，不用带电脑"
+              ],
+              [
+                "数据线",
+                "回酒店连电脑精剪，稳定又快"
+              ],
+              [
+                "读卡器",
+                "换卡备份，一次拷完所有素材"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "全景素材先在 App 里取景成普通视频再分享，观感更好。App 与说明：[Insta360 官网](https://www.insta360.com)、[在线手册](https://onlinemanual.insta360.com)。"
+          }
+        ]
+      },
+      {
+        "title": "旅行收纳与常见问题",
+        "icon": "🎒",
+        "body": [
+          {
+            "type": "p",
+            "text": "收工时按固定顺序来：擦干机身、装回保护套、收自拍杆、检查配件。行李翻找时最容易压坏凸起的镜头。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "用软布擦掉镜头和机身的汗水、沙粒与指纹。",
+              "关机后把相机放回保护套，再放进收纳包。",
+              "自拍杆收到底、锁紧，三脚架底座单独放。",
+              "清点电池、线材、内存卡，避免落下。"
+            ]
+          },
+          {
+            "type": "list",
+            "items": [
+              "**画面有遮挡**：手指或自拍杆进入视野，换握法或缩短杆。",
+              "**三脚架站不住**：底座放平、避开松软地面，必要时降低高度。",
+              "**开不了机**：先充电 10 分钟，再长按电源键约 7 秒强制关机后重开。",
+              "**镜头起雾**：从空调房到户外温差大时，先在包里回温再用。",
+              "**电量掉得快**：全景模式更耗电，多用息屏，出门带备用电池。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要把相机和钥匙、硬币混放在一个口袋。出现进水、摔机或镜头破损请立即停用并联系客服售后。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "mirrorless-entry": {
+    "desc": "佳能 EOS R 系列微单配 18-45mm 套机，从开箱到拍好第一张照片的完整上手教程。",
+    "keywords": "佳能微单 R50 18-45mm 入门 套机 拍照 录像 装镜头 电池 内存卡 传手机",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "拿到机器先清点：机身、18-45mm 镜头、电池、充电器、SD 卡、背带。少了东西马上联系客服。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "机身和镜头上有浅划痕、镜头有指纹都正常，用镜头布轻擦即可。",
+              "电池先充满再用，第一次外出前务必确认电量满格。",
+              "别把相机放在车后备箱或阳光直射处，高温对电池和屏幕都不友好。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识机身按键",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "微单按键看着多，实际每天只用得到五六个。先认准电源、快门、模式转盘和回放键。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-front-original.svg",
+            "alt": "佳能微单机身正面示意图",
+            "caption": "机身正面：看快门按钮、镜头释放键和手柄位置"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-back-original.svg",
+            "alt": "佳能微单机背屏幕与按键示意图",
+            "caption": "机背：屏幕、菜单键、回放键、短片拍摄键都在这一面"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**快门按钮**：轻按对焦，按到底拍照。",
+              "**短片拍摄按钮**：按一下开始录像，再按一下停止。",
+              "**模式转盘**：转动它切换 AUTO / P / Av / Tv / M。",
+              "**回放键**：看刚拍的照片，不满意可以直接删。",
+              "**菜单键**：调分辨率、Wi-Fi 等设置。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "新手直接转到 **AUTO（自动）**，相机会自动帮你决定亮度、对焦和颜色，先出片最重要。"
+          }
+        ]
+      },
+      {
+        "title": "装电池与内存卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池仓和卡槽在相机底部。装之前先关机，装好后盖紧仓门。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装位置示意",
+            "caption": "底部仓门里：电池有方向标记，卡槽在另一侧"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "打开电池仓盖，按仓内标记的方向把电池推到底，听到卡扣声即可。",
+              "打开旁边卡槽盖，把 SD 卡金属触点朝内、缺口对准插入，按到底会弹一下。",
+              "关好仓门，开机看屏幕上能否正常显示电量和可拍张数。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "方向不对不要硬按，更不要用工具撬电池。取卡时轻按一下让卡弹出，别用指甲硬拔。"
+          }
+        ]
+      },
+      {
+        "title": "安装 18-45mm 镜头",
+        "icon": "🔘",
+        "body": [
+          {
+            "type": "p",
+            "text": "装镜头一定要关机，并且尽量在室内、少灰的地方操作，避免灰尘进机身。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-lens-mount-original.svg",
+            "alt": "镜头与机身卡口对准示意图",
+            "caption": "两个红点对齐，顺时针转到“咔”一声"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "取下机身盖和镜头后盖，顺手把两个盖子放进包里。",
+              "把镜头上的**红点对准机身上的红点**。",
+              "轻轻贴进去后**顺时针**转动，听到“咔”一声就是锁紧了。",
+              "拆镜头时，按住机身左侧的**镜头释放键**，再**逆时针**拧下来。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "这支 18-45mm 很轻，装好后记得把镜头转到拍摄位置（有些镜头要拧一下才能伸出来拍摄）。"
+          }
+        ]
+      },
+      {
+        "title": "自动模式拍第一张",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "p",
+            "text": "模式转盘转到 **AUTO**，双手持稳，眼睛看屏幕取景。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-auto-mode-original.svg",
+            "alt": "自动模式下的屏幕取景示意",
+            "caption": "屏幕取景时，点哪里就对焦哪里"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在屏幕上**点一下想拍的主体**，出现对焦框就说明锁定了。",
+              "**轻按快门**半程，画面稳定后再按到底。",
+              "想录视频就按短片拍摄键，再按一下停止。",
               "转动镜头变焦环，可以拉近或拉远画面。"
             ]
           },
           {
             "type": "tip",
-            "text": "拍完以后按回放按钮就能查看照片。照片不满意可以直接删除，再重新拍。"
+            "text": "新手最常见的糊片原因是手抖。手持时手肘贴紧身体，按下快门后停一秒再放。"
           }
         ]
       },
       {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "想把照片传到手机，可以安装佳能 Camera Connect，也可以用读卡器把内存卡插到电脑上。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
-            "alt": "佳能 Camera Connect 连接手机示意图",
-            "caption": "官方手机连接示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "进入相机上的图像，选择照片或视频保存到手机。",
-              "用电脑时，取出内存卡，通过读卡器复制 DCIM 文件夹即可。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方完整说明书](https://cam.start.canon/zh/C011/manual/html/index.html)"
-          },
-          {
-            "type": "tip",
-            "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：微单相机 · 佳能微单+18-150mm风光变焦镜头
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  "mirrorless-plus": {
-    "desc": "佳能微单 + 18-150mm 风光变焦镜头简易教程",
-    "keywords": "佳能微单 R50 18-150mm 风光 变焦 拍照 录像",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "佳能微单看着按键多，其实常用功能就几个。先认准电源、快门、模式转盘和屏幕，拍起来就不难。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
-            "alt": "佳能 EOS R50 机身正面部件图",
-            "caption": "官方机身正面部件图"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
-            "alt": "佳能 EOS R50 机背按键图",
-            "caption": "官方机背按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源开关：开机和关机。",
-              "快门按钮：拍照用；轻按对焦，按到底拍照。",
-              "短片拍摄按钮：按一下开始录像，再按一下停止。",
-              "模式转盘：新手先放在绿色 A+ 全自动模式。",
-              "回放按钮：用来查看已经拍好的照片和视频。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次使用前先给电池充电。电池充满后，充电器的指示灯会变绿。"
-          }
-        ]
-      },
-      {
-        "title": "装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机底部是电池和内存卡的仓盖。安装前先关机，避免相机读不到卡。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "佳能 EOS R50 电池和存储卡安装图",
-            "caption": "官方电池与存储卡安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开电池仓盖。",
-              "按电池仓里的方向标记，把电池平稳放进去。",
-              "打开旁边的内存卡槽，把卡按方向插到底。",
-              "盖好仓盖，确认卡扣已经扣紧。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要强行插电池和内存卡。方向不对时不要硬按，翻个方向再试。"
-          }
-        ]
-      },
-      {
-        "title": "安装18-150mm镜头",
-        "icon": "🔘",
-        "body": [
-          {
-            "type": "p",
-            "text": "这个镜头从广角到长焦都能拍，旅行时不用频繁换镜头。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
-            "alt": "佳能 RF 镜头安装图",
-            "caption": "官方镜头安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "关机后取下机身盖和镜头后盖。",
-              "红点对准红点，放入镜头后顺时针转紧。",
-              "听到“咔哒”声后，轻轻拉一下镜头确认没有松动。",
-              "使用变焦环时慢慢转动，不要用力过猛。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "18mm 适合风景和大合影，150mm 适合拍远处的山、建筑和人物。"
-          }
-        ]
-      },
-      {
-        "title": "拍风景和远处物体",
-        "icon": "📸",
-        "body": [
-          {
-            "type": "p",
-            "text": "光线好时用全自动模式就能拍出清楚的照片，远处物体可以转动变焦环拉近。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
-            "alt": "佳能 EOS R50 全自动模式图",
-            "caption": "官方全自动拍摄模式"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先用 18mm 拍一张大场景。",
-              "再慢慢转到更长焦段，选择喜欢的局部画面。",
-              "画面里有天空和地面时，点击屏幕中间偏亮的位置对焦。",
-              "手持拍摄时双手拿稳，按快门时不要突然晃动。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍完以后按回放按钮就能查看照片。照片不满意可以直接删除，再重新拍。"
-          }
-        ]
-      },
-      {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "想把照片传到手机，可以安装佳能 Camera Connect，也可以用读卡器把内存卡插到电脑上。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
-            "alt": "佳能 Camera Connect 连接手机示意图",
-            "caption": "官方手机连接示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "进入相机上的图像，选择照片或视频保存到手机。",
-              "用电脑时，取出内存卡，通过读卡器复制 DCIM 文件夹即可。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方完整说明书](https://cam.start.canon/zh/C011/manual/html/index.html)"
-          },
-          {
-            "type": "tip",
-            "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：微单相机 · 佳能微单+F1.8人像大光圈镜头
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  "mirrorless-pro": {
-    "desc": "佳能微单 + F1.8 人像大光圈镜头简易教程",
-    "keywords": "佳能微单 F1.8 人像镜头 虚化 拍照 大光圈",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "佳能微单看着按键多，其实常用功能就几个。先认准电源、快门、模式转盘和屏幕，拍起来就不难。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
-            "alt": "佳能 EOS R50 机身正面部件图",
-            "caption": "官方机身正面部件图"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
-            "alt": "佳能 EOS R50 机背按键图",
-            "caption": "官方机背按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源开关：开机和关机。",
-              "快门按钮：拍照用；轻按对焦，按到底拍照。",
-              "短片拍摄按钮：按一下开始录像，再按一下停止。",
-              "模式转盘：新手先放在绿色 A+ 全自动模式。",
-              "回放按钮：用来查看已经拍好的照片和视频。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次使用前先给电池充电。电池充满后，充电器的指示灯会变绿。"
-          }
-        ]
-      },
-      {
-        "title": "装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机底部是电池和内存卡的仓盖。安装前先关机，避免相机读不到卡。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "佳能 EOS R50 电池和存储卡安装图",
-            "caption": "官方电池与存储卡安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开电池仓盖。",
-              "按电池仓里的方向标记，把电池平稳放进去。",
-              "打开旁边的内存卡槽，把卡按方向插到底。",
-              "盖好仓盖，确认卡扣已经扣紧。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要强行插电池和内存卡。方向不对时不要硬按，翻个方向再试。"
-          }
-        ]
-      },
-      {
-        "title": "安装 F1.8 人像镜头",
-        "icon": "🔘",
-        "body": [
-          {
-            "type": "p",
-            "text": "F1.8 镜头适合拍人像，可以把背景拍得柔柔的，人物更突出。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
-            "alt": "佳能 RF 镜头安装图",
-            "caption": "官方镜头安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "关机后取下机身盖和镜头后盖。",
-              "红点对准红点，放入后顺时针转紧。",
-              "确认听到“咔哒”声后再开机。",
-              "拍摄时不要离人物太近，留出合适距离。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "想拍出背景虚化，可以把光圈数字调小，例如 F1.8、F2.0；数字越小，背景越柔。"
-          }
-        ]
-      },
-      {
-        "title": "拍出简单的人像效果",
-        "icon": "📸",
-        "body": [
-          {
-            "type": "p",
-            "text": "先让模特站在离背景远一点的位置，再把对焦点放在眼睛附近。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
-            "alt": "佳能 EOS R50 全自动模式图",
-            "caption": "官方全自动拍摄模式"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "模式转盘选择 Av 光圈优先。",
-              "转动拨盘把光圈调到 F1.8 到 F2.8。",
-              "点击屏幕上人物的眼睛位置进行对焦。",
-              "轻轻按快门完成拍摄，注意人物表情和背景光线。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍完以后按回放按钮就能查看照片。照片不满意可以直接删除，再重新拍。"
-          }
-        ]
-      },
-      {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "想把照片传到手机，可以安装佳能 Camera Connect，也可以用读卡器把内存卡插到电脑上。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
-            "alt": "佳能 Camera Connect 连接手机示意图",
-            "caption": "官方手机连接示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "进入相机上的图像，选择照片或视频保存到手机。",
-              "用电脑时，取出内存卡，通过读卡器复制 DCIM 文件夹即可。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方完整说明书](https://cam.start.canon/zh/C011/manual/html/index.html)"
-          },
-          {
-            "type": "tip",
-            "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  /* 超远摄微单独立教程内容 */
-  // 子目录内容：微单相机 · 佳能微单+超远摄100-400mm
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  "mirrorless-one": {
-    "desc": "佳能微单 + 100-400mm 超远摄镜头简易教程",
-    "keywords": "佳能微单 100-400mm 超远摄 长焦 拍鸟 拍演出",
-    "steps": [
-      {
-        "title": "先认识相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "佳能微单看着按键多，其实常用功能就几个。先认准电源、快门、模式转盘和屏幕，拍起来就不难。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
-            "alt": "佳能 EOS R50 机身正面部件图",
-            "caption": "官方机身正面部件图"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
-            "alt": "佳能 EOS R50 机背按键图",
-            "caption": "官方机背按键示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源开关：开机和关机。",
-              "快门按钮：拍照用；轻按对焦，按到底拍照。",
-              "短片拍摄按钮：按一下开始录像，再按一下停止。",
-              "模式转盘：新手先放在绿色 A+ 全自动模式。",
-              "回放按钮：用来查看已经拍好的照片和视频。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "第一次使用前先给电池充电。电池充满后，充电器的指示灯会变绿。"
-          }
-        ]
-      },
-      {
-        "title": "装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机底部是电池和内存卡的仓盖。安装前先关机，避免相机读不到卡。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-battery-card-original.svg",
-            "alt": "佳能 EOS R50 电池和存储卡安装图",
-            "caption": "官方电池与存储卡安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开电池仓盖。",
-              "按电池仓里的方向标记，把电池平稳放进去。",
-              "打开旁边的内存卡槽，把卡按方向插到底。",
-              "盖好仓盖，确认卡扣已经扣紧。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要强行插电池和内存卡。方向不对时不要硬按，翻个方向再试。"
-          }
-        ]
-      },
-      {
-        "title": "安装100-400mm镜头",
-        "icon": "🔘",
-        "body": [
-          {
-            "type": "p",
-            "text": "这个镜头又长又重，适合拍远处的鸟、动物、舞台和运动。安装和拿取时都要稳。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
-            "alt": "佳能 RF 镜头安装图",
-            "caption": "官方镜头安装示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "关机后取下机身盖和镜头后盖。",
-              "一手托住镜头，一手固定机身，红点对准后装紧。",
-              "听到“咔哒”声后，确认镜头没有松动。",
-              "拆卸时一手托镜头，一手按住镜头释放按钮。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "手持时最好双手托住镜头；拍摄远处时可以靠着栏杆，或者使用三脚架，会更稳。"
-          }
-        ]
-      },
-      {
-        "title": "拍远处物体的小技巧",
-        "icon": "📸",
-        "body": [
-          {
-            "type": "p",
-            "text": "第一次用长焦镜头不要一直拉到最长，先从 100mm 左右开始找目标。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
-            "alt": "佳能 EOS R50 全自动模式图",
-            "caption": "官方全自动拍摄模式"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把镜头对准远处物体，慢慢转动变焦环拉近。",
-              "打开镜头防抖开关，如果镜头上带有 IS 或 STABILIZER。",
-              "点击屏幕目标位置对焦，按快门时轻轻呼吸。",
-              "光线不够时尽量找亮一点的位置，或者使用支架拍摄。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍完以后按回放按钮就能查看照片。照片不满意可以直接删除，再重新拍。"
-          }
-        ]
-      },
-      {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "想把照片传到手机，可以安装佳能 Camera Connect，也可以用读卡器把内存卡插到电脑上。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
-            "alt": "佳能 Camera Connect 连接手机示意图",
-            "caption": "官方手机连接示意"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "进入相机上的图像，选择照片或视频保存到手机。",
-              "用电脑时，取出内存卡，通过读卡器复制 DCIM 文件夹即可。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方完整说明书](https://cam.start.canon/zh/C011/manual/html/index.html)"
-          },
-          {
-            "type": "tip",
-            "text": "镜头有灰尘时，先用气吹，再用镜头布轻擦。不要用衣服或纸巾用力擦镜头。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：卡片相机 · 佳能卡片相机标准版
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  "compact-entry": {
-    "desc": "佳能 G7 X Mark III 标准版简易使用教程",
-    "keywords": "佳能 G7X3 卡片相机 拍照 录像 电池 内存卡 Wi-Fi 传照片",
-    "steps": [
-      {
-        "title": "先认识这台相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "佳能 G7 X Mark III 是一台小巧的卡片相机，镜头不用拆装，开机就能拍，特别适合旅行和日常记录。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-compact-original.svg",
-            "alt": "佳能 G7 X Mark III 官方使用说明书",
-            "caption": "佳能官方 G7 X Mark III 使用说明书"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：开机和关机。",
-              "快门键：拍照；轻按对焦，按到底完成拍摄。",
-              "红色短片键：开始和停止录像。",
-              "变焦杆：拉近或拉远画面。",
-              "回放键：查看拍好的照片和视频。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "新手先把模式转盘转到绿色 A+ 全自动，相机会自动调好亮度和颜色。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机底部是电池和内存卡仓。安装前先关机，按里面的方向标记放入即可。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开底部仓盖。",
-              "把官方电池按方向放进去，轻轻推到底。",
-              "把 SD 内存卡按方向插入卡槽，听到轻微一声即可。",
-              "盖好仓盖，确认卡扣锁紧。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要用力硬插电池或内存卡。相机提示卡速不足时，建议更换正规品牌的高速 SD 卡。"
-          }
-        ]
-      },
-      {
-        "title": "开机和基础设置",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "第一次开机后，按照屏幕提示选择语言、日期和时间。设置完成后就可以开始拍摄。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "轻按快门键，相机就会自动对焦。",
-              "用手指点屏幕，可以指定要对焦的位置。",
-              "转动模式转盘选择拍照、自动或短片模式。",
-              "向上翻开屏幕，可以自拍和低角度拍摄。",
-              "不需要闪光灯时可以保持关闭，光线暗时再按闪光键打开。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍照前先确认屏幕上的电量和剩余可拍张数，避免拍到一半没电或内存不足。"
-          }
-        ]
-      },
-      {
-        "title": "拍照和录像",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "p",
-            "text": "G7 X Mark III 的拍照和录像都很简单，主要用快门键和红色短片键。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "拍照：轻按快门对焦，按到底拍照。",
-              "录像：按一下红色短片键开始，再按一下停止。",
-              "使用变焦杆调整远近，拍完再按回放键查看。",
-              "拍人像时点击人物脸部附近，让相机准确对焦。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "光线暗时尽量保持双手稳定；也可以靠着桌子、栏杆或使用小型三脚架。"
-          }
-        ]
-      },
-      {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "照片可以传到手机，也可以把内存卡插到电脑上复制。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "在 App 中选择照片或视频，保存到手机相册。",
-              "电脑传输：取出内存卡，通过读卡器打开 DCIM 文件夹复制。",
-              "镜头有灰尘时，先用气吹，再用镜头布轻轻擦拭。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方 G7 X Mark III 完整说明书](https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDMwMDAzNzQ0MzA1&cmp=ASP&lang=ZH)"
-          },
-          {
-            "type": "warn",
-            "text": "不要把相机长时间放在高温、潮湿或阳光直射的地方。电池不建议长期放在完全没电的状态。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：卡片相机 · 佳能无线蓝牙自拍杆版
-  // 子目录内容：手持云台相机 · 大疆pocket3标准版
-  "compact-vlog": {
-    "desc": "佳能 G7 X Mark III 无线蓝牙自拍杆版简易教程",
-    "keywords": "佳能 G7X3 蓝牙自拍杆 卡片相机 自拍 Vlog 录像 Wi-Fi",
-    "steps": [
-      {
-        "title": "先认识这台相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "佳能 G7 X Mark III 是一台小巧的卡片相机，镜头不用拆装，开机就能拍，特别适合旅行和日常记录。"
-          },
-          {
-            "type": "img",
-            "src": "images/camera-compact-original.svg",
-            "alt": "佳能 G7 X Mark III 官方使用说明书",
-            "caption": "佳能官方 G7 X Mark III 使用说明书"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：开机和关机。",
-              "快门键：拍照；轻按对焦，按到底完成拍摄。",
-              "红色短片键：开始和停止录像。",
-              "变焦杆：拉近或拉远画面。",
-              "回放键：查看拍好的照片和视频。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "新手先把模式转盘转到绿色 A+ 全自动，相机会自动调好亮度和颜色。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和内存卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "相机底部是电池和内存卡仓。安装前先关机，按里面的方向标记放入即可。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开底部仓盖。",
-              "把官方电池按方向放进去，轻轻推到底。",
-              "把 SD 内存卡按方向插入卡槽，听到轻微一声即可。",
-              "盖好仓盖，确认卡扣锁紧。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要用力硬插电池或内存卡。相机提示卡速不足时，建议更换正规品牌的高速 SD 卡。"
-          }
-        ]
-      },
-      {
-        "title": "开机和基础设置",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "第一次开机后，按照屏幕提示选择语言、日期和时间。设置完成后就可以开始拍摄。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "轻按快门键，相机就会自动对焦。",
-              "用手指点屏幕，可以指定要对焦的位置。",
-              "转动模式转盘选择拍照、自动或短片模式。",
-              "向上翻开屏幕，可以自拍和低角度拍摄。",
-              "不需要闪光灯时可以保持关闭，光线暗时再按闪光键打开。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍照前先确认屏幕上的电量和剩余可拍张数，避免拍到一半没电或内存不足。"
-          }
-        ]
-      },
-      {
-        "title": "自拍杆和 Vlog 拍摄",
-        "icon": "🤳",
-        "body": [
-          {
-            "type": "p",
-            "text": "把相机固定到蓝牙自拍杆上，再把屏幕翻转过来，就能看到自己并调整画面。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把相机牢固安装到自拍杆螺丝接口上。",
-              "打开自拍杆蓝牙遥控器，按说明连接手机或相机支持的控制方式。",
-              "翻转屏幕，确认人物和背景都出现在画面里。",
-              "按快门拍照，或者按红色短片键拍摄 Vlog。",
-              "拍摄时慢慢走动，不要快速甩动自拍杆。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果蓝牙遥控器无法拍照，可以直接使用相机快门键，或者在相机里打开自拍定时器。"
-          }
-        ]
-      },
-      {
-        "title": "传照片和日常保养",
-        "icon": "📱",
-        "body": [
-          {
-            "type": "p",
-            "text": "照片可以传到手机，也可以把内存卡插到电脑上复制。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "手机安装 Canon Camera Connect。",
-              "打开相机 Wi-Fi 或蓝牙，按屏幕提示连接手机。",
-              "在 App 中选择照片或视频，保存到手机相册。",
-              "电脑传输：取出内存卡，通过读卡器打开 DCIM 文件夹复制。",
-              "镜头有灰尘时，先用气吹，再用镜头布轻轻擦拭。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[打开佳能官方 G7 X Mark III 完整说明书](https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDMwMDAzNzQ0MzA1&cmp=ASP&lang=ZH)"
-          },
-          {
-            "type": "warn",
-            "text": "不要把相机长时间放在高温、潮湿或阳光直射的地方。电池不建议长期放在完全没电的状态。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[Canon Camera Connect](https://www.canon.com.cn/supports/download/app.html)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 Canon Camera Connect，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：CCD相机 · 佳能IXU210复古CCD相机
-  "canon-ixus-210": {
-    "desc": "佳能 IXUS 210 复古 CCD 简易使用教程",
-    "keywords": "佳能 IXUS 210 CCD 相机 拍照 变焦 电池 存储卡",
-    "steps": [
-      {
-        "title": "先认识 CCD 相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "这台相机操作简单，主要用开关、快门、变焦和回放键。复古 CCD 相机不需要复杂设置，先用自动模式就能拍。"
-          },
-          {
-            "type": "img",
-            "src": "images/canon-ixus-210-original.svg",
-            "alt": "佳能复古 CCD 相机示意图",
-            "caption": "原创 CCD 相机示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：开机和关机。",
-              "快门键：轻按对焦，按到底拍照。",
-              "变焦杆：拉近或拉远画面。",
-              "回放键：查看已经拍好的照片。",
-              "触摸屏：轻触屏幕可以选择对焦位置。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "复古 CCD 相机对光线比较敏感，白天和室内明亮环境下更容易拍出清楚的照片。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和存储卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先关机，再打开底部的电池仓盖。电池和存储卡按仓内的方向标记放入。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把电池对准方向放入电池仓。",
-              "把存储卡按方向插到底。",
-              "盖好仓盖并扣紧。",
-              "开机后确认屏幕能显示电量。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "老相机建议使用状态正常的原规格电池。不要用力硬塞电池或存储卡。"
-          }
-        ]
-      },
-      {
-        "title": "开机和基础设置",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "第一次开机后，按照屏幕提示设置日期和时间，然后选择自动或普通拍摄模式。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "按电源键开机。",
-              "把模式转到 AUTO 自动拍摄。",
-              "设置日期、时间和语言。",
-              "用手指轻触屏幕选择对焦点。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "每次换电池后如果时间不对，重新设置日期和时间即可。"
-          }
-        ]
-      },
-      {
-        "title": "拍照和查看照片",
-        "icon": "📸",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "眼睛看屏幕，把想拍的人和物放在画面中间。",
-              "轻按快门对焦，按到底完成拍照。",
-              "用变焦杆拉近或拉远画面。",
-              "光线不足时可以打开闪光灯。",
-              "按回放键查看照片，不满意可以直接删除重拍。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍摄时双手拿稳相机，按快门时先轻轻停一下，照片更不容易糊。"
-          }
-        ]
-      },
-      {
-        "title": "导出照片和保养",
-        "icon": "💾",
-        "body": [
-          {
-            "type": "p",
-            "text": "老款 CCD 相机通常使用存储卡或数据线传输。最稳定的方法是把存储卡取出，通过读卡器连接电脑。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "关机后取出存储卡。",
-              "把卡插入读卡器并连接电脑。",
-              "打开 DCIM 文件夹，复制照片到电脑。",
-              "传输完成后安全弹出读卡器。",
-              "镜头用气吹和软布清理，不要用酒精直接擦拭。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看佳能 IXUS 210 官方使用者指南](https://www.canon.com.cn/supports/download/simsdetail/0300327102.html)"
-          },
-          {
-            "type": "warn",
-            "text": "不要经常插拔数据线来传照片，老相机接口容易松动。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "佳能 IXU210 和 IXU130 属于早期 CCD 卡片相机，通常没有 Wi-Fi 或蓝牙，也没有可连接手机导出的官方 App。请直接使用下面的 USB 有线连接或 USB 读卡器方法。"
-          },
-          {
-            "type": "tip",
-            "text": "不要安装来源不明的所谓手机连接 App，避免隐私和账号风险。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：CCD相机 · 佳能IXU130复古CCD相机
-  "canon-ixus-130": {
-    "desc": "佳能 IXUS 130 复古 CCD 简易使用教程",
-    "keywords": "佳能 IXUS 130 CCD 相机 拍照 变焦 电池 存储卡",
-    "steps": [
-      {
-        "title": "先认识 CCD 相机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "这台相机操作简单，主要用开关、快门、变焦和回放键。复古 CCD 相机不需要复杂设置，先用自动模式就能拍。"
-          },
-          {
-            "type": "img",
-            "src": "images/canon-ixus-130-original.svg",
-            "alt": "佳能复古 CCD 相机示意图",
-            "caption": "原创 CCD 相机示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "电源键：开机和关机。",
-              "快门键：轻按对焦，按到底拍照。",
-              "变焦杆：拉近或拉远画面。",
-              "回放键：查看已经拍好的照片。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "复古 CCD 相机对光线比较敏感，白天和室内明亮环境下更容易拍出清楚的照片。"
-          }
-        ]
-      },
-      {
-        "title": "安装电池和存储卡",
-        "icon": "🔋",
-        "body": [
-          {
-            "type": "p",
-            "text": "先关机，再打开底部的电池仓盖。电池和存储卡按仓内的方向标记放入。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把电池对准方向放入电池仓。",
-              "把存储卡按方向插到底。",
-              "盖好仓盖并扣紧。",
-              "开机后确认屏幕能显示电量。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "老相机建议使用状态正常的原规格电池。不要用力硬塞电池或存储卡。"
-          }
-        ]
-      },
-      {
-        "title": "开机和基础设置",
-        "icon": "⚙️",
-        "body": [
-          {
-            "type": "p",
-            "text": "第一次开机后，按照屏幕提示设置日期和时间，然后选择自动或普通拍摄模式。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "按电源键开机。",
-              "把模式转到 AUTO 自动拍摄。",
-              "设置日期、时间和语言。",
-              "使用方向键和功能键调整常用设置。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "每次换电池后如果时间不对，重新设置日期和时间即可。"
-          }
-        ]
-      },
-      {
-        "title": "拍照和查看照片",
-        "icon": "📸",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "眼睛看屏幕，把想拍的人和物放在画面中间。",
-              "轻按快门对焦，按到底完成拍照。",
-              "用变焦杆拉近或拉远画面。",
-              "光线不足时可以打开闪光灯。",
-              "按回放键查看照片，不满意可以直接删除重拍。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "拍摄时双手拿稳相机，按快门时先轻轻停一下，照片更不容易糊。"
-          }
-        ]
-      },
-      {
-        "title": "导出照片和保养",
-        "icon": "💾",
-        "body": [
-          {
-            "type": "p",
-            "text": "老款 CCD 相机通常使用存储卡或数据线传输。最稳定的方法是把存储卡取出，通过读卡器连接电脑。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "关机后取出存储卡。",
-              "把卡插入读卡器并连接电脑。",
-              "打开 DCIM 文件夹，复制照片到电脑。",
-              "传输完成后安全弹出读卡器。",
-              "镜头用气吹和软布清理，不要用酒精直接擦拭。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看佳能 IXUS 130 官方使用者指南](https://www.canon.com.cn/supports/download/simsdetail/0300366401.html)"
-          },
-          {
-            "type": "warn",
-            "text": "不要经常插拔数据线来传照片，老相机接口容易松动。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "佳能 IXU210 和 IXU130 属于早期 CCD 卡片相机，通常没有 Wi-Fi 或蓝牙，也没有可连接手机导出的官方 App。请直接使用下面的 USB 有线连接或 USB 读卡器方法。"
-          },
-          {
-            "type": "tip",
-            "text": "不要安装来源不明的所谓手机连接 App，避免隐私和账号风险。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
-          }
-        ]
-      }
-    ]
-  },
-  "tripod-live": {
-    "desc": "富图宝 FY-830 + MH-4A 液压云台简易使用教程",
-    "keywords": "富图宝 FY-830 MH-4A 三脚架 液压云台 直播 拍照 录像",
-    "steps": [
-      {
-        "title": "先认识三脚架",
-        "icon": "🔭",
-        "body": [
-          {
-            "type": "p",
-            "text": "FY-830 三脚架配 MH-4A 液压云台，主要用来把相机或手机稳稳架住，适合直播、拍视频、合影和长时间拍摄。"
-          },
-          {
-            "type": "img",
-            "src": "images/sanjiaojia.png",
-            "alt": "三脚架结构示意图",
-            "caption": "三脚架结构示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "三条脚管：支撑整个三脚架。",
-              "脚管锁扣：负责拉长和锁紧脚管。",
-              "中轴：用来升降高度。",
-              "液压云台：控制左右转动和上下俯仰。",
-              "快装板：先把相机或手机固定在这里，再装到云台上。",
-              "水平泡：用来确认三脚架是否放平。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "不同批次的锁扣可能略有不同，以你拿到的实物为准。使用前先检查每一节脚管都已经锁紧。"
-          }
-        ]
-      },
-      {
-        "title": "展开三脚架",
-        "icon": "📐",
-        "body": [
-          {
-            "type": "p",
-            "text": "找一块平整的地面，先把三条腿分开，再逐节拉长。不要在地面不平、风很大或容易被人碰到的地方只拉一半腿。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把三条腿均匀向外打开。",
-              "打开脚管锁扣，把脚管一节一节拉出。",
-              "每拉出一节，马上把锁扣压紧或旋紧。",
-              "轻轻按一下三脚架，确认三条腿不会继续缩回。",
-              "调整高度后，看云台上的水平泡，让气泡尽量待在圆圈中间。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要在相机已经装到云台上时猛拉脚管。先把架子调好，再安装相机或手机。"
-          }
-        ]
-      },
-      {
-        "title": "安装相机或手机",
-        "icon": "📷",
-        "body": [
-          {
-            "type": "p",
-            "text": "先把快装板装到相机或手机支架上，再把快装板装到云台。安装时一只手扶住云台，另一只手操作。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "把快装板螺丝拧到相机底部，拧紧但不要用过猛力气。",
-              "手机使用时，把手机夹固定好，再装到快装板上。",
-              "把快装板对准云台卡槽，推到位后锁紧。",
-              "轻轻摇一下设备，确认不会松动。",
-              "调整设备重心，让相机或手机尽量保持在云台正上方。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "快装板没有锁紧前不要松手。相机镜头较长或设备较重时，要双手扶稳后再调节角度。"
-          }
-        ]
-      },
-      {
-        "title": "调节液压云台",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "p",
-            "text": "MH-4A 液压云台可以左右转动和上下抬头低头。想固定画面时，把对应的锁钮拧紧即可。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先松开左右转动锁，调整画面方向，再锁紧。",
-              "松开俯仰锁，调整上下角度，再锁紧。",
-              "使用手柄慢慢转动云台，画面会更平稳。",
-              "拍视频时不要突然推拉，慢慢转动更自然。",
-              "拍竖屏直播或自拍时，确认手机夹和整体重心稳定后再松手。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "不用云台时要及时把锁钮锁好，防止设备突然低头或倾倒。"
-          }
-        ]
-      },
-      {
-        "title": "收纳和保养",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "p",
-            "text": "拍完以后先把相机或手机取下来，再收三脚架。这样比连设备一起收更安全。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "锁住云台，取下相机或手机。",
-              "松开脚管锁扣，从最细的一节开始收回。",
-              "把三条腿并拢，锁好脚管再放回收纳袋。",
-              "海边或沙地使用后，用干布擦掉沙子和水汽。",
-              "长期不用时放在干燥处，不要压在重物下面。"
-            ]
-          },
-          {
-            "type": "p",
-            "text": "[查看 Fotopro 官方网站](https://www.fotopro.com/)"
-          },
-          {
-            "type": "warn",
-            "text": "不要往锁扣里乱加润滑油。沙尘进入锁扣时，先用干布清理，再检查锁紧是否正常。"
-          }
-        ]
-      }
-    ]
-  },
-  // 子目录内容：落地三脚架 · 富宝图FY-830-MH-4A所含配件可自选赠送使用
-  "tripod-cam": {
-    "desc": "富图宝 FY-830 + MH-4A 配件自选使用简易教程",
-    "keywords": "富图宝 FY-830 MH-4A 三脚架 配件 手机夹 独脚架 自拍杆",
-    "steps": [
-      {
-        "title": "可选三脚架配件（提前联系客服进行咨询需要的配件）",
-        "icon": "🧩",
-        "body": [
-          {
-            "type": "p",
-            "text": "此页面只为显示可赠送的配件，详细使用说明可参考上一页"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "富宝图FY-830-MH-4A 手机增位夹",
-              "富宝图FY-830-MH-4A 小桌板。",
-              "富宝图FY-830-MH-4A 手持云台相机支架。",
-              "富宝图FY-830-MH-4A vivo脚架环。",
-              "富宝图FY-830-MH-4A 转接器。",
-              "富宝图FY-830-MH-4A 30CM延长杆",
-              "如有其他配件可详细咨询首页客服~"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "小配件大部分可免费赠送使用，具体以库存为准，请提前联系客服确认。"
-          }
-        ]
-      },
-    ],
-  },
-
-  /* ---------- 内存卡数据丢失找回 SD内存卡 ----------
-*/
-
-  // 子目录内容：内存卡数据找回 · SD 卡
-  "recovery-sd": {
-    "desc": "拍摄照片或视频误删尝试找回（不是百分百概率找回）",
-    "keywords": "内存卡 数据恢复 照片 视频 SD卡 TF卡 误删 格式化",
-    "steps": [
-      {
-        "title": "闪迪SD内存卡官方数据找回修复软件",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "p",
-            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
-              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
-              "Windows 下载地址：[SanDisk RescuePRO Deluxe Windows 版](https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip)",
-              "Mac 下载地址：[SanDisk RescuePRO Deluxe Mac 版](https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip)",
-              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
-          }
-        ]
-      },
- {
-        "title": "雷克沙SD内存卡官方数据找回修复软件",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "p",
-            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
-              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
-              "Windows 下载地址：[Lexar 数据恢复 Windows 版](https://www-oss.lexar.com/lexar/resource/files/2025-08-28/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Windows%E7%89%88%E6%9C%AC.zip)",
-              "Mac 下载地址：[Lexar 数据恢复 Mac 版](https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip)",
-              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
-          }
-        ]
-      },
-    ]
-  },
-
-
-    /* ---------- 内存卡数据丢失找回 TF内存卡 ----------
-*/
-  // 子目录内容：内存卡数据找回 · TF 卡
-  "recovery-tf": {
-    "desc": "拍摄照片或视频误删尝试找回（不是百分百概率找回）",
-    "keywords": "内存卡 数据恢复 照片 视频 SD卡 TF卡 误删 格式化",
-    "steps": [
-      {
-        "title": "闪迪TF内存卡官方数据找回修复软件",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "p",
-            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
-              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
-              "Windows 下载地址：[SanDisk RescuePRO Deluxe Windows 版](https://www.lc-tech.com/productdemo/RP/RPDLXWIN.zip)",
-              "Mac 下载地址：[SanDisk RescuePRO Deluxe Mac 版](https://www.lc-tech.com/productdemo/RP/RPDLXMAC.zip)",
-              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
-          }
-        ]
-      },
- {
-        "title": "雷克沙TF内存卡官方数据找回修复软件",
-        "icon": "🧰",
-        "body": [
-          {
-            "type": "p",
-            "text": "如误删或格式化了内存卡，请立即停止拍摄，也不要再向卡内写入新数据，以免覆盖后无法找回。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "注意：此操作仅限电脑端。如不熟悉操作，请联系客服或前往本地数据恢复门店。",
-              "关闭相机后取出内存卡，插入读卡器并连接电脑，再安装对应品牌的官方恢复软件。",
-              "Windows 下载地址：[Lexar 数据恢复 Windows 版](https://www-oss.lexar.com/lexar/resource/files/2025-08-28/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Windows%E7%89%88%E6%9C%AC.zip)",
-              "Mac 下载地址：[Lexar 数据恢复 Mac 版](https://www-oss.lexar.com/lexar/resource/files/2024-12-31/Lexar%20%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%20Mac%E7%89%88%E6%9C%AC.zip)",
-              "注意：非专业人员请勿自行操作；操作可能导致数据丢失，相关风险需自行承担。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "操作存在风险；如内存卡出现异常、数据丢失或损坏，相关责任需自行承担。"
-          }
-        ]
-      },
-      
-    ]
-  },
-
-  // 子目录内容：手持云台相机 · 大疆Pocket 4 Pro标准套装
-  "gimbal-pocket4pro-standard": {
-    "desc": "大疆 Osmo Pocket 4P 标准套装简易使用教程",
-    "keywords": "大疆 Osmo Pocket 4P Pocket 4 Pro 标准套装 手持云台 相机 开机 拍照 录像 DJI Mimo 导出",
-    "steps": [
-      {
-        "title": "开箱与套装确认",
-        "icon": "📦",
-        "body": [
-          {
-            "type": "p",
-            "text": "本教程适用于大疆 Osmo Pocket 4P（网站显示名称为“大疆 Pocket 4 Pro 标准套装”）。Pocket 4P 的屏幕、云台和手柄结构与其他 Pocket 系列类似，具体菜单名称以实际设备为准。"
-          },
-          {
-            "type": "p",
-            "text": "官方页面：[DJI Osmo Pocket 4P 官方页面](https://www.dji.com/cn/osmo-pocket-4p)；官方下载与说明书：[DJI Osmo Pocket 4P 官方下载](https://www.dji.com/cn/osmo-pocket-4p/downloads)。"
-          },
-          {
-            "type": "img",
-            "src": "images/category-icons/children/pocket4pro-standard.svg",
-            "alt": "大疆 Pocket 4 Pro 标准套装图标示意",
-            "caption": "标准套装结构与主要配件示意图"
-          },
-          {
-            "type": "list",
-            "items": [
-              "相机主机 x1",
-              "保护壳或收纳配件 x1",
-              "USB-C 数据线 x1（按实际配置）",
-              "内存卡或读卡器（按租赁配置）",
-              "快速入门说明资料"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "不同批次和租赁组合的配件可能略有不同，请以实际随箱清单为准；如发现少件或外观异常，请先联系客服。"
-          }
-        ]
-      },
-      {
-        "title": "首次开机和激活",
-        "icon": "🔌",
-        "body": [
-          {
-            "type": "p",
-            "text": "首次使用前先充电。轻推屏幕向左旋转，屏幕点亮后云台会自动展开；不要用力按压屏幕或掰动云台转轴。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "使用官方 USB-C 数据线给相机充电。",
-              "轻推屏幕向左旋转，等待屏幕和云台启动。",
-              "按屏幕提示完成语言、日期等基础设置。",
-              "如需激活或更新，打开 DJI Mimo 并按提示连接相机。",
-              "云台自检完成、画面稳定后再开始拍摄。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果长时间未开机，先充电 20-30 分钟再试。出现持续异响、发热或云台卡住时，请停止操作并联系客服。"
-          }
-        ]
-      },
-      {
-        "title": "认识屏幕、摇杆和按键",
+        "title": "模式转盘 P/Av/Tv/M",
         "icon": "🎛️",
         "body": [
           {
             "type": "p",
-            "text": "相机主要操作都在触摸屏和机身按键上完成。"
+            "text": "熟悉 AUTO 之后，可以试试转盘上这四档，它们决定了你能多大程度控制画面。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "模式",
+              "谁来做主",
+              "适合场景"
+            ],
+            "rows": [
+              [
+                "AUTO",
+                "相机全自动",
+                "随手拍、给家人拍、不用思考"
+              ],
+              [
+                "P",
+                "相机管亮度，你管其他",
+                "日常记录、想调白平衡或闪光"
+              ],
+              [
+                "Av",
+                "你调光圈，相机配快门",
+                "想控制背景虚化深浅"
+              ],
+              [
+                "Tv",
+                "你调快门，相机配光圈",
+                "拍运动、怕手抖、拍流水"
+              ],
+              [
+                "M",
+                "全部你说了算",
+                "固定光线、夜景、专业玩法"
+              ]
+            ]
           },
           {
             "type": "list",
             "items": [
-              "触摸屏：点击屏幕选择对焦位置、切换模式或修改参数。",
-              "摇杆：向上/下/左/右拨动，控制画面方向和变焦。",
-              "录制键：开始和结束录像。",
-              "电源/模式键：短按或长按的功能以实际设备提示为准。"
+              "**Av**：你调光圈，相机配快门，用来控制背景虚化。",
+              "**Tv**：你调快门，相机配光圈，拍运动或防手抖。",
+              "**M**：光圈快门都由你决定，适合复杂光线。"
             ]
           },
           {
             "type": "tip",
-            "text": "拍摄时不要用手强行转动云台，尽量通过摇杆控制方向，避免损伤云台电机。"
+            "text": "怕出错就先回 AUTO，这四档都玩不坏相机，大胆试。"
           }
         ]
       },
       {
-        "title": "拍照和录像",
-        "icon": "🎬",
-        "body": [
-          {
-            "type": "p",
-            "text": "横屏适合拍风景和 Vlog，竖屏适合拍人像、短视频和直播。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机，进入拍照或录像模式。",
-              "点击屏幕选择对焦位置。",
-              "按录制键开始拍摄，再次按下结束。",
-              "在相册中回看素材，不满意的可以删除重拍。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "云台开始运动前，确认镜头前没有手指、挂绳或其他遮挡物。"
-          }
-        ]
-      },
-      {
-        "title": "连接 DJI Mimo 和固件更新",
+        "title": "传照片到手机",
         "icon": "📱",
         "body": [
           {
             "type": "p",
-            "text": "官方 App 下载：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，并选择官方发布者。"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "打开相机电源和手机蓝牙、Wi-Fi。",
-              "打开 DJI Mimo，选择添加设备或连接相机。",
-              "按屏幕提示完成配对。",
-              "进入设备页面查看固件版本；有新版本时按提示更新。",
-              "更新过程中不要关机、断网或退出 App。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果搜不到相机，先关闭并重新打开蓝牙、Wi-Fi，再重启相机和 App 后重试。"
-          }
-        ]
-      },
-      {
-        "title": "收纳和保养",
-        "icon": "🎒",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "关机后等待云台回到收纳位置。",
-              "安装保护壳或收纳配件，避免挤压镜头和云台。",
-              "收纳前确认机身和镜头没有沙粒、水汽。",
-              "长期不用时放在干燥阴凉处，并定期补电。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "不要强行掰动云台转轴，也不要让镜头长时间正对强光。"
-          }
-        ]
-      },
-      {
-        "title": "如何使用官方自带补光灯",
-        "icon": "💡",
-        "body": [
-          {
-            "type": "p",
-            "text": "如果租赁配置包含 DJI Osmo Pocket 4 补光灯，可按本步骤使用；未随箱附带时无需操作。DJI 官方说明该补光灯完全适配 Osmo Pocket 4P。"
+            "text": "想马上发朋友圈，用**佳能官方 Camera Connect** App 无线传图最方便。"
           },
           {
             "type": "img",
-            "src": "images/pocket4pro-fill-light-original.svg",
-            "alt": "Osmo Pocket 4P 官方补光灯安装和菜单操作示意图",
-            "caption": "补光灯安装位置、开关、亮度和色温设置示意"
+            "src": "images/camera-phone-connect-original.svg",
+            "alt": "手机与相机无线连接示意图",
+            "caption": "相机开 Wi-Fi，手机上用 Camera Connect 连接"
           },
           {
             "type": "olist",
             "items": [
-              "先关闭相机，把补光灯对准机身顶部安装位，确认卡扣方向后再轻轻安装，不要硬压。",
-              "开机后从屏幕顶部下拉，进入控制中心并点击“补光灯”。",
-              "在补光灯设置页开启或关闭补光灯。",
-              "亮度支持低、中、高三档，色温支持暖、中性、冷三档；可点击屏幕选项或使用补光灯按键切换。",
-              "需要跟随环境光自动变化时，开启“自动调节亮度色温”。如果之后手动调节过亮度或色温，自动开关会自动关闭，需要重新开启。",
-              "如有需要，可在相机的自定义按键设置中，将功能设为“开启/关闭补光灯”。",
-              "拍摄结束后关闭补光灯，等待灯珠散热后再收纳。"
+              "手机先在官方渠道下载安装 Camera Connect（[佳能官网下载页](https://www.canon.com.cn/supports/download/app.html)）。",
+              "打开相机菜单里的 Wi-Fi / 蓝牙，选择“连接智能手机”。",
+              "手机连上相机发出的网络，回到 App 里选择“相机上的图像”。",
+              "选中照片后点保存，原图会存进手机相册。"
             ]
-          },
-          {
-            "type": "tip",
-            "text": "官方公开参数参考：低/中/高亮度约为 12/25/40 lux（0.6 米），暖/中性/冷色温约为 2800/4000/5500 K；实际以设备固件和官方最新说明为准。"
-          },
-          {
-            "type": "p",
-            "text": "官方视频教程：[Osmo Pocket 4P | 补光灯](https://cdn.djivideos.com/watch/95b76ec4-a199-4bf2-9086-39674a7663cf?autoplay=false&poster=http://videocaption.djicdn.com/poster/20260903/95a18efd5144f852a15553800fba267d.png@!1200&language=zh-Hans)；官方常见问题：[Osmo Pocket 4P 常见问题](https://www.dji.com/cn/osmo-pocket-4p/faq)。"
-          },
-          {
-            "type": "warn",
-            "text": "不要直视灯珠；长时间使用高亮度会增加耗电和发热。如果设备出现过热提示，请降低亮度或关闭补光灯。"
-          }
-        ]
-      },
-      {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
-        "body": [
-          {
-            "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
-            ]
-          },
-          {
-            "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
           },
           {
             "type": "img",
             "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
+            "alt": "读卡器把照片导入手机的示意图",
+            "caption": "没有 Wi-Fi 时：拔卡 + 读卡器，直接把照片拷到手机"
           },
           {
             "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+            "text": "传视频文件大的时候无线会慢，老老实实用读卡器插电脑或手机更稳。"
           }
         ]
       },
       {
-        "title": "常见问题排查",
-        "icon": "🛠️",
+        "title": "收工保养与归还",
+        "icon": "🧳",
         "body": [
           {
             "type": "p",
-            "text": "遇到问题时，可以按下面的顺序检查："
+            "text": "每次拍完花一分钟做这几件事，机器能一直用得很顺手。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "关机，取下电池前先确认相机已断电。",
+              "镜头盖上前后盖，机身盖加盖，再放进包里。",
+              "镜头有灰先用气吹，再用镜头布轻擦，别用衣服用力蹭。",
+              "内存卡里的照片先备份到手机或电脑，再决定是否删除。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "设备收纳与归还注意事项（客服提供）"
+          },
+          {
+            "type": "tip",
+            "text": "不清楚操作是否正常，优先看[佳能官网](https://www.canon.com.cn)或联系客服，别自己动手拆件。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "mirrorless-plus": {
+    "desc": "佳能微单配 18-150mm 大变焦镜头，一镜走天下，风景旅行与构图讲解。",
+    "keywords": "佳能微单 18-150mm 风光 旅行 变焦 构图 一镜走天下 拍照",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "这套比入门套机多了一份“重点”：18-150mm 镜头体积更大，出门前务必检查镜筒伸缩是否顺畅。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "清点机身、18-150mm 镜头、电池、充电器、SD 卡。",
+              "转动变焦环，从 18mm 到 150mm 全程顺滑、无异响才算正常。",
+              "镜头伸出时不要磕碰、不要按压，收纳时先缩回 18mm 端。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识机身和模式转盘",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "机身操作和入门款一样，重点记住模式转盘和快门。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-front-original.svg",
+            "alt": "佳能微单机身正面示意图",
+            "caption": "机身正面：快门、镜头释放键、手柄"
+          },
+          {
+            "type": "list",
+            "items": [
+              "模式转盘：**AUTO** 全自动，**Av** 用来控制虚化深浅，**Tv** 用来控制快门。",
+              "轻按快门对焦，按到底拍照；短片拍摄键看右上角的红点标志。",
+              "回放键用来检查构图，尤其拍风光时多看两眼再走。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拍风景最推荐 **Av** 档，光圈收到中间值（如 f/8 左右），前后都清楚。"
+          }
+        ]
+      },
+      {
+        "title": "装电池与 SD 卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池与卡槽都在机身底部，装好再开机。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装位置示意",
+            "caption": "底部仓门：电池仓与卡槽各一个"
           },
           {
             "type": "olist",
             "items": [
-              "确认电量是否充足，先充电再开机。",
-              "确认屏幕已旋转到位，云台没有被卡住。",
-              "重启相机和手机 App 后重新连接。",
-              "检查内存卡是否插好、剩余空间是否足够。",
-              "仍无法解决时，请联系客服并提供设备型号和问题照片或视频。"
+              "关机，打开电池仓盖，按方向把电池推到底。",
+              "打开卡槽盖，SD 卡触点朝内插到底。",
+              "盖紧仓门，开机确认屏幕可以正常取景。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "出发前把电池充满、卡清空，风景行程常常一整天没地方充电。"
+          }
+        ]
+      },
+      {
+        "title": "装上 18-150mm 镜头",
+        "icon": "🔘",
+        "body": [
+          {
+            "type": "p",
+            "text": "装镜头方法与其他 RF 镜头一致：关机、对准红点、顺时针拧到底。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-lens-mount-original.svg",
+            "alt": "镜头与机身卡口对准示意图",
+            "caption": "红点对红点，顺时针转到“咔”一声"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "取下机身盖和镜头后盖。",
+              "**红点对准红点**，放进卡口。",
+              "**顺时针**转动到“咔”一声。",
+              "拆下时按住**镜头释放键**，再**逆时针**拧。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "变焦时用手指轻轻转动变焦环，别抓着前端镜筒硬拽，容易磨伤镜筒。"
+          }
+        ]
+      },
+      {
+        "title": "变焦怎么用：广角到长焦",
+        "icon": "🔭",
+        "body": [
+          {
+            "type": "p",
+            "text": "18mm 是广角，能拍下整片天地；150mm 是长焦，能把远处的山、建筑拉近放大。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-auto-mode-original.svg",
+            "alt": "屏幕取景构图示意",
+            "caption": "取景时看屏幕上的焦距提示，判断当前是多少 mm"
+          },
+          {
+            "type": "table",
+            "head": [
+              "焦段",
+              "画面感觉",
+              "适合拍"
+            ],
+            "rows": [
+              [
+                "18–35mm",
+                "视野宽、空间大",
+                "大海、古建全景、室内、合影"
+              ],
+              [
+                "35–70mm",
+                "接近肉眼所见",
+                "街头、人像、日常记录"
+              ],
+              [
+                "70–150mm",
+                "压缩空间、拉近主体",
+                "远山、建筑细节、店招、人物特写"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "同一个景别别只拍一张：广角拍环境，长焦再拍一张细节，回来挑选空间更大。"
+          }
+        ]
+      },
+      {
+        "title": "风光构图三个笨办法",
+        "icon": "🖼️",
+        "body": [
+          {
+            "type": "p",
+            "text": "不用背理论，记住三招就比随手拍好看很多。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**三分法**：把地平线放在画面上三分之一或下三分之一，别放正中间。",
+              "**找前景**：石头、树枝、栏杆放近处，画面立刻有层次。",
+              "**留点天空**：天好看就多给天，地好看就多给地，别五五分。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拍完打开回放，把照片缩小看整体，就能发现自己构图太满或太歪。"
+          }
+        ]
+      },
+      {
+        "title": "手持稳 + 傍晚防糊",
+        "icon": "🌇",
+        "body": [
+          {
+            "type": "p",
+            "text": "长焦端比广角更容易抖。光线变暗时，屏幕上的快门数字越小越容易糊。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "手持拍摄时左手托住镜头，右手握机身，手肘贴身体。",
+              "傍晚、室内可以转到 **Tv** 档，把快门设快一点，或适当提高感光度 ISO。",
+              "能靠墙、靠栏杆就靠一下；三脚架拍摄会更稳。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要为了省电关掉防抖再手持长焦拍，糊片率会明显变高。"
+          }
+        ]
+      },
+      {
+        "title": "传图与归还",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "旅行中想每天备份照片，无线传图或读卡器都行。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "手机 App 无线传图示意图",
+            "caption": "相机 Wi-Fi 连 Camera Connect，挑选照片保存到手机"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "手机安装 Camera Connect（[佳能官网下载页](https://www.canon.com.cn/supports/download/app.html)）。",
+              "相机菜单打开 Wi-Fi，按提示连接手机。",
+              "在 App 里浏览“相机上的图像”，选中保存。",
+              "备份完成再清理卡内照片。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "归还前把镜头缩回 18mm 端、盖上前后盖，避免运输途中镜筒受力。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "mirrorless-pro": {
+    "desc": "佳能微单配 F1.8 定焦大光圈镜头，拍人像背景虚化与对焦选点教程。",
+    "keywords": "佳能微单 F1.8 大光圈 人像 虚化 背景 对焦 选点 定焦",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "这套的重点是那支 **F1.8 大光圈定焦镜头**：不能变焦，靠走位构图，但虚化很好看。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "清点机身、F1.8 镜头、电池、充电器、SD 卡。",
+              "检查镜头前后镜片有无明显磕碰，轻按快门确认对焦正常。",
+              "定焦镜头不要硬拧镜筒，它没有变焦环。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识机身与装机",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "机身按键和套机一致，先把镜头稳稳装上。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-front-original.svg",
+            "alt": "佳能微单机身正面示意图",
+            "caption": "机身正面：快门、镜头释放键、手柄"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-lens-mount-original.svg",
+            "alt": "镜头与机身卡口对准示意图",
+            "caption": "红点对红点，顺时针转到底"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，取下机身盖与镜头后盖。",
+              "镜头**红点对准机身红点**，放入后**顺时针**转到“咔”一声。",
+              "拆下时按住**镜头释放键**，再**逆时针**拧。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "电池和 SD 卡都在机身底部仓门，装好再开机。"
+          }
+        ]
+      },
+      {
+        "title": "用 Av 档掌控虚化",
+        "icon": "🎛️",
+        "body": [
+          {
+            "type": "p",
+            "text": "拍人像的主场是 **Av（光圈优先）** 档：你调光圈，相机给你配快门。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-auto-mode-original.svg",
+            "alt": "屏幕取景与对焦画面示意",
+            "caption": "Av 档左下方显示光圈数字，转动拨盘就能改"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**数字越小（如 F1.8）** → 光圈越大 → 背景越糊。",
+              "**数字越大（如 F8）** → 光圈越小 → 背景越清楚。",
+              "想让主角从杂乱背景里“跳”出来，就往 F1.8 方向开。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "大光圈很吃对焦：人眼对没对上是关键，下面一步专门讲怎么选对焦点。"
+          }
+        ]
+      },
+      {
+        "title": "点屏幕选对焦点",
+        "icon": "👁️",
+        "body": [
+          {
+            "type": "p",
+            "text": "虚化越强，对焦点差一点都会看出来。最稳的办法是**直接点屏幕**。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把对焦方式设为**单点自动对焦**（更多菜单里可以找到）。",
+              "在屏幕上**点一下人物眼睛或脸**，出现对焦框。",
+              "半按快门锁定，让人别乱动，再按到底。",
+              "拍完放大回放，检查眼睛是不是实的。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-back-original.svg",
+            "alt": "机背屏幕显示对焦框示意图",
+            "caption": "机背屏幕：点哪里，对焦框就到哪里"
+          }
+        ]
+      },
+      {
+        "title": "人像构图与站位",
+        "icon": "🧍",
+        "body": [
+          {
+            "type": "p",
+            "text": "大光圈镜头配人最好用：人物离背景越远，虚化越明显。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**退一步，让人离背景远一点**，比换镜头更管用。",
+              "拍半身时光圈开到 F1.8 左右，全身建议收到 F2.8 以上避免衣服边缘发虚。",
+              "人物放在画面偏左或偏右，别死磕正中。",
+              "找侧逆光、树荫边，脸部会更立体。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "背景里有点点灯光（夜景、橱窗）时，大光圈会变成漂亮的光斑。"
+          }
+        ]
+      },
+      {
+        "title": "光线与肤色",
+        "icon": "💡",
+        "body": [
+          {
+            "type": "p",
+            "text": "人像好看靠光，不靠滤镜。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "场景",
+              "怎么拍",
+              "效果"
+            ],
+            "rows": [
+              [
+                "晴天户外",
+                "找背光或侧光，脸朝暗处自然放亮",
+                "皮肤柔和、边缘有高光"
+              ],
+              [
+                "室内窗边",
+                "让人侧对窗，脸朝窗",
+                "光线均匀，眼睛有神"
+              ],
+              [
+                "夜晚街头",
+                "靠近光源，用大光圈吃光",
+                "背景虚化光斑好看"
+              ],
+              [
+                "顶光太硬",
+                "请人往阴影里退半步",
+                "避免眼下黑十字"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要对着人脸直接开闪光灯，尤其近拍，脸会又白又平。"
+          }
+        ]
+      },
+      {
+        "title": "拍视频也能用大光圈",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "p",
+            "text": "想拍人像 Vlog，同样用 Av 档，按短片拍摄键开始录。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "走动拍摄时对焦框容易跑，建议固定机位或让对焦模式设为连续对焦。",
+              "手持跟拍尽量保持手臂稳定，或配合稳定器使用。",
+              "录制时不要随意转光圈，画面明暗会跳。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "录制前先对着人脸半按快门锁一次对焦，再按录制，画面开头更干净。"
+          }
+        ]
+      },
+      {
+        "title": "传图与归还",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "人像照片量大，建议当天用 App 传一部分、电脑备份全部。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-phone-connect-original.svg",
+            "alt": "手机与相机无线连接示意图",
+            "caption": "相机开 Wi-Fi，用 Camera Connect 挑选保存"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "数据线连接电脑导出示意",
+            "caption": "线连电脑也能直接拷贝 DCIM 里的照片"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "手机装 Camera Connect（[佳能官网下载页](https://www.canon.com.cn/supports/download/app.html)）。",
+              "相机开 Wi-Fi，与手机配对后选图保存。",
+              "归还前盖上前后盖，放在镜头朝下的位置收纳。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "镜头镜片有指纹时先用气吹，再用镜头布从中心向外打圈轻擦。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "mirrorless-one": {
+    "desc": "佳能微单配 100-400mm 超远摄镜头，拍鸟、演出、体育的远摄与防抖教程。",
+    "keywords": "佳能微单 100-400mm 超远摄 长焦 拍鸟 演出 体育 防抖 稳定",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "100-400mm 是又长又重的镜头，出门前先确认手感重量，装好背带再用。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "清点机身、100-400mm 镜头、电池、充电器、SD 卡与镜头脚架环（如有）。",
+              "转动变焦环全程顺滑、没有卡顿才算正常。",
+              "镜头伸到最长时不要单手拎，容易压弯卡口。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "握持与装机姿势",
+        "icon": "🤲",
+        "body": [
+          {
+            "type": "p",
+            "text": "远摄镜头的重心在镜身上，**左手托镜头、右手握机身**才是正确姿势。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-front-original.svg",
+            "alt": "佳能微单机身正面示意图",
+            "caption": "右手握机身手柄，快门键在食指位置"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-lens-mount-original.svg",
+            "alt": "镜头与机身卡口对准示意图",
+            "caption": "红点对红点，顺时针拧到“咔”一声"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后取下机身盖和镜头后盖。",
+              "镜头**红点对准机身红点**，放入后**顺时针**转到“咔”一声。",
+              "装好后先左手托住镜头，再抬起来，不要只抓机身。",
+              "拆卸时同样按住**镜头释放键**，一边托着镜头一边**逆时针**拧。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "拆装镜头要在桌面上操作，万一脱手也不至于摔在地上。"
+          }
+        ]
+      },
+      {
+        "title": "装电池与 SD 卡",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "长焦拍摄常常要连拍，卡和电池都要带够。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装位置示意",
+            "caption": "底部仓门：电池、卡槽"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后打开底部仓门，装好电池。",
+              "SD 卡插到底，关好仓门。",
+              "拍鸟、演出建议多带一块电池，低温环境下电量掉得快。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "连拍前先确认卡的容量够用，长焦一拍就是几百张。"
+          }
+        ]
+      },
+      {
+        "title": "快门速度才是防糊关键",
+        "icon": "⏱️",
+        "body": [
+          {
+            "type": "p",
+            "text": "焦距越长越容易抖。手持 400mm 端时，**快门速度别太慢**是第一条纪律。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-auto-mode-original.svg",
+            "alt": "屏幕取景显示快门速度示意",
+            "caption": "屏幕左下角的快门数字，越大越不容易糊"
+          },
+          {
+            "type": "table",
+            "head": [
+              "情况",
+              "建议快门",
+              "说明"
+            ],
+            "rows": [
+              [
+                "白天拍鸟、静态",
+                "1/500 秒以上",
+                "手持拍有把握"
+              ],
+              [
+                "飞鸟、运动",
+                "1/1000 秒以上",
+                "追上动作"
+              ],
+              [
+                "舞台演出",
+                "1/250 秒以上",
+                "兼顾光线与清晰"
+              ],
+              [
+                "必须更慢时",
+                "用三脚架或支撑",
+                "别硬手持"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "模式转盘用 **Tv** 档，你设快门，相机自动配光圈，最简单。"
+          }
+        ]
+      },
+      {
+        "title": "防抖怎么开、怎么关",
+        "icon": "🎯",
+        "body": [
+          {
+            "type": "p",
+            "text": "镜头或相机有防抖开关时，正常手持拍摄就打开。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "手持走动拍摄：**打开防抖**。",
+              "放在三脚架上稳定拍摄：**关闭防抖**（部分机型会自动识别）。",
+              "用手机同步取景、或者长时间构图时，防抖开着也更舒服。",
+              "防抖只能救一点点，不能替代快门速度。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "防抖不是万能：光线太暗、快门太慢，开防抖一样会糊。"
+          }
+        ]
+      },
+      {
+        "title": "远摄构图三要点",
+        "icon": "🖼️",
+        "body": [
+          {
+            "type": "p",
+            "text": "长焦会把画面压平，构图思路和广角不一样。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**给主体留空间**：鸟在画面里要有飞的余地，别贴边。",
+              "**背景越干净越好**：长焦容易把杂乱背景放大。",
+              "**点屏幕对焦**：超远距离拍摄时，点一下主体能避免对到后面树枝。",
+              "**追焦连拍**：先半按快门锁定，再按住连拍。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/camera-mirrorless-back-original.svg",
+            "alt": "机背屏幕取景与对焦示意图",
+            "caption": "用屏幕点选主体，比自动对焦更稳"
+          }
+        ]
+      },
+      {
+        "title": "找一个稳定支撑",
+        "icon": "🔭",
+        "body": [
+          {
+            "type": "p",
+            "text": "400mm 端手持时间一长手臂会酸，能支撑就支撑。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "有条件用三脚架或独脚架，镜头脚架环装在三脚架上更稳。",
+              "没有脚架就靠在栏杆、窗台、桌子上，手肘贴紧。",
+              "屏住呼吸，按下快门前先停半秒。",
+              "一次连拍多张，挑最清楚的那张。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "靠栏杆支撑时不要太用力，也不要站在栏杆外侧或临水边缘取景。"
+          }
+        ]
+      },
+      {
+        "title": "传图与归还",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "远摄素材通常是大文件，建议用读卡器或数据线导到电脑。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器导入照片示意图",
+            "caption": "读卡器 + 手机或电脑，速度比无线快"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "手机 App 无线传图示意图",
+            "caption": "少量照片可以用 Camera Connect 传"
+          },
+          {
+            "type": "tip",
+            "text": "归还前把镜头缩回最短、盖上前后盖，镜头竖直或朝下放，别让镜筒受力。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "compact-entry": {
+    "desc": "佳能 G7 X Mark III 标准版卡片机基础操作教程，开机到传图一步到位。",
+    "keywords": "佳能 G7 X Mark III 卡片机 标准版 开机 拍摄 模式转盘 传图 Wi-Fi",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "卡片机没有换镜头这一步，拿到手基本就能拍。先清点机身、电池、充电线、SD 卡。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "检查屏幕是否有明显划痕，镜头能否正常伸出。",
+              "电池先充满，卡片机电量不大，出门前记得带充电线。",
+              "卡片机不要放裤兜里，口袋里的灰和钥匙容易刮花屏幕。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识机身与模式转盘",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "机身顶部是电源、快门、模式转盘，背面是屏幕和几个按键。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-compact-original.svg",
+            "alt": "佳能 G7 X Mark III 机身操作示意图",
+            "caption": "顶部：电源、快门、模式转盘；背面：屏幕与按键"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：短按开机，长按关机。",
+              "**快门键**：轻按对焦，按到底拍照。",
+              "**录像键**：按一下开始，再按一下停止。",
+              "**模式转盘**：新手先转到 **AUTO**。",
+              "**回放键**：查看已拍照片和视频。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "第一次开机时相机可能会自动伸出镜头，这是正常的，别用手去按镜头。"
+          }
+        ]
+      },
+      {
+        "title": "装电池、装卡、开拍前",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池和 SD 卡在机身底部，装好再开机。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装位置示意",
+            "caption": "底部仓门：电池与 SD 卡槽"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，打开底部仓门，按方向装入电池。",
+              "SD 卡按方向插到底，关好仓门。",
+              "开机，转动镜头前先确认镜头前方没有遮挡物。",
+              "想拍风景或人像，转盘从 AUTO 换到 **SCN** 选对应场景也可以。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "开机或关机时不要用手按住镜头、也不要把相机放在狭小包里，镜头伸出会被卡住。"
+          }
+        ]
+      },
+      {
+        "title": "拍照：点屏幕就对焦",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "p",
+            "text": "G7 系列支持触屏，屏幕点哪里就对着哪里。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-compact-original.svg",
+            "alt": "卡片机屏幕取景操作示意",
+            "caption": "屏幕点选主体后，轻按快门按到底"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "在屏幕上点一下要拍的主体。",
+              "轻按快门半程对焦，画面稳一下。",
+              "按到底完成拍照。",
+              "拍完按回放键检查，不满意就删掉重拍。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "镜头伸出后就是开机状态，用完先关机让镜头缩回，再放回包里。"
+          }
+        ]
+      },
+      {
+        "title": "录视频：一键开始停止",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "p",
+            "text": "想拍 Vlog 或者小片段，直接按录像键。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "录像键一般在快门旁边，按一下开始，再按一下停止。",
+              "录制时屏幕左上角会显示计时。",
+              "录制中不要强行关机，先按停止再关机。",
+              "内存卡剩余时间不够时会自动停止，开始前先看一眼。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "长时间录像机身会发热，这是正常现象；如果提示过热，先关机歇一会儿。"
+          }
+        ]
+      },
+      {
+        "title": "Wi-Fi 与蓝牙传图",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "G7 X Mark III 支持 **Wi-Fi 与蓝牙**，配合佳能官方 App 传图很方便。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-phone-connect-original.svg",
+            "alt": "相机与手机无线连接示意图",
+            "caption": "相机开无线，手机用 Camera Connect 连接"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "手机下载安装 Camera Connect（[佳能官网下载页](https://www.canon.com.cn/supports/download/app.html)）。",
+              "相机菜单打开 Wi-Fi，选择“连接智能手机”。",
+              "在 App 里按提示配对，成功后可以浏览相机里的照片。",
+              "选中照片或视频保存到手机相册。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "蓝牙主要用于快速唤醒连接，真正传图靠 Wi-Fi，别离相机太远。"
+          }
+        ]
+      },
+      {
+        "title": "收纳与归还",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "p",
+            "text": "卡片机的镜头和屏幕是最容易受伤的两个部位。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "关机等镜头完全缩回再收包。",
+              "屏幕用干软布轻擦，别用酒精直接喷。",
+              "归还前把电池取出（如约定），检查卡内素材是否备份。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "操作有疑问随时看[佳能官网](https://www.canon.com.cn)或联系客服，别自己试拆机。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "compact-vlog": {
+    "desc": "佳能 G7 X Mark III 蓝牙自拍杆版教程：蓝牙配对、自拍与 Vlog 拍摄。",
+    "keywords": "佳能 G7 X Mark III 蓝牙 自拍杆 远程快门 自拍 Vlog 配对",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "蓝牙自拍杆版比标准版多一支自拍杆，可以远距离按快门，自拍和 Vlog 都靠它。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "清点机身、电池、充电线、SD 卡和自拍杆。",
+              "检查自拍杆夹具、伸缩节是否顺畅，蓝牙按键有没有电。",
+              "自拍杆夹相机时一定要夹稳，先在地面组装好再举起来。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "先认识相机按键",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "相机本身的操作和标准版一样，先熟悉顶部和背面。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-compact-original.svg",
+            "alt": "佳能 G7 X Mark III 机身操作示意图",
+            "caption": "顶部：电源、快门、模式转盘、录像键"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**开机，镜头会自动伸出。",
+              "**快门键**拍照，**录像键**录视频。",
+              "**模式转盘**先转 AUTO，熟练后再试其他模式。",
+              "**回放键**检查拍好的画面。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "镜头伸出时不要用手按压，用完等它缩回再收包。"
+          }
+        ]
+      },
+      {
+        "title": "装电池、卡与自拍杆",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池和 SD 卡在底部仓门，自拍杆装好后夹在相机上。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与内存卡安装位置示意",
+            "caption": "底部仓门：电池与 SD 卡"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后装好电池和 SD 卡，盖紧仓门。",
+              "把相机夹到自拍杆夹具上，拧紧螺丝，晃动一下确认不掉。",
+              "伸缩杆拉出时逐节拉，听到卡扣声才算固定。",
+              "短按自拍杆按钮测试能不能控制相机。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "举高拍摄时注意头顶和周围行人，自拍杆甩到人或物都可能造成损坏。"
+          }
+        ]
+      },
+      {
+        "title": "蓝牙配对相机与自拍杆",
+        "icon": "📡",
+        "body": [
+          {
+            "type": "p",
+            "text": "带蓝牙的快门需要先和相机配对一次，之后会自动重连。"
+          },
+          {
+            "type": "img",
+            "src": "images/camera-phone-connect-original.svg",
+            "alt": "无线连接与配对操作示意",
+            "caption": "配对在相机菜单的无线设置里完成"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "长按自拍杆上的蓝牙键约 2–3 秒，指示灯闪烁即进入配对状态。",
+              "相机菜单进入无线 / 蓝牙设置，选择“遥控 / 蓝牙遥控器”。",
+              "按屏幕提示搜索并确认配对。",
+              "配对成功后，按下快门键相机就会拍照。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "配对失败时先关掉再打开自拍杆蓝牙，再在相机里重新搜索一次。"
+          }
+        ]
+      },
+      {
+        "title": "自拍怎么对好焦",
+        "icon": "🙂",
+        "body": [
+          {
+            "type": "p",
+            "text": "自拍时相机离人远，最常见的问题是“人清楚了背景糊”或“整张糊”。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "先用相机屏幕点一下自己的位置，锁定对焦。",
+              "自拍杆伸长后，用 **AUTO** 档最省心。",
+              "人多合影时，往前站一点，别离得太远导致脸太小。",
+              "连拍几张挑选，表情比构图更重要。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/camera-compact-original.svg",
+            "alt": "卡片机屏幕取景自拍示意",
+            "caption": "屏幕翻转后看着自己，点屏幕对焦自己"
+          },
+          {
+            "type": "tip",
+            "text": "翻转屏幕后会有延迟，按下快门后停一秒再动，避免糊片。"
+          }
+        ]
+      },
+      {
+        "title": "Vlog：边走边拍",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "p",
+            "text": "自拍 Vlog 最简单的方式：自拍杆举稳，按下录像键，边走边说。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "录像键开始录制，确认屏幕上有红色计时。",
+              "手臂不要晃，走路时把自拍杆贴近身体。",
+              "说重点时放慢走路速度，画面更稳。",
+              "再按一次录像键结束。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "一段一段录比一口气录十分钟好剪辑；现场看看回放再决定要不要重录。"
+          }
+        ]
+      },
+      {
+        "title": "传图与素材备份",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "Vlog 素材体积大，建议用读卡器或者数据线导出。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器导入素材示意图",
+            "caption": "拔卡 + 读卡器，导到手机或电脑"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "手机 App 无线传图示意",
+            "caption": "少量照片可用 Camera Connect 传"
+          },
+          {
+            "type": "list",
+            "items": [
+              "无线传图：相机开 Wi-Fi，App 里选图保存。",
+              "大量视频：用读卡器或数据线拷到电脑。",
+              "导出完成再清理卡内素材。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "收纳与归还",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "p",
+            "text": "自拍杆和相机分开收纳，避免在包里相互磕碰。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "关机，等镜头完全缩回。",
+              "自拍杆伸缩节全部收回、螺丝拧松，减轻夹具压力。",
+              "归还前核对配件：机身、电池、充电线、SD 卡、自拍杆是否齐全。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "配件丢失会影响归还，每件都在包里再确认一次。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "compact-g12": {
+    "desc": "佳能 PowerShot G12 卡片机上手教程，从开箱、双层转盘到翻转屏构图和导出，一次讲清。",
+    "keywords": "佳能 G12 PowerShot G12 卡片机 转盘 翻转屏 光学取景器 微距 导出",
+    "steps": [
+      {
+        "title": "开箱核对与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "warn",
+            "text": "这是租赁设备，请务必爱护。G12 是有年头的老机型，镜头伸出机构比新机器更娇气，**不要用手按压镜头、不要强行转动变焦环**；如有磕碰、进水或异常，请第一时间联系客服售后，不要自己拆机。"
+          },
+          {
+            "type": "p",
+            "text": "拿到机器先别急着开机，照单清点一遍配件，也顺便看看成色，发现问题当场拍照发给客服，免得归还时说不清。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "PowerShot G12 相机主机 1 台",
+              "电池 NB-7L 与充电器各 1 个",
+              "SD 卡 1 张（已装好在仓内）",
+              "手绳 1 条",
+              "USB 数据线与读卡器（视套餐而定）",
+              "收纳包 1 个"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "项目",
+              "参考规格"
+            ],
+            "rows": [
+              [
+                "镜头",
+                "约 5 倍变焦，等效 28–140mm，光圈 F2.8–F8"
+              ],
+              [
+                "屏幕",
+                "2.8 英寸可旋转屏（可翻开翻转自拍）"
+              ],
+              [
+                "取景",
+                "光学实像式取景器，带屈光度调节"
+              ],
+              [
+                "记录",
+                "JPEG 与 RAW（CR2），SD/SDHC/SDXC 卡"
+              ],
+              [
+                "视频",
+                "最高 1280×720 短片"
+              ],
+              [
+                "接口",
+                "USB、HDMI 输出、模拟视频输出"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "机身约 401 克，比普通卡片机重一些，拿着更像单反，别单手拎着走，养成挂手绳的习惯。"
+          }
+        ]
+      },
+      {
+        "title": "认识机身与双层转盘",
+        "icon": "🎛️",
+        "body": [
+          {
+            "type": "p",
+            "text": "G12 的按键比一般卡片机多，但真正天天用的就几个。花两分钟认一遍，后面每一步都会轻松很多。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-210-original.svg",
+            "alt": "卡片机机身按键与转盘位置示意",
+            "caption": "先认清机顶转盘、快门和背部按键的位置（示意图，具体以实物为准）"
+          },
+          {
+            "type": "table",
+            "head": [
+              "位置",
+              "怎么用"
+            ],
+            "rows": [
+              [
+                "机顶双层转盘",
+                "上层选拍摄模式（自动/Av/Tv/M/场景等），下层选 ISO 感光度"
+              ],
+              [
+                "快门按钮",
+                "半按对焦、按到底拍摄，长按可连拍"
+              ],
+              [
+                "变焦拨杆",
+                "快门周围左右拨动，推近拉远"
+              ],
+              [
+                "前部电子转盘",
+                "手柄上方的小滚轮，常用作调节光圈或快门"
+              ],
+              [
+                "背部十字键",
+                "调参数、翻菜单、回放照片"
+              ],
+              [
+                "翻转屏",
+                "可翻开约 177°、可旋转，方便自拍和低角度"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "模式转盘要按住中间的释放钮才转得动，这是防误触设计，拧不动时别用蛮力。"
+          }
+        ]
+      },
+      {
+        "title": "装电池、装卡与开机",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "img",
+            "src": "images/camera-battery-card-original.svg",
+            "alt": "电池与存储卡安装位置示意",
+            "caption": "电池仓与存储卡槽在机身底部，按正确方向插入"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "打开底部电池仓盖，按箭头方向把 NB-7L 电池推入，听到卡扣声即可。",
+              "在电池仓旁的卡槽插入 SD 卡，按到底会“咔”一下。",
+              "合上仓盖，按机顶电源键开机，屏幕点亮即成功。",
+              "如果开不了机，先充电 30 分钟以上；老电池在低温下掉电很快。",
+              "再次关机时，镜头会自动缩回，**等镜头完全收回再收包**。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "电量不足时开机，可能出现镜头伸出后又自动缩回。先充电再试，不要反复开关机硬试。"
+          }
+        ]
+      },
+      {
+        "title": "选对拍摄模式",
+        "icon": "🎚️",
+        "body": [
+          {
+            "type": "p",
+            "text": "新手最容易犯的错，是一上来就用错模式拍黑了。先把转盘拨到**自动模式**，拍出清晰照片再说。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "模式",
+              "适合什么时候"
+            ],
+            "rows": [
+              [
+                "自动",
+                "完全不想调参数，抬手就拍"
+              ],
+              [
+                "程序（P）",
+                "自己调 ISO、白平衡，其余交给相机"
+              ],
+              [
+                "Av 光圈优先",
+                "控制背景虚化：人像开大光圈，风景收小"
+              ],
+              [
+                "Tv 快门优先",
+                "拍运动抓拍或流水慢门效果"
+              ],
+              [
+                "M 手动",
+                "室内固定光线下追求稳定效果"
+              ],
+              [
+                "场景模式（SCN）",
+                "夜景、雪景、海滩、烟火等预设场景"
+              ],
+              [
+                "低光照",
+                "室内、傍晚等暗光环境，连拍更快"
+              ],
+              [
+                "短片",
+                "录 720p 视频"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拿不准时就用自动模式，拍得清晰比参数好看更重要。熟练后再试 P、Av。"
+          }
+        ]
+      },
+      {
+        "title": "拍照：对焦与变焦",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "img",
+            "src": "images/camera-auto-mode-original.svg",
+            "alt": "自动模式拍照示意",
+            "caption": "对准主体、半按快门锁定，再按到底"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "双手握持机身，右手食指放在快门上。",
+              "拨动变焦拨杆把主体框到合适大小。",
+              "**半按快门**等对焦框变绿（对焦成功），同时画面稳住。",
+              "按到底完成拍摄；拍完检查回放，不满意就删了重拍。",
+              "按背部回放键可以回看照片，十字键左右翻页。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "G12 有光学取景器，强光下屏幕看不清时可以拿眼睛贴着取景器拍；戴眼镜的朋友可以转动取景器旁的屈光度旋钮调清晰。"
+          }
+        ]
+      },
+      {
+        "title": "场景与微距怎么拍",
+        "icon": "🌇",
+        "body": [
+          {
+            "type": "p",
+            "text": "G12 的几种特色拍法，用对了效果提升很明显。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "想拍什么",
+              "怎么设置"
+            ],
+            "rows": [
+              [
+                "背景虚化的人像",
+                "Av 模式，光圈调到数值最小（如 F2.8），离人近一点"
+              ],
+              [
+                "风景大场面",
+                "风景场景模式或 Av 小光圈，广角端拍更开阔"
+              ],
+              [
+                "近处的小物件",
+                "切到微距档，最近约 1cm 就能对焦，别离得超出范围"
+              ],
+              [
+                "室内暗光",
+                "用低光照模式，或用自动模式开启闪光灯"
+              ],
+              [
+                "夜景灯光",
+                "夜景场景模式 + 找平坦处靠着或垫着拍，防手抖"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "微距拍摄不要顶着玻璃或把镜头怼在物体上，容易划伤镜片；对不上焦就退后一点再试。"
+          },
+          {
+            "type": "tip",
+            "text": "室内拍照想避免噪点和偏色，可以把 ISO 拨到 400 以内，白平衡切到白炽灯或荧光灯。"
+          }
+        ]
+      },
+      {
+        "title": "翻转屏帮大忙",
+        "icon": "🔄",
+        "body": [
+          {
+            "type": "p",
+            "text": "G12 的屏幕能翻开翻转，这是它的招牌功能，几个场景特别好用："
+          },
+          {
+            "type": "list",
+            "items": [
+              "**自拍**：把屏幕翻到镜头方向，自己看着屏幕构图。",
+              "**低角度**：蹲不下的时候，把屏幕朝上翻，蹲着拍不用趴地。",
+              "**仰拍建筑或树枝**：屏幕朝下翻，抬手举高也能看清画面。",
+              "**人多时**：屏幕转个角度，避开反光看得更清楚。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "翻转时动作轻，遇到阻力不要硬掰，屏幕排线比较脆弱。"
+          }
+        ]
+      },
+      {
+        "title": "录短片",
+        "icon": "🎬",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "把模式转盘拨到短片图标档位。",
+              "构图好之后按快门开始录制，屏幕右上会出现录制提示。",
+              "拍摄时可以用变焦拨杆推拉，但速度放慢，画面更稳。",
+              "再次按快门结束录制，视频会自动保存到卡里。",
+              "短片可以在回放模式里直接播放，音量用十字键调节。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "录制时不要变焦过快或频繁走动，老机型防抖有限，画面容易晃；需要长时间录制建议先确认电量充足。"
+          }
+        ]
+      },
+      {
+        "title": "导出照片与视频",
+        "icon": "📤",
+        "body": [
+          {
+            "type": "p",
+            "text": "三种常用方式任选其一，手机上用读卡器最省事。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器连接手机导出示意",
+            "caption": "关机取卡 → 插读卡器 → 文件管理里找到 DCIM 文件夹"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**读卡器**：关机取出 SD 卡，插读卡器连手机或电脑，在 DCIM 文件夹里复制照片视频。",
+              "**数据线**：用数据线连接电脑，相机选“播放/传输”模式，电脑里会出现相机盘符。",
+              "**HDMI**：需要大屏直接看时，用 HDMI 线连接电视或显示器回放（只能看，不能拷文件）。",
+              "拷完确认文件都在，再把卡装回相机，养成安全拔出使用的习惯。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "传输过程中不要拔卡或断电；不要直接格式化卡，确认素材都存好再处理。"
+          }
+        ]
+      },
+      {
+        "title": "收纳保养与常见问题",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "olist",
+            "items": [
+              "先关机，等镜头完全缩回再放进收纳包。",
+              "屏幕最好翻回内侧朝机身收好，避免压屏。",
+              "镜头有指纹用镜头布轻擦，别用纸巾干擦。",
+              "取出电池单独存放，长时间不用时保持约一半电量。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "现象",
+              "先这样排查"
+            ],
+            "rows": [
+              [
+                "开不了机",
+                "电池没电或没装到位，充电后重试"
+              ],
+              [
+                "对不上焦、快门按不下",
+                "离主体太近，退后几厘米；或光线太暗打开闪光灯"
+              ],
+              [
+                "照片发糊",
+                "手抖，找依靠物或提高 ISO；也可用取景器贴脸拍摄"
+              ],
+              [
+                "提示存储卡错误",
+                "卡没插到位或卡已满，重启后重新插卡"
+              ],
+              [
+                "画面偏色",
+                "白平衡选错，切回自动或按现场光源重选"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "还是解决不了，请直接联系客服售后，并说明是哪种现象、屏幕提示什么，方便快速处理。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "canon-ixus-210": {
+    "desc": "佳能 IXUS 210 复古 CCD 相机按键操作与直出氛围教程。",
+    "keywords": "佳能 IXUS 210 复古 CCD 老相机 按键 闪光灯 复古直出 氛围",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "这是一台按键式老相机，没有触屏，操作全靠实体按钮，先熟悉再开拍。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "检查电池、充电器、SD 卡是否齐全。",
+              "开机时镜头会伸出，听到轻微马达声是正常的。",
+              "老机器对磕碰很敏感，出门一定挂在手腕带上。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识按键与屏幕",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "IXUS 210 的背面是一块大屏，右侧是一组按键，顶部是快门与电源。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-210-original.svg",
+            "alt": "佳能 IXUS 210 机身按键示意图",
+            "caption": "正面与背面按键布局：快门、变焦、模式、回放"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**电源键**：短按开机 / 关机。",
+              "**快门键**：轻按对焦，按到底拍照。",
+              "**变焦拨杆**：在快门附近，左右拨可以拉远推近。",
+              "**模式 / 功能键**：进入拍摄模式菜单。",
+              "**回放键**：用方向键翻看照片。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "老相机开机要等一两秒，别急着按快门，画面稳定下来再拍。"
+          }
+        ]
+      },
+      {
+        "title": "装卡装电与开机准备",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池仓和卡槽在底部，装好再开机。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机，打开底部仓门，按方向装入电池。",
+              "SD 卡按方向插入，轻按到底。",
+              "开机后看屏幕上是否有电量和可拍张数。",
+              "出门前把电池充满，老机型电池容量小，撑不了太久。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-210-original.svg",
+            "alt": "IXUS 210 底部电池与卡仓示意",
+            "caption": "底部仓门打开后装入电池与 SD 卡"
+          },
+          {
+            "type": "warn",
+            "text": "这类老相机电池电量掉得快，建议随身带备用电池或充电宝。"
+          }
+        ]
+      },
+      {
+        "title": "选模式与关闪光灯",
+        "icon": "💡",
+        "body": [
+          {
+            "type": "p",
+            "text": "老款 CCD 的闪光灯是上掀式的，位于机身上方，闪光状态要看屏幕图标。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-210-original.svg",
+            "alt": "IXUS 210 闪光灯与模式设置示意",
+            "caption": "注意上方闪光灯位置，手指别挡住"
+          },
+          {
+            "type": "list",
+            "items": [
+              "想拍复古氛围，优先在**自然光**下拍，把闪光灯设为**关闭**。",
+              "晚上或室内太暗时可以开闪光灯，但别贴太近，脸会过曝。",
+              "手指握机时避开闪光灯弹出区域，挡住会闪光不均匀。",
+              "常用场景（人像、夜景、微距）可以在模式菜单里直接选。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "想拍出“颗粒感 + 偏色”的复古味，多利用逆光、街灯、窗边的自然光。"
+          }
+        ]
+      },
+      {
+        "title": "对焦与拍摄",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "p",
+            "text": "老相机的对焦范围有限，**离太近会虚**，退半步往往就清楚了。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "屏幕取景，把主体放在画面中间的对焦框里。",
+              "轻按快门，等对焦框变绿再按到底。",
+              "拍人像时退开一点再按变焦，虚化会更自然。",
+              "拍微距要选对应模式，并保持 10 厘米以上距离（具体以机身提示为准）。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "对焦框一直闪红或不变绿，说明太近了或者光线太暗，往后退一点或者换个位置。"
+          }
+        ]
+      },
+      {
+        "title": "回放与删除",
+        "icon": "🗂️",
+        "body": [
+          {
+            "type": "p",
+            "text": "按键式回放：按回放键，用方向键左右翻看。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "方向键上下左右切换照片，放大键能看细节。",
+              "删除键可以删掉不想要的照片，会弹出确认。",
+              "老相机屏幕一般，回放检查对焦比看颜色更可靠。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "删之前看清楚是不是还要用，删了不一定能找回来。"
+          }
+        ]
+      },
+      {
+        "title": "导出照片",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "CCD 老相机多数不带无线，用读卡器导出最稳。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器导出照片示意图",
+            "caption": "拔卡 + 读卡器，导进手机或电脑"
+          },
+          {
+            "type": "img",
+            "src": "images/export-cable-phone-original.svg",
+            "alt": "数据线连接电脑导出示意",
+            "caption": "部分老机型支持数据线直连电脑"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机后取出 SD 卡。",
+              "插入读卡器，连手机或电脑。",
+              "打开 DCIM 文件夹，把照片复制出来。",
+              "复制完再清理卡内照片。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "老相机的照片文件很小，直接搬到手机相册也很快。"
+          }
+        ]
+      },
+      {
+        "title": "收纳与归还",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "p",
+            "text": "老相机零件更娇贵，收包前先关机等镜头缩回。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "关机，确认镜头完全缩回。",
+              "不要用硬物顶镜头，也別强行推镜头回收。",
+              "归还前检查电池、充电器、SD 卡、腕带是否齐全。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "镜头伸出时被撞到，多半就坏了，走路时一定套好腕带。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "canon-ixus-130": {
+    "desc": "佳能 IXUS 130 复古 CCD 相机按键操作、闪光灯与复古直出教程。",
+    "keywords": "佳能 IXUS 130 复古 CCD 老相机 按键 闪光灯 复古直出 氛围",
+    "steps": [
+      {
+        "title": "开箱检查与租赁提醒",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "IXUS 130 更小巧，按键更紧凑，开机后先花一分钟认清楚每个键。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "清点电池、充电器、SD 卡。",
+              "检查镜头能否顺畅伸出，屏幕有无大面积坏点。",
+              "机身小、拿得滑，务必套上腕带再用。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          }
+        ]
+      },
+      {
+        "title": "认识按键布局",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "IXUS 130 的定位是“口袋机”：顶部是电源与快门，背面是屏幕加环状按键。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-130-original.svg",
+            "alt": "佳能 IXUS 130 机身按键示意图",
+            "caption": "顶部快门与电源，背面环形方向键与回放键"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "**快门键**：顶部右侧，轻按对焦，按到底拍照。",
+              "**变焦拨杆**：快门键旁边，左右拨调整远近。",
+              "**环形方向键**：用于菜单上下选择，中间是确认键。",
+              "**功能键 FUNC/SET**：进入常用拍摄设置。",
+              "**回放键**：看照片。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "按键比较小，用指腹按，别用指甲戳，久了容易失灵。"
+          }
+        ]
+      },
+      {
+        "title": "装卡装电与开机",
+        "icon": "🔋",
+        "body": [
+          {
+            "type": "p",
+            "text": "电池仓和卡槽在底部，机身盖比较紧，轻推即可。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机状态打开底部仓门，装电池。",
+              "SD 卡按方向插入到底。",
+              "盖紧仓门，按电源键开机。",
+              "确认屏幕显示电量与可拍张数。"
+            ]
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-130-original.svg",
+            "alt": "IXUS 130 底部电池与卡仓示意",
+            "caption": "底部仓门位置与电池方向"
+          },
+          {
+            "type": "warn",
+            "text": "老机电池容量小，出门前充满；连续拍久了电量掉得比想象快。"
+          }
+        ]
+      },
+      {
+        "title": "闪光灯别用手挡",
+        "icon": "💡",
+        "body": [
+          {
+            "type": "p",
+            "text": "IXUS 130 的闪光灯在机身正面偏上位置，自动模式下会自己弹出来闪。"
+          },
+          {
+            "type": "img",
+            "src": "images/canon-ixus-130-original.svg",
+            "alt": "IXUS 130 闪光灯位置示意",
+            "caption": "闪光灯在正面上方，手指握手柄时注意避开"
+          },
+          {
+            "type": "list",
+            "items": [
+              "握机时手指不要盖住闪光灯窗口，否则画面半边黑。",
+              "想拍复古氛围片，可以把闪光灯设为关闭，用自然光。",
+              "近距离开闪光会过曝，退一步或者换光线更好的位置。",
+              "屏幕上方的闪光图标能看出当前状态。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "CCD 的复古味道来自“有点偏色、有点颗粒”，不用刻意追求完美，光线好玩得起来。"
+          }
+        ]
+      },
+      {
+        "title": "对焦距离与拍摄",
+        "icon": "📸",
+        "body": [
+          {
+            "type": "p",
+            "text": "这类小相机最近对焦距离不算近，**太近一定虚**。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "屏幕中间放主体，轻按快门等待对焦框变绿。",
+              "如果一直对不上，往后退半步再试。",
+              "拍静物微距时选中对应的近距离模式，并保持机身提示的最小距离。",
+              "按下快门后停一下再移动，老机快门反应稍慢。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "拍人像时用手掌挡一下太阳的直射，让脸在阴影里，效果更讨喜。"
+          }
+        ]
+      },
+      {
+        "title": "用模式拍出氛围",
+        "icon": "🎨",
+        "body": [
+          {
+            "type": "p",
+            "text": "按键进入模式菜单，可以选人像、夜景、焰火等场景。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "想拍的",
+              "选什么模式",
+              "小提示"
+            ],
+            "rows": [
+              [
+                "复古街头",
+                "程序自动 / 标准",
+                "阴天、傍晚颜色最毒"
+              ],
+              [
+                "人像",
+                "人像模式",
+                "皮肤柔和，离背景远点"
+              ],
+              [
+                "夜景街灯",
+                "夜景模式",
+                "手要稳，靠墙更好"
+              ],
+              [
+                "近景小物",
+                "微距模式",
+                "注意最小对焦距离"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "导出与归还",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "导出同样靠读卡器，照片文件小，备份很快。"
+          },
+          {
+            "type": "img",
+            "src": "images/export-reader-phone-original.svg",
+            "alt": "读卡器导出照片示意图",
+            "caption": "取出 SD 卡接入读卡器，导入手机或电脑"
+          },
+          {
+            "type": "img",
+            "src": "images/export-app-wireless-original.svg",
+            "alt": "手机 App 无线传图示意（如机型支持）",
+            "caption": "部分机型支持无线，多数仍靠读卡器"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "关机取卡，插入读卡器。",
+              "在 DCIM 文件夹里复制照片。",
+              "备份完成后再清理卡内文件。",
+              "归还前检查腕带、电池、充电器是否齐全。"
             ]
           }
         ]
       }
     ]
   },
-  // 子目录内容：手持云台相机 · 大疆Pocket 4 Pro全能套装
-  "gimbal-pocket4pro-combo": {
-    "desc": "大疆 Osmo Pocket 4P 全能套装简易使用教程",
-    "keywords": "大疆 Osmo Pocket 4P Pocket 4 Pro 全能套装 续航手柄 三脚架 麦克风 手持云台 相机 导出",
+
+  "tripod-live": {
+    "desc": "富图宝 FY-830 三脚架 + MH-4A 液压云台使用教程：展开、调平、装机与收纳。",
+    "keywords": "富图宝 FY-830 MH-4A 三脚架 液压云台 调平 快装板 直播 收纳",
     "steps": [
       {
-        "title": "开箱与套装配件确认",
-        "icon": "📦",
+        "title": "使用前检查与安全提醒",
+        "icon": "⚠️",
         "body": [
           {
             "type": "p",
-            "text": "本教程按常见的“全能套装”配件组合编写，适用于大疆 Osmo Pocket 4P（网站显示名称为“大疆 Pocket 4 Pro 全能套装”）。官方公开页面目前展示标准套装，全能套装的配件以实际随箱清单和租赁页面为准。"
-          },
-          {
-            "type": "p",
-            "text": "官方页面：[DJI Osmo Pocket 4P 官方页面](https://www.dji.com/cn/osmo-pocket-4p)；官方下载与说明书：[DJI Osmo Pocket 4P 官方下载](https://www.dji.com/cn/osmo-pocket-4p/downloads)。"
-          },
-          {
-            "type": "img",
-            "src": "images/category-icons/children/pocket4pro-combo.svg",
-            "alt": "大疆 Pocket 4 Pro 全能套装示意",
-            "caption": "全能套装配件组合示意图（以实际清单为准）"
+            "text": "三脚架看起来简单，架设不当一样会摔机器。上手前先看清这几条。"
           },
           {
             "type": "list",
             "items": [
-              "相机主机和标准配件",
-              "续航手柄或底部延长配件",
-              "迷你三脚架或支撑配件",
-              "无线麦克风发射器（如随箱配置）",
-              "增广镜、防风毛套或其他创作配件（如随箱配置）"
+              "检查三脚架脚垫、锁扣、云台手柄、快装板是否齐全。",
+              "云台手柄转动是否顺畅，快装板能不能锁紧。",
+              "看清承重标示，相机加长焦镜头的重量要在承重范围内。"
             ]
           },
           {
             "type": "warn",
-            "text": "不同批次、不同租赁套餐的配件会不同，请勿按本清单直接判断少件，以订单和随箱清单为准。"
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
           }
         ]
       },
       {
-        "title": "安装底部手柄或续航配件",
-        "icon": "🔧",
+        "title": "展开三脚架与脚管锁",
+        "icon": "🔓",
         "body": [
           {
             "type": "p",
-            "text": "先把相机完全关机，再安装底部配件；安装前确认接口方向，不要硬插。"
+            "text": "FY-830 有三个脚管，每节都有锁紧装置。"
+          },
+          {
+            "type": "img",
+            "src": "images/sanjiaojia.png",
+            "alt": "富图宝 FY-830 三脚架实物图",
+            "caption": "实物图：看脚管锁扣、中轴、云台手柄的位置"
           },
           {
             "type": "olist",
             "items": [
-              "关机后擦干净相机底部和配件接口。",
-              "对准卡扣或螺纹方向，轻轻推入或旋紧。",
-              "确认连接牢固后再开机。",
-              "使用结束后先关机，再拆下配件。"
+              "先将三条腿向外打开到限位点，不要硬掰超出范围。",
+              "逐节旋松脚管锁扣，拉出需要的长度，再旋紧锁扣。",
+              "三个脚管长度尽量一致，地面不平时再单独微调一条。",
+              "拉出后晃一下，确认每节都锁紧了。"
             ]
           },
           {
             "type": "warn",
-            "text": "不要在云台通电时强行旋转或拉扯相机。"
+            "text": "锁扣没拧紧就免锁的错觉很危险，一压就塌。每次全部拉完再摇一摇确认。"
           }
         ]
       },
       {
-        "title": "安装迷你三脚架或支撑配件",
-        "icon": "📐",
-        "body": [
-          {
-            "type": "olist",
-            "items": [
-              "展开三脚架并放在平整、稳固的桌面或地面。",
-              "把相机或手柄固定到三脚架上。",
-              "调整拍摄角度，确认重心稳定后再松手。",
-              "不用时先取下相机，再收三脚架。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "户外使用时注意防风；风大时不要只依赖小型三脚架。"
-          }
-        ]
-      },
-      {
-        "title": "连接无线麦克风",
-        "icon": "🎙️",
+        "title": "升高中轴与调平",
+        "icon": "🎚️",
         "body": [
           {
             "type": "p",
-            "text": "如套装包含无线麦克风，请先给发射器充电，再按官方说明连接相机。不同麦克风型号的连接方式可能不同。"
+            "text": "中轴越高越不稳，能不开中轴就别开，实在不够高再升。"
           },
           {
-            "type": "olist",
+            "type": "list",
             "items": [
-              "打开麦克风发射器和相机的电源。",
-              "按官方说明完成接收器和相机的连接。",
-              "在相机中确认收音设备已经被识别。",
-              "拍摄前试录一段，回放检查声音是否正常。"
+              "旋松中轴锁紧旋钮，把中轴升到合适高度再锁紧。",
+              "看三脚架上的**水平泡**，气泡进圈就是平的。",
+              "不平就调一条腿的长度，不必反复动中轴。",
+              "液压云台上还有一只手柄负责**俯仰**和**横摇**，调平后再动云台。"
             ]
           },
           {
             "type": "tip",
-            "text": "不要把麦克风放在相机扬声器正上方，避免产生啸叫或回声。"
+            "text": "水平泡在云台底座或中轴附近，不同批次位置略有差异，找到后记住。"
           }
         ]
       },
       {
-        "title": "常用拍摄组合",
+        "title": "快装板装入与相机固定",
+        "icon": "📷",
+        "body": [
+          {
+            "type": "p",
+            "text": "相机通过快装板装到云台上，顺序不能反：**先上快装板，再装相机**。"
+          },
+          {
+            "type": "img",
+            "src": "images/sanjiaojia.png",
+            "alt": "三脚架云台与快装板示意",
+            "caption": "云台顶部：快装板卡槽与锁紧旋钮"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "用螺丝把快装板固定在相机底部（长焦镜头可装脚架环）。",
+              "握住相机，把快装板从云台侧面滑进卡槽。",
+              "锁紧云台快装板旋钮，掰一下相机确认不会滑动。",
+              "再松开云台旋钮，转动方向取景。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "装相机时最好先把云台锁定，双手托住相机再拧螺丝，避免相机掉下来。"
+          }
+        ]
+      },
+      {
+        "title": "重心与增稳小技巧",
+        "icon": "⚖️",
+        "body": [
+          {
+            "type": "p",
+            "text": "三脚架最怕“头重脚轻”。架设时把相机重心压在云台正上方。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "长焦镜头要装脚架环，云台承受的是镜头重心，而不是机身。",
+              "三个脚呈三角分开，不要两只脚并在一起。",
+              "三脚架下方或中轴挂钩可以挂上包、水壶增稳。",
+              "风大时降低中轴高度，或者把腿角度放得更贴地。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "手臂别压在云台上、也不用拉扯相机取景，轻按快门即可。"
+          }
+        ]
+      },
+      {
+        "title": "拍直播与延迟画面",
         "icon": "🎬",
         "body": [
           {
             "type": "p",
-            "text": "全能套装适合 Vlog、旅拍、自拍和简单采访，可以根据场景选择手柄、三脚架和麦克风组合。"
+            "text": "液压云台的手柄用来做平顺的摇镜，直播固定机位时云台要锁紧。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "固定机位直播：云台各旋钮全部锁紧。",
+              "需要横摇、俯仰：松开对应旋钮，握住手柄匀速推拉。",
+              "相机开启防抖建议关闭（放三脚架上时）。",
+              "线材要留出余量，别让人走过时绊到三脚架。"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "收纳与归还",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "p",
+            "text": "收架顺序和架设相反，先卸相机，再收架子。"
           },
           {
             "type": "list",
             "items": [
-              "手持 Vlog：相机 + 底部手柄。",
-              "固定拍摄：相机 + 迷你三脚架。",
-              "人物采访：相机 + 无线麦克风。",
-              "户外移动：收紧配件，避免松动和掉落。"
+              "取下相机后再收腿，不要连带相机一起拉到地上。",
+              "旋松每节锁扣，逐节收回到最短，收一节锁一节。",
+              "中轴降到最低，云台手柄归位，快装板锁紧。",
+              "归还前检查快装板、手柄、中轴挂钩有没有落下。"
             ]
           },
           {
-            "type": "tip",
-            "text": "不要同时安装过多配件；配件越多，越要检查接口和重心是否牢固。"
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "设备收纳注意事项（客服提供）"
           }
         ]
-      },
+      }
+    ]
+  },
+
+  "tripod-cam": {
+    "desc": "富图宝 FY-830 + MH-4A 可选赠送配件清单与适用场景说明。",
+    "keywords": "富图宝 FY-830 配件 手机夹 小桌板 延长杆 转接器 脚架环",
+    "steps": [
       {
-        "title": "收纳和保养",
-        "icon": "🎒",
+        "title": "配件说明与安全提醒",
+        "icon": "🎁",
         "body": [
           {
-            "type": "olist",
+            "type": "p",
+            "text": "购买 FY-830 + MH-4A 时，可以在可选配件里挑赠品，具体以库存和客服确认为准。"
+          },
+          {
+            "type": "list",
             "items": [
-              "关机后先拆下可拆卸配件。",
-              "云台回到收纳位置后安装保护壳。",
-              "把麦克风、三脚架、手柄分别放入收纳包。",
-              "擦干水汽和沙尘，再合上收纳包。",
-              "长期不用时放在干燥处并定期补电。"
+              "配件是加装件，装好后先在地面测试是否稳固。",
+              "拿不准怎么装，先拍张照片问客服，别硬掰接口。",
+              "配件丢失一般需要按约定赔付。"
             ]
           },
           {
             "type": "warn",
-            "text": "不要把配件硬塞进收纳包，以免挤压镜头、屏幕或云台。"
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
           }
         ]
       },
       {
-        "title": "如何使用官方自带补光灯",
+        "title": "认识可选配件清单",
+        "icon": "📦",
+        "body": [
+          {
+            "type": "p",
+            "text": "常见可选配件如下，看自己拍什么再选。"
+          },
+          {
+            "type": "img",
+            "src": "images/sanjiaojia.png",
+            "alt": "三脚架与配件使用场景示意",
+            "caption": "配件都是围绕云台与中轴加装的"
+          },
+          {
+            "type": "table",
+            "head": [
+              "配件",
+              "作用",
+              "适合谁"
+            ],
+            "rows": [
+              [
+                "手机增位夹",
+                "把手机夹到云台上",
+                "直播、手机跟拍"
+              ],
+              [
+                "小桌板",
+                "在中轴处放小物件",
+                "直播打光、放小灯"
+              ],
+              [
+                "手持云台相机支架",
+                "固定口袋云台相机",
+                "Vlog 固定机位"
+              ],
+              [
+                "vivo 脚架环",
+                "连接对应手机 / 设备",
+                "特定配件适配"
+              ],
+              [
+                "转接器",
+                "转换螺丝或接口规格",
+                "兼容不同器材"
+              ],
+              [
+                "30CM 延长杆",
+                "加高或外接手机",
+                "需要更高机位时"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "大部分小配件可以免费赠送使用，具体以库存为准，请提前联系客服确认。"
+          }
+        ]
+      },
+      {
+        "title": "手机增位夹怎么用",
+        "icon": "📱",
+        "body": [
+          {
+            "type": "p",
+            "text": "想用三脚架拍手机直播，手机夹是最实用的一件。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把手机夹卡在云台的快装接口上并锁紧。",
+              "手机横竖方向都可以夹，夹在中间位置更稳。",
+              "夹好后推一下手机，确认不会滑落。",
+              "拍完先取下手机，再收三脚架。"
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "手机比相机轻，但屏幕大、受风面积也大，户外最好降中轴防风。"
+          }
+        ]
+      },
+      {
+        "title": "小桌板与直播补光",
         "icon": "💡",
         "body": [
           {
             "type": "p",
-            "text": "如果租赁配置包含 DJI Osmo Pocket 4 补光灯，可按本步骤使用；未随箱附带时无需操作。DJI 官方说明该补光灯完全适配 Osmo Pocket 4P。"
+            "text": "小桌板装在中轴或云台附近，可以放小灯、小物件。"
           },
           {
-            "type": "img",
-            "src": "images/pocket4pro-fill-light-original.svg",
-            "alt": "Osmo Pocket 4P 官方补光灯安装和菜单操作示意图",
-            "caption": "补光灯安装位置、开关、亮度和色温设置示意"
-          },
-          {
-            "type": "olist",
+            "type": "list",
             "items": [
-              "先关闭相机，把补光灯对准机身顶部安装位，确认卡扣方向后再轻轻安装，不要硬压。",
-              "开机后从屏幕顶部下拉，进入控制中心并点击“补光灯”。",
-              "在补光灯设置页开启或关闭补光灯。",
-              "亮度支持低、中、高三档，色温支持暖、中性、冷三档；可点击屏幕选项或使用补光灯按键切换。",
-              "需要跟随环境光自动变化时，开启“自动调节亮度色温”。如果之后手动调节过亮度或色温，自动开关会自动关闭，需要重新开启。",
-              "如有需要，可在相机的自定义按键设置中，将功能设为“开启/关闭补光灯”。",
-              "拍摄结束后关闭补光灯，等待灯珠散热后再收纳。"
+              "适合直播时放无线麦克风、小补光灯。",
+              "物品要轻，重的东西会让整套设备变重心不稳。",
+              "桌板放好后看一看水平，别放上东西再调，容易掉。"
             ]
-          },
-          {
-            "type": "tip",
-            "text": "官方公开参数参考：低/中/高亮度约为 12/25/40 lux（0.6 米），暖/中性/冷色温约为 2800/4000/5500 K；实际以设备固件和官方最新说明为准。"
-          },
-          {
-            "type": "p",
-            "text": "官方视频教程：[Osmo Pocket 4P | 补光灯](https://cdn.djivideos.com/watch/95b76ec4-a199-4bf2-9086-39674a7663cf?autoplay=false&poster=http://videocaption.djicdn.com/poster/20260903/95a18efd5144f852a15553800fba267d.png@!1200&language=zh-Hans)；官方常见问题：[Osmo Pocket 4P 常见问题](https://www.dji.com/cn/osmo-pocket-4p/faq)。"
-          },
-          {
-            "type": "warn",
-            "text": "不要直视灯珠；长时间使用高亮度会增加耗电和发热。如果设备出现过热提示，请降低亮度或关闭补光灯。"
           }
         ]
       },
       {
-        "title": "如何导出照片和视频",
-        "icon": "📤",
+        "title": "延长杆与转接器",
+        "icon": "🔩",
         "body": [
           {
             "type": "p",
-            "text": "导出照片和视频有三种常用方法。可以先试官方 App，也可以用 USB 数据线连接手机，或者用 USB 读卡器连接手机。"
-          },
-          {
-            "type": "p",
-            "text": "**方法一：下载官方 App，无线连接相机导出**"
-          },
-          {
-            "type": "p",
-            "text": "官方 App 下载入口：[DJI Mimo](https://www.dji.com/cn/downloads/djiapp/dji-mimo)。请在手机应用商店搜索同名 App，优先选择官方发布者。"
-          },
-          {
-            "type": "img",
-            "src": "images/export-app-wireless-original.svg",
-            "alt": "官方 App 无线连接相机导出素材示意图",
-            "caption": "官方 App 无线连接和导出步骤"
+            "text": "延长杆和转接器是解决“不够高、不合口”的两件工具。"
           },
           {
             "type": "olist",
             "items": [
-              "在手机应用商店下载并安装 DJI Mimo，注册或登录需要的账号。",
-              "打开相机电源，进入相机设置，开启 Wi-Fi、蓝牙或无线功能。不同相机的入口名称可能是无线连接、手机连接或传输。",
-              "手机打开蓝牙和 Wi-Fi，启动官方 App，选择添加设备或连接相机。",
-              "相机屏幕出现配对提示时，点击允许、确认或配对。部分相机需要输入相机屏幕上显示的验证码。",
-              "连接成功后，在 App 中进入相册、相机上的图像或下载页面。",
-              "选择要保存的照片或视频。视频建议选择原始画质或下载到 App，再点击导出或下载到手机。",
-              "等待进度完成，不要关闭相机、退出 App 或锁屏。完成后到手机系统相册检查文件。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果找不到相册，请查看手机的“相册”“图库”“文件”或“最近项目”。部分视频需要先在 App 中下载完成，再导出到系统相册。"
-          },
-          {
-            "type": "p",
-            "text": "**方法二：使用 USB 数据线连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-cable-phone-original.svg",
-            "alt": "USB 数据线连接手机导出照片视频示意图",
-            "caption": "USB 数据线连接手机和文件保存步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "确认手机接口。安卓手机通常需要 USB-C 或 OTG 转接头；iPhone 需要匹配 Lightning 或 USB-C 的相机转接方案。",
-              "使用相机支持的官方 USB 数据线，把相机连接到手机。只有充电线时可能只能充电，不能传文件，需要换成数据线。",
-              "打开相机电源。相机屏幕如果出现 USB 模式，请选择文件传输、U盘模式、PTP 或相机连接。",
-              "手机下拉通知栏，把 USB 用途改成文件传输、传输文件或查看文件。",
-              "打开手机自带的文件管理 App，找到 USB 存储、相机、外部设备或 Canon Digital Camera。",
-              "进入 DCIM 文件夹，再打开 Camera01 或类似文件夹。这里就是相机拍摄的照片和视频。",
-              "长按选择需要的文件，点击复制或移动。保存到手机相册、Pictures、Downloads 或你容易找到的文件夹。",
-              "复制完成后，在手机相册中刷新或重新扫描媒体文件，再安全断开数据线。"
+              "延长杆装在中轴顶部或云台下方，拧紧后再上器材。",
+              "转接器用于不同螺丝或接口规格，装好先轻摇测试。",
+              "加长后整套重心变高，户外务必降低腿管并挂重物增稳。",
+              "不要为了高度把三脚架架在台阶边缘或栏杆上。"
             ]
           },
           {
             "type": "warn",
-            "text": "传输过程中不要强行拔线。如果手机找不到相机，先更换支持数据传输的线材，或者直接使用读卡器。"
-          },
-          {
-            "type": "p",
-            "text": "**方法三：使用 USB 读卡器连接手机保存**"
-          },
-          {
-            "type": "img",
-            "src": "images/export-reader-phone-original.svg",
-            "alt": "USB 读卡器连接手机导出照片视频示意图",
-            "caption": "取出存储卡、连接读卡器和保存素材步骤"
-          },
-          {
-            "type": "olist",
-            "items": [
-              "先关闭相机，等待相机完全断电。不要热插拔存储卡。",
-              "打开相机的存储卡槽盖，轻轻按一下存储卡，卡会弹出，再把它取出。",
-              "按照缺口方向把存储卡插入 USB 读卡器。插不进去时不要硬按，换一个方向再试。",
-              "把 USB 读卡器连接到手机。安卓手机可能需要 OTG 转接头；iPhone 需要匹配接口的读卡器或转接器。",
-              "手机识别读卡器后，打开文件管理 App，找到 USB 存储、外部存储或读卡器名称。",
-              "进入 DCIM 文件夹，找到相机拍摄的图片和视频。佳能相机通常还会在 DCIM 下创建 100CANON 等文件夹。",
-              "长按选择素材，点击复制或移动到手机相册目录。建议保留原文件，确认保存成功后再格式化存储卡。",
-              "复制完成后安全弹出读卡器，再拔下读卡器并把存储卡装回相机。"
-            ]
-          },
-          {
-            "type": "tip",
-            "text": "如果复制后在文件管理里能看到、但相册没有显示，请重启相册 App，或在文件管理里选择“移动到相册/图片”后再刷新。"
-          },
-          {
-            "type": "warn",
-            "text": "不要把存储卡直接格式化，也不要删除原素材，直到确认手机和电脑中都已经成功保存。"
+            "text": "强风、临水边缘、高处栏杆都不要架设，摔机器或砸到人都很危险。"
           }
         ]
       },
       {
-        "title": "常见问题排查",
-        "icon": "🛠️",
+        "title": "按场景挑配件",
+        "icon": "🎯",
         "body": [
+          {
+            "type": "p",
+            "text": "别一次全挑齐，按拍摄场景选一两件就够。"
+          },
+          {
+            "type": "table",
+            "head": [
+              "你的场景",
+              "推荐配件"
+            ],
+            "rows": [
+              [
+                "手机直播",
+                "手机增位夹 + 小桌板"
+              ],
+              [
+                "口袋云台 Vlog",
+                "手持云台相机支架"
+              ],
+              [
+                "想拍更高机位",
+                "30CM 延长杆"
+              ],
+              [
+                "设备接口不合",
+                "转接器"
+              ],
+              [
+                "拍竖屏短视频",
+                "手机增位夹（竖夹）"
+              ]
+            ]
+          },
+          {
+            "type": "tip",
+            "text": "不确定就联系首页客服，把设备和用途说清楚，会给出更合适的组合。"
+          }
+        ]
+      },
+      {
+        "title": "收纳与归还",
+        "icon": "🧳",
+        "body": [
+          {
+            "type": "p",
+            "text": "配件小、容易丢，收的时候集中放在一个袋子里。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "卸下所有配件，检查螺丝和小零件是否齐全。",
+              "三脚架按主篇步骤收腿、降中轴。",
+              "归还前把配件清单对照一遍，拍照留存更方便。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/收纳说明.mp4",
+            "caption": "设备收纳注意事项（客服提供）"
+          }
+        ]
+      }
+    ]
+  },
+
+  "recovery-sd": {
+    "desc": "SD 卡误删或误格式化后的找回思路：立即止损，再用品牌官方工具尝试恢复。",
+    "keywords": "SD 卡 数据找回 恢复 误删 格式化 闪迪 雷克沙 官方 工具",
+    "steps": [
+      {
+        "title": "第一步：立即停止写入",
+        "icon": "⛔",
+        "body": [
+          {
+            "type": "p",
+            "text": "照片误删后，最重要的不是马上装软件，而是**别再往卡里写东西**。"
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**立刻停止拍摄**，不要再按快门，也不要录视频。",
+              "**不要格式化**，包括相机里的“格式化存储卡”选项。",
+              "不要在卡里新建、删除、移动文件，也不要拿它当 U 盘用。",
+              "先关机、拔卡，放进包里等回家再处理。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "只要卡上写了新数据，原本的照片就可能被覆盖，之后谁都救不回来。"
+          }
+        ]
+      },
+      {
+        "title": "第二步：读卡器连电脑",
+        "icon": "💻",
+        "body": [
+          {
+            "type": "p",
+            "text": "恢复只能在电脑上做，而且卡要先被电脑识别成存储设备。"
+          },
           {
             "type": "olist",
             "items": [
-              "配件不识别：关机后重新安装，确认接口方向正确。",
-              "麦克风无声：检查电量、连接状态和相机收音设置。",
-              "画面不稳：检查三脚架是否锁紧、重心是否偏移。",
-              "无法连接 App：重启相机、手机蓝牙和 Wi-Fi 后重试。",
-              "仍无法解决时，请联系客服并提供配件照片和问题描述。"
+              "准备一个读卡器，把 SD 卡插进去。",
+              "连到电脑，等系统识别出磁盘（不要双击自动打开相机软件）。",
+              "确认磁盘能看到 DCIM 文件夹，说明卡本身还能读。",
+              "如果电脑提示“需要格式化才能使用”，**先点取消**，不要格式化。"
             ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "现象",
+              "可能原因",
+              "建议"
+            ],
+            "rows": [
+              [
+                "能读但照片不见了",
+                "文件被删除或文件系统索引异常",
+                "可尝试官方恢复工具"
+              ],
+              [
+                "提示格式化",
+                "文件系统损坏",
+                "不要格式化，直接找专业恢复"
+              ],
+              [
+                "完全识别不到",
+                "卡或读卡器接触不良、卡损坏",
+                "换读卡器 / 找专业门店检测"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "第三步：用品牌官方工具",
+        "icon": "🧰",
+        "body": [
+          {
+            "type": "p",
+            "text": "闪迪和雷克沙都提供官方恢复软件，请到官方页面下载，不要从来路不明的网站拿安装包。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "先确认卡上的品牌（闪迪 SanDisk 或雷克沙 Lexar），用对应品牌工具。",
+              "去[闪迪官方下载页（RescuePRO，官方合作站）](https://www.lc-tech.com/)，或[雷克沙官方网站](https://www.lexar.com/) 获取官方版本。",
+              "安装后选择**这张 SD 卡所在的磁盘**，选择“快速扫描”。",
+              "扫描出的照片先**恢复到电脑硬盘**，不要保存回原卡。",
+              "恢复完再考虑把文件备份到手机或网盘。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "不要安装所谓的“免费破解版”或从陌生人手里拿的序列号，这类软件可能带病毒、也可能损坏卡内数据。正式版一般需要购买授权，按自己需求选择。"
+          }
+        ]
+      },
+      {
+        "title": "注意事项与风险说明",
+        "icon": "⚠️",
+        "body": [
+          {
+            "type": "p",
+            "text": "数据恢复不是百分百成功，成功率取决于误删后有没有继续写入。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "越早停止使用，找回的可能越大。",
+              "扫描失败的卡不要反复插拔、不要摔，可能真会变成物理损坏。",
+              "重要素材（婚礼、活动、旅行）建议**直接找本地专业数据恢复门店**，他们可以做底层检测。",
+              "恢复出来的文件要逐个打开确认，损坏的文件是没办法修复的。",
+              "平时养成习惯：拍完当天备份到电脑或云盘，再清理卡。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "操作有风险，数据丢失或卡片损坏的后果需自行承担；不熟悉操作时，请优先联系客服推荐的专业门店。"
+          }
+        ]
+      }
+    ]
+  },
+
+  "recovery-tf": {
+    "desc": "TF（microSD）卡误删照片或视频后的找回流程：先止损，再用官方工具尝试恢复。",
+    "keywords": "TF 卡 microSD 数据找回 恢复 误删 拍立得 影石 官方工具 读卡器",
+    "steps": [
+      {
+        "title": "第一步：立即停止写入",
+        "icon": "⛔",
+        "body": [
+          {
+            "type": "p",
+            "text": "TF 卡常见于运动相机、口袋相机、拍立得，误删后同样先**停手**。"
+          },
+          {
+            "type": "warn",
+            "text": "租赁设备请爱护使用，人为损坏需按租赁约定赔付；设备有任何异常（不开机、镜头异响、屏幕报错等），请第一时间联系客服售后，不要自行拆机维修。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "**停止拍摄**，连 Wi-Fi 传图也先别用，避免系统继续读写。",
+              "**不要格式化**，不要用相机或 App 里的“清除 / 重置存储”功能。",
+              "不要往卡里存新照片、新视频。",
+              "关机、取出卡，用干燥的盒子装好，别塞在潮湿口袋里。"
+            ]
+          },
+          {
+            "type": "video",
+            "src": "images/使用说明教程.mp4",
+            "caption": "设备使用说明（客服提供）"
+          }
+        ]
+      },
+      {
+        "title": "第二步：装读卡器连电脑",
+        "icon": "💻",
+        "body": [
+          {
+            "type": "p",
+            "text": "TF 卡要套上卡托或者专用读卡器才能插电脑，注意方向别插反。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "把 TF 卡装进转换卡托，插入读卡器。",
+              "连到电脑，等出现新的磁盘图标。",
+              "能打开 DCIM 说明卡可读；如果提示格式化，**先点取消**。",
+              "记录一下卡里的文件夹结构，恢复时更容易找到照片。"
+            ]
+          },
+          {
+            "type": "table",
+            "head": [
+              "现象",
+              "建议"
+            ],
+            "rows": [
+              [
+                "能读但文件少了",
+                "可用品牌官方工具做快速扫描"
+              ],
+              [
+                "提示“需要格式化”",
+                "千万不要格式化，直接找专业恢复"
+              ],
+              [
+                "电脑无反应",
+                "换读卡器试一次；仍不行建议找门店"
+              ]
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "TF 卡体积小，插拔时别用指甲硬撬卡槽，容易掰弯触点。"
+          }
+        ]
+      },
+      {
+        "title": "第三步：官方工具恢复流程",
+        "icon": "🧰",
+        "body": [
+          {
+            "type": "p",
+            "text": "同样只建议用品牌官方提供的软件，不要从网上随便下“免费恢复工具”。"
+          },
+          {
+            "type": "olist",
+            "items": [
+              "看清卡上品牌：闪迪卡去[官方下载站（RescuePRO）](https://www.lc-tech.com/)，雷克沙卡去[雷克沙官方网站](https://www.lexar.com/)。",
+              "安装官方软件，打开后选中 TF 卡对应的盘符。",
+              "先执行快速扫描，看能不能列出丢失的照片和视频。",
+              "勾选要恢复的文件，**恢复到电脑目录**，绝不能写回原卡。",
+              "恢复完成后把卡妥善保存，确认文件都齐全再谈是否继续使用。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "任何“破解版 / 免费序列号”都有风险，既可能违法也可能毁掉数据；需要长期使用请购买正版授权或找专业门店。"
+          }
+        ]
+      },
+      {
+        "title": "注意事项",
+        "icon": "⚠️",
+        "body": [
+          {
+            "type": "p",
+            "text": "TF 卡容量小、循环写入多，本身就比 SD 卡更容易出问题。"
+          },
+          {
+            "type": "list",
+            "items": [
+              "恢复成功率取决于后续写入情况，越早处理越好。",
+              "运动相机、行车记录类设备常年循环录制，重要片段请尽快导出。",
+              "卡出现掉速、报错、发热异常，尽量更换，不要继续用。",
+              "恢复不是百分百，重要素材建议直接交专业门店处理。",
+              "平时记录完就备份，别指望卡里一直存着。"
+            ]
+          },
+          {
+            "type": "warn",
+            "text": "数据恢复操作有风险，结果不保证；操作造成的后果需自行承担，不确定请先咨询客服。"
           }
         ]
       }
     ]
   }
-
-}
-
-
+};

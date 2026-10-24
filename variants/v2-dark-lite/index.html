@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>视感闪租 · 教程工作台</title>
+  <meta name="description" content="视感闪租设备使用教程中心：按设备类目检索相机、云台、运动相机、脚架与数据找回教程。" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="variant-v2">
+  <!-- 此页面由 tools/build-variants.py 生成；数据与交互统一来自 js/data.js、js/app.js -->
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开设备目录"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></button>
+
+      <div class="brand" aria-label="视感闪租">
+        <span class="brand-logo"></span>
+        <span class="brand-text">视感闪租</span>
+        <span class="brand-sub">教程工作台</span>
+      </div>
+
+      <nav class="topnav" aria-label="主导航">
+        <a class="topnav-link" href="#home" data-home-link>首页</a>
+        <a class="topnav-link" href="#categories">设备目录</a>
+        <a class="topnav-link" href="#services">客服</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="切换深浅主题" title="切换主题">
+          <span class="theme-icon-light"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <span class="theme-icon-dark"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-mobile-head">
+        <span>设备目录</span>
+        <button type="button" class="sidebar-close" id="sidebarClose" aria-label="关闭目录">×</button>
+      </div>
+      <div class="sidebar-head">
+        <span class="sidebar-title">设备目录</span>
+        <span class="badge" id="resultCount">0</span>
+      </div>
+      <div class="category-bar" id="categoryBar" data-mode="list"></div>
+      <div class="card-list" id="cardList"></div>
+    </aside>
+
+    <main class="content" id="content">
+      <section class="home" id="home" hidden>
+        <section class="hero">
+          <div class="hero-brand" id="homeKicker">视感闪租</div>
+          <h1 class="home-title" id="homeTitle">搜索你的设备</h1>
+          <p class="home-subtitle" id="homeSubtitle">输入型号或关键词，直接定位教程</p>
+          <label class="search search-hero">
+            <span class="search-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <input id="searchInput" type="search" placeholder="搜索设备、型号或教程关键词…" autocomplete="off" />
+          </label>
+          <div class="hero-meta" id="statRow"></div>
+        </section>
+
+        <section class="block" id="categories">
+          <div class="block-head">
+            <h2 class="block-title">按设备类型浏览</h2>
+          </div>
+          <div class="home-grid" id="homeGrid"></div>
+        </section>
+
+        <section class="block" id="services">
+          <div class="block-head">
+            <h2 class="block-title">客服支持</h2>
+          </div>
+          <div class="home-services" id="homeServices"></div>
+        </section>
+      </section>
+
+      <div class="empty" id="empty">
+        <div class="empty-icon">◎</div>
+        <h2>请从左侧选择设备</h2>
+        <p>选中任意设备即可查看对应的完整使用教程</p>
+      </div>
+      <article class="detail" id="detail" hidden></article>
+
+      <footer class="site-foot">
+        <span>© 视感闪租 · 设备使用教程中心</span>
+        <span>教程内容持续更新，如有疑问请联系客服</span>
+      </footer>
+    </main>
+
+  </div>
+
+  <div class="mask" id="mask"></div>
+  <div class="toast" id="toast"><span class="toast-dot"></span><span class="toast-text"></span></div>
+  <button class="to-top" id="toTop" aria-label="回到顶部" title="回到顶部">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="page-loader" id="pageLoader"><span></span></div>
+
+  <script>
+    /* 首帧主题：避免深浅主题闪烁 */
+    (function () {
+      try {
+        var t = localStorage.getItem("tutorial-site-theme");
+        var d = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t || (d ? "dark" : "light");
+      } catch (e) {}
+    })();
+  </script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
