@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+<defs>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a626e"/><stop offset="1" stop-color="#424852"/></linearGradient>
+<linearGradient id="bodyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#424852"/><stop offset="1" stop-color="#2c3138"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa6d6"/><stop offset=".45" stop-color="#1b2f4d"/><stop offset="1" stop-color="#000"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2230"/><stop offset="1" stop-color="#0b0e13"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f9"/><stop offset=".5" stop-color="#cfd5dd"/><stop offset="1" stop-color="#98a0ab"/></linearGradient>
+<radialGradient id="shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+
+</defs>
+<rect width="640" height="640" fill="#ffffff"/>
+<ellipse cx="320.0" cy="548" rx="190" ry="26" fill="url(#shadow)"/>
+<g transform="translate(320 312) scale(1.16)">
+
+  <!-- 手柄 -->
+  <rect x="-46" y="18" width="92" height="150" rx="26" fill="url(#bodyD)"/>
+  <rect x="-20" y="30" width="40" height="66" rx="12" fill="#20242a"/>
+  <path d="M-14 62h28" stroke="#3a4048" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="-14" cy="120" r="9" fill="#20252c" stroke="#3a4048" stroke-width="3"/>
+  
+  <!-- 云台臂 -->
+  <path d="M0 18V-42" stroke="#30353d" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="0" cy="-42" r="24" fill="url(#body)" stroke="#000" stroke-opacity=".25"/>
+  <!-- 屏幕机身 -->
+  <rect x="-86" y="-232" width="172" height="196" rx="26" fill="url(#body)"/>
+  <rect x="-74" y="-220" width="148" height="172" rx="16" fill="url(#screen)"/>
+  <rect x="-74" y="-220" width="148" height="60" rx="16" fill="#22304a" opacity=".55"/>
+  <circle cx="-52" cy="-206" r="4" fill="#f59e0b"/>
+  <rect x="-38" y="-210" width="78" height="8" rx="4" fill="#5b6472" opacity=".7"/>
+  <!-- 云台镜头 -->
+  <circle cx="-34" cy="-96" r="34" fill="url(#bodyD)"/>
+  <circle cx="-34" cy="-96" r="26" fill="url(#glass)"/>
+  <circle cx="-34" cy="-96" r="13" fill="#05070a"/>
+  <circle cx="-42" cy="-106" r="6" fill="#8fa3bd" opacity=".65"/>
+  <!-- 侧边按键 -->
+  <rect x="86" y="-170" width="10" height="42" rx="5" fill="#4a5058"/>
+  <rect x="86" y="-112" width="10" height="26" rx="5" fill="#20252c"/>
+  <!-- 转轴 -->
+  <circle cx="0" cy="18" r="12" fill="#4a5058"/>
+
+</g>
+</svg>

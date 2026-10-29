@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+<defs>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a626e"/><stop offset="1" stop-color="#424852"/></linearGradient>
+<linearGradient id="bodyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#424852"/><stop offset="1" stop-color="#2c3138"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa6d6"/><stop offset=".45" stop-color="#1b2f4d"/><stop offset="1" stop-color="#000"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2230"/><stop offset="1" stop-color="#0b0e13"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f9"/><stop offset=".5" stop-color="#cfd5dd"/><stop offset="1" stop-color="#98a0ab"/></linearGradient>
+<radialGradient id="shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+
+</defs>
+<rect width="640" height="640" fill="#ffffff"/>
+<ellipse cx="320.0" cy="548" rx="190" ry="26" fill="url(#shadow)"/>
+<g transform="translate(320 312) scale(1.16)">
+
+  <rect x="-160" y="-76" width="320" height="162" rx="26" fill="url(#body)"/>
+  <!-- 手柄凸起 -->
+  <rect x="-160" y="-52" width="46" height="138" rx="20" fill="url(#bodyD)"/>
+  <path d="M-146 -40v110" stroke="#171b21" stroke-width="4" opacity=".4"/>
+  <!-- 镜头（较厚） -->
+  <circle cx="-40" cy="4" r="86" fill="#30353d"/>
+  <circle cx="-40" cy="4" r="72" fill="url(#metal)"/>
+  <circle cx="-40" cy="4" r="56" fill="url(#glass)"/>
+  <circle cx="-40" cy="4" r="24" fill="#05070a"/>
+  <!-- 弹出闪光灯 -->
+  <rect x="-150" y="-104" width="52" height="30" rx="6" fill="#2f343b"/>
+  <rect x="-146" y="-100" width="44" height="22" rx="4" fill="#eef1f5"/>
+  <!-- 双层转盘 -->
+  <circle cx="70" cy="-90" r="40" fill="url(#metal)"/>
+  <circle cx="70" cy="-90" r="26" fill="#8e959f"/>
+  <path d="M70 -112v-10" stroke="#3a4048" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="126" cy="-70" r="20" fill="#4a5058"/>
+  <!-- 翻转屏 -->
+  <rect x="34" y="-40" width="104" height="106" rx="10" fill="#20252c"/>
+  <rect x="39" y="-35" width="94" height="96" rx="7" fill="url(#screen)"/>
+  <rect x="39" y="-35" width="94" height="28" rx="7" fill="#2b3f61" opacity=".7"/>
+
+</g>
+</svg>

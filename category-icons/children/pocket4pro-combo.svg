@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="body" x1="10" y1="7" x2="54" y2="57" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFDFB"/><stop offset="1" stop-color="#F6E4D8"/></linearGradient>
+    <linearGradient id="accent" x1="14" y1="8" x2="50" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#D97648"/><stop offset="1" stop-color="#9F4225"/></linearGradient>
+  </defs>
+  <path d="M31 29v10" stroke="url(#accent)" stroke-width="3.1" stroke-linecap="round"/>
+  <rect x="12" y="7" width="36" height="22" rx="7" fill="url(#body)" stroke="url(#accent)" stroke-width="3"/>
+  <circle cx="22" cy="18" r="6.8" fill="#5A3425" stroke="url(#accent)" stroke-width="2.5"/><circle cx="39" cy="18" r="6.8" fill="#5A3425" stroke="url(#accent)" stroke-width="2.5"/>
+  <circle cx="22" cy="18" r="2.9" fill="#B8643E"/><circle cx="39" cy="18" r="2.9" fill="#B8643E"/><circle cx="19.8" cy="15.8" r="1" fill="#FFF"/><circle cx="36.8" cy="15.8" r="1" fill="#FFF"/>
+  <path d="M25 39h12l4.5 6.5v6c0 2.8-2.2 5-5 5h-11c-2.8 0-5-2.2-5-5v-6L25 39Z" fill="url(#body)" stroke="url(#accent)" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="42" y="2" width="15" height="9" rx="3" fill="#F0C8B4" stroke="url(#accent)" stroke-width="2.5"/>
+  <path d="M47 11v7" stroke="url(#accent)" stroke-width="2.6" stroke-linecap="round"/><path d="M33 58v4M25 63h16" stroke="url(#accent)" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M20 20 15 16M52 13l4-3" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

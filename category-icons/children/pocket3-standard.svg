@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="body" x1="10" y1="7" x2="54" y2="57" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFDFB"/><stop offset="1" stop-color="#F6E4D8"/></linearGradient>
+    <linearGradient id="accent" x1="14" y1="8" x2="50" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#D97648"/><stop offset="1" stop-color="#9F4225"/></linearGradient>
+  </defs>
+  
+  <path d="M32 29v10" stroke="url(#accent)" stroke-width="3.2" stroke-linecap="round"/>
+  <rect x="18" y="7" width="28" height="22" rx="6.5" fill="url(#body)" stroke="url(#accent)" stroke-width="3"/>
+  <circle cx="32" cy="18" r="6.6" fill="#5A3425" stroke="url(#accent)" stroke-width="2.5"/>
+  <circle cx="32" cy="18" r="3" fill="#B8643E"/><circle cx="29.7" cy="15.5" r="1" fill="#FFF"/>
+  <path d="M26 39h12l5 7v7c0 3-2.4 5.5-5.5 5.5h-11c-3.1 0-5.5-2.5-5.5-5.5v-7l5-7Z" fill="url(#body)" stroke="url(#accent)" stroke-width="3" stroke-linejoin="round"/><path d="M17 18 11.5 14M47 18l5.5-4" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+</svg>

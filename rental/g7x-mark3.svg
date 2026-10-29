@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+<defs>
+<linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a626e"/><stop offset="1" stop-color="#424852"/></linearGradient>
+<linearGradient id="bodyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#424852"/><stop offset="1" stop-color="#2c3138"/></linearGradient>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa6d6"/><stop offset=".45" stop-color="#1b2f4d"/><stop offset="1" stop-color="#000"/></linearGradient>
+<linearGradient id="screen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2230"/><stop offset="1" stop-color="#0b0e13"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f6f9"/><stop offset=".5" stop-color="#cfd5dd"/><stop offset="1" stop-color="#98a0ab"/></linearGradient>
+<radialGradient id="shadow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+
+</defs>
+<rect width="640" height="640" fill="#ffffff"/>
+<ellipse cx="320.0" cy="548" rx="190" ry="26" fill="url(#shadow)"/>
+<g transform="translate(320 312) scale(1.16)">
+
+  <rect x="-150" y="-70" width="300" height="150" rx="30" fill="url(#body)"/>
+  <path d="M-70 -70l12-22h70l12 22z" fill="#2f343b"/>
+  <!-- 镜头（伸缩） -->
+  <circle cx="-62" cy="6" r="74" fill="#30353d"/>
+  <circle cx="-62" cy="6" r="62" fill="url(#metal)"/>
+  <circle cx="-62" cy="6" r="48" fill="url(#glass)"/>
+  <circle cx="-62" cy="6" r="22" fill="#05070a"/>
+  <circle cx="-82" cy="-18" r="10" fill="#9fb4cc" opacity=".6"/>
+  <!-- 翻转屏 -->
+  <rect x="42" y="-52" width="96" height="116" rx="10" fill="#20252c"/>
+  <rect x="47" y="-47" width="86" height="106" rx="7" fill="url(#screen)"/>
+  <rect x="47" y="-47" width="86" height="32" rx="7" fill="#2b3f61" opacity=".7"/>
+  <!-- 闪光灯与按键 -->
+  <rect x="-140" y="-58" width="34" height="14" rx="7" fill="#dfe3e9"/>
+  <circle cx="96" cy="-72" r="14" fill="url(#metal)"/>
+  <rect x="-20" y="-88" width="46" height="18" rx="9" fill="#4a5058"/>
+
+</g>
+</svg>
