@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>设计方案预览 · 视感闪租设备使用教程中心</title>
   <style>
     :root {
@@ -52,6 +52,37 @@
     footer { max-width: 1120px; margin: 36px auto 0; font-size: 12.5px; line-height: 2; color: var(--muted); }
     footer code { padding: 1px 5px; background: #eef2f8; border-radius: 5px; color: var(--ink-2); }
     @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+
+    /* 回到顶部（与主站一致） */
+    .to-top {
+      position: fixed; right: 24px; bottom: 28px; z-index: 90;
+      width: 46px; height: 46px; display: grid; place-items: center;
+      color: var(--primary); background: rgba(255,255,255,.92);
+      border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: 0 10px 26px -12px rgba(15,23,42,.35), 0 2px 6px -2px rgba(15,23,42,.12);
+      backdrop-filter: blur(10px) saturate(150%);
+      opacity: 0; visibility: hidden; transform: translateY(12px) scale(.96);
+      transition: opacity .28s cubic-bezier(.22,.61,.36,1), transform .28s cubic-bezier(.22,.61,.36,1),
+                  visibility .28s, color .2s, border-color .2s, background .2s;
+    }
+    .to-top.show { opacity: 1; visibility: visible; transform: none; }
+    .to-top:hover { color: #fff; background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
+    .to-top:active { transform: translateY(-1px) scale(.97); }
+    .to-top:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .to-top svg { transition: transform .25s cubic-bezier(.22,.61,.36,1); }
+    .to-top:hover svg { transform: translateY(-2px); }
+    .to-top::after {
+      content: "回到顶部"; position: absolute; right: calc(100% + 10px); top: 50%;
+      transform: translateY(-50%) translateX(6px); padding: 5px 10px;
+      font-size: 12px; font-weight: 600; white-space: nowrap; color: #fff;
+      background: rgba(15,23,42,.86); border-radius: 7px; opacity: 0; pointer-events: none;
+      transition: opacity .2s, transform .2s cubic-bezier(.22,.61,.36,1);
+    }
+    .to-top:hover::after, .to-top:focus-visible::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+    @media (max-width: 600px) {
+      .to-top { right: 14px; bottom: 16px; width: 42px; height: 42px; border-radius: 12px; }
+      .to-top::after { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -128,5 +159,33 @@
     <div>根目录 <code>index.html</code> 当前为方案一；选定方案后可执行 <code>python tools/build-variants.py</code> 重新生成，或直接把对应变体的页面复制到根目录。</div>
   </footer>
 
+
+  <button class="to-top" id="toTop" aria-label="回到顶部" title="回到顶部">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script>
+    /* 回到顶部：滚动超过 420px 出现，点击平滑回到本页顶部 */
+    (function () {
+      var btn = document.getElementById("toTop");
+      if (!btn) return;
+      var ticking = false;
+      function sync() {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        btn.classList.toggle("show", window.scrollY > Math.min(420, max * 0.33));
+        ticking = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(sync);
+      }, { passive: true });
+      btn.addEventListener("click", function () {
+        var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      });
+      sync();
+    })();
+  </script>
 </body>
 </html>

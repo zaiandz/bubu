@@ -42,6 +42,16 @@
 - 内容源文件：`tools/newcontent/<教程 id>.json`，改完运行 `python tools/merge-tutorials.py` 合并进 `js/data.js`
   （脚本会校验字段、块类型与图片路径是否存在，避免破图），再运行 `python tools/build-variants.py` 同步三套方案。
 
+
+## 设备租赁页（rental.html）
+
+首页顶栏「设备目录」指向 `rental.html`，是按首页 25 个型号构建的相机租赁展示页：
+
+- 文件：`rental.html` + `css/rental.css` + `js/rental-data.js`（数据）+ `js/rental.js`（交互）+ `images/rental/`（按类目配色的产品线条图）
+- 交互：类目筛选、搜索、点击卡片弹出参数详情（Esc / 遮罩 / × 关闭）、客服二维码放大
+- 维护与素材来源说明见 [docs/rental-page.md](docs/rental-page.md)
+- 型号 id 与 `js/data.js` 一一对应，增删机型时两边同步修改
+
 ## 修改分类与教程
 
 ### 0. 目录调整与生成脚本

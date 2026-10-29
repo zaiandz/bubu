@@ -562,6 +562,12 @@
       var count = displayProducts.filter(function (p) { return p.category === cat.value; }).length;
       var card = document.createElement("article");
       card.className = "home-card";
+      /* 型号名很长（如「佳能微单 + 100-400mm 超远摄」）时清单换单列，保证名称完整显示 */
+      var longName = (cat.children || []).some(function (ch) {
+        var text = String(ch.label || ch.value || "");
+        return text.length >= 15 && /\d+\s*-?\s*\d*\s*mm/i.test(text);
+      });
+      if (longName) card.classList.add("is-long-names");
       card.style.setProperty("--home-color", cat.homeColor || (template && template.color) || "#2563eb");
       card.style.animationDelay = (index * 60) + "ms";
 
@@ -581,7 +587,11 @@
         '<span class="home-card-copy">' +
           '<span class="home-card-brand">' + esc(cat.brand || brand) + "</span>" +
           '<span class="home-card-title">' + esc(shortLabel) + (shortLabel !== fullLabel
-            ? '<span class="home-card-title-more">' + esc(fullLabel.substring(shortLabel.length)) + "</span>"
+            ? '<span class="home-card-title-more">' + esc(
+                /* 副标题补上品牌前缀：避免出现孤立的「· Pocket 系列」 */
+                (fullLabel.indexOf(shortLabel) === 0 ? fullLabel.substring(shortLabel.length) : fullLabel)
+                  .replace(/^\s*·\s*/, (cat.brand ? esc(cat.brand) + " · " : ""))
+              ) + "</span>"
             : "") + "</span>" +
           '<span class="home-card-desc">' + esc(cat.homeDesc || ("查看" + fullLabel + "教程")) + "</span>" +
         "</span>" +
@@ -739,16 +749,22 @@
     }
   }
 
-  /* 卡片列表模式：侧栏只列类目（不展开型号），型号在首页卡片中选择 */
-  function renderCategoryCards() {
+  /* 侧栏「教程总览」按钮：目录树与卡片列表两种模式共用，避免重复代码 */
+  function createHomeButton(withAnimation) {
     var homeBtn = document.createElement("button");
     homeBtn.type = "button";
     homeBtn.className = "cat-btn cat-home-btn" + (state.page === "home" ? " active" : "");
     homeBtn.dataset.home = "home";
     homeBtn.setAttribute("aria-pressed", state.page === "home" ? "true" : "false");
     homeBtn.innerHTML = '<span class="cat-home-icon" aria-hidden="true">⌂</span><span>教程总览</span>';
+    if (withAnimation) homeBtn.style.animation = "fadeUp .35s var(--ease) both";
     homeBtn.addEventListener("click", showHome);
-    els.categoryBar.appendChild(homeBtn);
+    return homeBtn;
+  }
+
+  /* 卡片列表模式：侧栏只列类目（不展开型号），型号在首页卡片中选择 */
+  function renderCategoryCards() {
+    els.categoryBar.appendChild(createHomeButton(false));
 
     var searching = !!state.keyword.trim();
     CATEGORIES.forEach(function (cat, i) {
@@ -790,15 +806,7 @@
   /* 目录树模式：首页按钮 + 全部类目 + 子目录按钮 */
   function renderCategoryTree() {
     /* 侧边首页按钮 */
-    var homeBtn = document.createElement("button");
-    homeBtn.type = "button";
-    homeBtn.className = "cat-btn cat-home-btn" + (state.page === "home" ? " active" : "");
-    homeBtn.dataset.home = "home";
-    homeBtn.setAttribute("aria-pressed", state.page === "home" ? "true" : "false");
-    homeBtn.innerHTML = '<span class="cat-home-icon" aria-hidden="true">⌂</span><span>教程总览</span>';
-    homeBtn.style.animation = "fadeUp .35s var(--ease) both";
-    homeBtn.addEventListener("click", showHome);
-    els.categoryBar.appendChild(homeBtn);
+    els.categoryBar.appendChild(createHomeButton(true));
 
     var searching = !!state.keyword.trim();
 
@@ -891,18 +899,11 @@
 
   /* 紧凑列表模式：单列可展开式目录（类目占用空间更小，更适合侧边工作台） */
   function renderCategoryList() {
-    var homeBtn = document.createElement("button");
-    homeBtn.type = "button";
-    homeBtn.className = "cat-btn cat-home-btn" + (state.page === "home" ? " active" : "");
-    homeBtn.dataset.home = "home";
-    homeBtn.innerHTML = '<span class="cat-home-icon" aria-hidden="true">⌂</span><span>首页</span>';
-    homeBtn.addEventListener("click", showHome);
-
     var groupHead = document.createElement("div");
     groupHead.className = "group-label";
     groupHead.textContent = "设备类目";
 
-    els.categoryBar.appendChild(homeBtn);
+    els.categoryBar.appendChild(createHomeButton(false));
     els.categoryBar.appendChild(groupHead);
 
     CATEGORIES.forEach(function (cat, i) {
@@ -930,6 +931,7 @@
         "</span>";
       btn.dataset.value = cat.value;
       btn.dataset.child = "";
+      btn.setAttribute("aria-pressed", state.category === cat.value ? "true" : "false");
       btn.style.animation = "fadeUp .35s var(--ease) " + (i * 40) + "ms both";
 
       /** 整行点击：展开 / 收起该类的型号（型号本身是独立的教程入口） */
@@ -969,6 +971,10 @@
           childBtn.dataset.value = cat.value;
           childBtn.dataset.child = childValue;
           childBtn.tabIndex = isExpanded ? 0 : -1;
+          childBtn.setAttribute(
+            "aria-pressed",
+            state.category === cat.value && state.subcategory === childValue ? "true" : "false"
+          );
           childBtn.style.animation = "fadeUp .35s var(--ease) " + (j * 25 + 20) + "ms both";
           childBtn.addEventListener("click", function () {
             openHomeDirectory(cat.value, childValue);
@@ -1598,6 +1604,24 @@
   }
 
   /* ---------------- 搜索 ---------------- */
+  // 功能：搜索无结果时显示「没有找到」提示，避免页面一片空白
+  function syncEmptyState() {
+    if (!els.empty) return;
+    var hasResult = getFiltered().length > 0;
+    els.empty.hidden = hasResult;
+    if (hasResult) return;
+    /* 文案随场景变化，指引用户下一步操作 */
+    var title = els.empty.querySelector("h2");
+    var desc = els.empty.querySelector("p");
+    if (state.keyword.trim()) {
+      if (title) title.textContent = "没有找到匹配的教程";
+      if (desc) desc.textContent = "换个关键词试试，或清空搜索框查看全部设备";
+    } else {
+      if (title) title.textContent = "请从左侧选择设备";
+      if (desc) desc.textContent = "左侧目录已按设备类型分类，点击任意型号即可查看教程";
+    }
+  }
+
   // 功能：绑定所有搜索框（顶部 / 首页），输入即筛选
   function bindSearch() {
     var timer = null;
@@ -1611,13 +1635,22 @@
         });
         timer = setTimeout(function () {
           state.keyword = val;
-          if (state.page !== "home" && val.trim()) {
-            showTutorialView();
-            state.category = "all";
-            state.subcategory = "";
-            syncCategoryButtons();
-            if (els.empty) els.empty.hidden = false;
+          if (val.trim()) {
+            /* 有搜索词：切到教程视图展示结果（首页视图没有结果区，会看起来毫无反应） */
+            if (state.page === "home") {
+              showTutorialView();
+              state.category = "all";
+              state.subcategory = "";
+              syncCategoryButtons();
+            }
             if (els.detail) els.detail.hidden = true;
+            syncEmptyState();
+          } else {
+            /* 清空搜索词：清掉空状态；若停留在教程视图则回到首页 */
+            if (els.empty) els.empty.hidden = true;
+            if (state.page === "tutorial") {
+              showHome();
+            }
           }
           renderSidebar();
         }, 180);
@@ -1808,7 +1841,11 @@
         var max = doc.scrollHeight - doc.clientHeight;
         var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
         if (els.scrollProgress) els.scrollProgress.style.width = pct + "%";
-        if (els.toTop) els.toTop.classList.toggle("show", doc.scrollTop > 420);
+        if (els.toTop) {
+          // 自适应阈值：内容较短时（可滚动距离小）也能出现按钮
+          var threshold = Math.min(420, max * 0.33);
+          els.toTop.classList.toggle("show", doc.scrollTop > threshold);
+        }
         document.body.classList.toggle("is-scrolled", doc.scrollTop > 8);
         ticking = false;
       });

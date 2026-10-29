@@ -307,12 +307,12 @@ def transform_data(src):
 HTML_COMMENT_STYLE = "  <!-- 此页面由 tools/build-variants.py 生成；数据与交互统一来自 js/data.js、js/app.js -->\n"
 
 
-def page(head_title, body_class, header, layout, home_sections, modal_head, css):
+def page(head_title, body_class, header, layout, home_sections, modal_head, css, rental="rental.html"):
     return f'''<!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>{head_title}</title>
   <meta name="description" content="视感闪租设备使用教程中心：按设备类目检索相机、云台、运动相机、脚架与数据找回教程。" />
   <link rel="stylesheet" href="{css}" />
@@ -382,6 +382,8 @@ ICON_MENU = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
 
 # ------------------------------- V1 企业专业蓝
 def v1():
+    # 设备目录页位于站点根目录，方案页需回退两级
+    rental = "../../rental.html"
     header = f'''  <header class="topbar">
     <div class="topbar-inner">
       <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开设备目录">{ICON_MENU}</button>
@@ -394,7 +396,7 @@ def v1():
 
       <nav class="topnav" aria-label="主导航">
         <a class="topnav-link" href="#home" data-home-link>教程总览</a>
-        <a class="topnav-link" href="#categories">设备目录</a>
+        <a class="topnav-link" href="{rental}">设备目录</a>
         <a class="topnav-link" href="#services">客服支持</a>
       </nav>
 
@@ -429,13 +431,13 @@ def v1():
       <div class="category-bar" id="categoryBar" data-mode="tree"></div>
       <div class="card-list" id="cardList"></div>'''
 
-    home_sections = '''        <section class="hero">
+    home_sections = f'''        <section class="hero">
           <div class="hero-main">
             <span class="eyebrow" id="homeKicker">视感闪租</span>
             <h1 class="home-title" id="homeTitle">设备使用教程中心</h1>
             <p class="home-subtitle" id="homeSubtitle">选择下方目录，快速查看对应设备的使用教程</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#categories">浏览设备目录</a>
+              <a class="btn btn-primary" href="{rental}">浏览设备目录</a>
               <a class="btn btn-outline" href="#services">联系客服支持</a>
             </div>
           </div>
@@ -480,11 +482,14 @@ def v1():
         home_sections,
         modal_head,
         "css/style.css",
+        "../../rental.html",
     )
 
 
 # ------------------------------- V2 深色精简工作台
 def v2():
+    # 设备目录页位于站点根目录，方案页需回退两级
+    rental = "../../rental.html"
     header = f'''  <header class="topbar">
     <div class="topbar-inner">
       <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开设备目录">{ICON_MENU}</button>
@@ -497,7 +502,7 @@ def v2():
 
       <nav class="topnav" aria-label="主导航">
         <a class="topnav-link" href="#home" data-home-link>首页</a>
-        <a class="topnav-link" href="#categories">设备目录</a>
+        <a class="topnav-link" href="{rental}">设备目录</a>
         <a class="topnav-link" href="#services">客服</a>
       </nav>
 
@@ -560,11 +565,14 @@ def v2():
         home_sections,
         modal_head,
         "css/style.css",
+        "../../rental.html",
     )
 
 
 # ------------------------------- V3 资料库编辑风
 def v3():
+    # 设备目录页位于站点根目录，方案页需回退两级
+    rental = "../../rental.html"
     header = f'''  <header class="topbar">
     <div class="topbar-inner">
       <button class="icon-btn menu-btn" id="menuToggle" aria-label="打开设备目录">{ICON_MENU}</button>
@@ -579,7 +587,7 @@ def v3():
 
       <nav class="topnav" aria-label="主导航">
         <a class="topnav-link" href="#home" data-home-link>教程库首页</a>
-        <a class="topnav-link" href="#categories">设备目录</a>
+        <a class="topnav-link" href="{rental}">设备目录</a>
         <a class="topnav-link" href="#services">客服</a>
       </nav>
 
@@ -648,7 +656,14 @@ def v3():
         home_sections,
         modal_head,
         "css/style.css",
+        "../../rental.html",
     )
+
+
+def prefix_images(content):
+    """方案页面位于 variants/<方案名>/，图片在站点根目录 images/。
+    生成时统一把 "images/" 前缀改为 "../../images/"，避免子目录页面图片全部 404。"""
+    return content.replace('"images/', '"../../images/').replace("'images/", "'../../images/")
 
 
 def write(path, content):
@@ -675,13 +690,24 @@ def main():
         base = os.path.join(ROOT, "variants", name)
         if not data_only:
             write(os.path.join(base, "index.html"), html)
-        write(os.path.join(base, "js", "data.js"), data)
+        write(os.path.join(base, "js", "data.js"), prefix_images(data))
 
         with open(os.path.join(ROOT, "js", "app.js"), encoding="utf-8") as f:
-            write(os.path.join(base, "js", "app.js"), f.read())
+            write(os.path.join(base, "js", "app.js"), prefix_images(f.read()))
 
         with open(os.path.join(ROOT, "js", "illustrations.js"), encoding="utf-8") as f:
-            write(os.path.join(base, "js", "illustrations.js"), f.read())
+            write(os.path.join(base, "js", "illustrations.js"), prefix_images(f.read()))
+
+        # 样式表：三套方案共用根目录 css/style.css（此前漏拷，导致子方案页面无样式）
+        # 按字节原样复制，避免换行符被改写导致三份样式表不一致
+        css_src = os.path.join(ROOT, "css", "style.css")
+        css_dst = os.path.join(base, "css", "style.css")
+        os.makedirs(os.path.dirname(css_dst), exist_ok=True)
+        with open(css_src, "rb") as f:
+            css_bytes = f.read()
+        with open(css_dst, "wb") as f:
+            f.write(css_bytes)
+        print("copied", os.path.relpath(css_dst, ROOT), len(css_bytes), "bytes")
 
 
 if __name__ == "__main__":

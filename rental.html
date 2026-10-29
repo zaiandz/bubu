@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>设备租赁 · 视感闪租</title>
+  <meta name="description" content="视感闪租相机租赁：手持云台、运动相机、全景相机、微单、卡片机、复古 CCD、三脚架与数据找回服务，支持在线客服咨询。" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/rental.css" />
+</head>
+<body class="variant-v1 rental-page">
+  <!-- 说明：本页为纯静态页面，数据来自 js/rental-data.js，交互全部由前端完成 -->
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <button class="icon-btn menu-btn" id="rentalMenu" aria-label="打开类目快捷导航">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      </button>
+
+      <a class="brand" href="index.html" aria-label="视感闪租 首页">
+        <span class="brand-logo"></span>
+        <span class="brand-text">视感闪租</span>
+        <span class="brand-sub">设备租赁</span>
+      </a>
+
+      <nav class="topnav" aria-label="主导航">
+        <a class="topnav-link" href="index.html">教程总览</a>
+        <a class="topnav-link active" href="rental.html" aria-current="page">设备目录</a>
+        <a class="topnav-link" href="#support">客服支持</a>
+      </nav>
+
+      <label class="search search-top">
+        <span class="search-icon"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <input id="rentalSearch" type="search" placeholder="搜索型号、品牌或用途…" autocomplete="off" />
+        <kbd class="search-kbd">/</kbd>
+      </label>
+
+      <div class="topbar-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="切换深浅主题" title="切换主题">
+          <span class="theme-icon-light"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+          <span class="theme-icon-dark"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="btn-help" type="button" data-support>联系客服</button>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+  </header>
+
+  <main class="rental">
+
+    <!-- 1. 首屏：转化入口 + 数据背书 -->
+    <section class="rt-hero">
+      <div class="rt-hero-main">
+        <span class="eyebrow">湖北视感闪租 · 相机租赁</span>
+        <h1 class="home-title">想拍就租，到店即取</h1>
+        <p class="home-subtitle">
+          8 大类目、25 个型号整装待发：手持云台、运动相机、全景相机、微单、卡片机、复古 CCD，
+          外加三脚架与内存卡找回服务。每台设备都配专属图文教程，租到手照着拍就行。
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-support>立即咨询租赁</button>
+          <a class="btn btn-outline" href="#lineup">浏览全部机型</a>
+        </div>
+        <div class="rt-stat-row" id="rentalStats"></div>
+      </div>
+
+      <aside class="rt-hero-card" aria-label="租赁流程">
+        <div class="rt-hero-card-title">租赁流程</div>
+        <ol class="rt-steps">
+          <li><span>01</span>选机型，联系客服确认档期</li>
+          <li><span>02</span>到店取机，当面验机试拍</li>
+          <li><span>03</span>照着教程开拍，随拍随问</li>
+          <li><span>04</span>归还设备，素材已导出</li>
+        </ol>
+        <div class="rt-hero-badge">
+          <strong>当日可租</strong>
+          <span>库存实时更新，先到先得</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- 2. 类目快捷筛选 -->
+    <section class="rt-filter" aria-label="按类目筛选">
+      <div class="rt-filter-inner" id="rentalFilter"></div>
+      <div class="rt-filter-meta">
+        <span id="rentalCount">25 个型号</span>
+        <button class="rt-clear" type="button" id="rentalClear" hidden>清除筛选</button>
+      </div>
+    </section>
+
+    <!-- 3. 机型网格 -->
+    <section class="rt-lineup" id="lineup">
+      <div class="rt-empty" id="rentalEmpty" hidden>
+        <span class="no-result-icon" aria-hidden="true">⌕</span>
+        没有找到匹配的机型<br><span>换个关键词，或点上方「全部」重新查看</span>
+      </div>
+      <div id="rentalSections"></div>
+    </section>
+
+    <!-- 4. 客服支持 -->
+    <section class="rt-support" id="support">
+      <div class="block-head">
+        <h2 class="block-title">在线租赁客服</h2>
+        <p class="block-desc">扫码加客服，询问档期、价格与配件，售后问题同样可以找这里</p>
+      </div>
+      <div class="home-services" id="rentalServices"></div>
+      <p class="rt-support-note">
+        提示：客服信息与首页 <a href="index.html">教程总览</a> 一致；扫码前请确认是「视感闪租」官方二维码，谨防假冒。
+      </p>
+    </section>
+
+    <footer class="site-foot">
+      <span>© 视感闪租 · 设备租赁</span>
+      <span>参数以品牌官方页面与实物为准，页面仅供租赁参考</span>
+    </footer>
+  </main>
+
+  <!-- 参数详情弹窗 -->
+  <div class="rt-modal" id="rentalModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="rt-modal-backdrop" data-close></div>
+    <div class="rt-modal-panel" role="document">
+      <button class="rt-modal-close" type="button" data-close aria-label="关闭参数详情">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      </button>
+      <div class="rt-modal-body" id="rentalModalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="rentalToast"><span class="toast-dot"></span><span class="toast-text"></span></div>
+  <button class="to-top" id="rentalTop" aria-label="回到顶部">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5m0 0l-6 6m6-6l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script>
+    /* 首帧主题，避免闪烁（与教程页一致） */
+    (function () {
+      try {
+        var t = localStorage.getItem("tutorial-site-theme");
+        var d = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t || (d ? "dark" : "light");
+      } catch (e) {}
+    })();
+  </script>
+  <script src="js/rental-data.js"></script>
+  <script src="js/rental.js"></script>
+</body>
+</html>

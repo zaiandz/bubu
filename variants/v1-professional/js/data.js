@@ -40,8 +40,8 @@ const SITE_CONFIG = {
   subtitle: "设备使用教程中心",
   logo: "",
   // logo-mark 为从方形 Logo 中裁出的图形标记；如需整张图可改回 images/视感闪租 LOGO-02.jpg
-  logoIcon: "images/logo-mark.png",
-  logoImage: "images/视感闪租 LOGO-02.jpg",
+  logoIcon: "../../images/logo-mark.png",
+  logoImage: "../../images/视感闪租 LOGO-02.jpg",
   searchPlaceholder: "搜索设备、型号或教程关键词…",
   // [配置] logoImage 填写图片路径后优先显示图片；留空时显示 logo 表情
 };
@@ -63,13 +63,13 @@ const HOME_CONFIG = {
     {
       title: "在线租赁客服",
       hours: "早9:20—晚11:30",
-      qr: "images/客服售后二维码.jpg",
+      qr: "../../images/客服售后二维码.jpg",
       qrText: "扫码联系租赁客服"
     },
     {
       title: "售后客服",
       hours: "早9:00—晚11:30",
-      qr: "images/客服售后二维码.jpg",
+      qr: "../../images/客服售后二维码.jpg",
       qrText: "扫码联系售后客服"
     }
   ]
@@ -85,7 +85,7 @@ const CATEGORIES = [
     brand: "DJI",
     homeDesc: "三轴机械防抖，Vlog 与旅拍随身影视机",
     icon: "🎥",
-    iconImage: "images/category-icons/gimbal-camera.svg",
+    iconImage: "../../images/category-icons/gimbal-camera.svg",
     children: [
       { id: "gimbal-phone",  value: "大疆pocket3标准版",   label: "Pocket 3 标准版",   icon: "📱" },
       { id: "gimbal-one",  value: "大疆pocket3长续航版",   label: "Pocket 3 长续航版",   icon: "📱" },
@@ -101,7 +101,7 @@ const CATEGORIES = [
     brand: "Insta360",
     homeDesc: "防水耐摔，第一视角记录户外与运动瞬间",
     icon: "🎿",
-    iconImage: "images/category-icons/action-camera.svg",
+    iconImage: "../../images/category-icons/action-camera.svg",
     children: [
       { id: "action-standard", value: "影石ACEPro2",       label: "Ace Pro 2 标准版",       icon: "🎿" },
       { id: "action-street", value: "影石ACEPro2街拍套装",       label: "Ace Pro 2 街拍套装",       icon: "🎿" },
@@ -116,7 +116,7 @@ const CATEGORIES = [
     brand: "Insta360",
     homeDesc: "360° 全景记录，旅行、运动与创意拍摄",
     icon: "🌐",
-    iconImage: "images/category-icons/panorama-camera.svg",
+    iconImage: "../../images/category-icons/panorama-camera.svg",
     children: [
       { id: "insta360-x6-standard", value: "影石Insta360 X6标准版", label: "Insta360 X6 标准版", icon: "🌐" },
       { id: "insta360-x6-allround", value: "影石Insta360 X6全能版", label: "Insta360 X6 全能版", icon: "🎒" },
@@ -130,7 +130,7 @@ const CATEGORIES = [
     brand: "Canon",
     homeDesc: "APS-C 画质机身搭配可换镜头，人像旅拍通用",
     icon: "📷",
-    iconImage: "images/category-icons/mirrorless-camera.svg",
+    iconImage: "../../images/category-icons/mirrorless-camera.svg",
     children: [
       { id: "mirrorless-entry", value: "佳能微单+18-45mm入门套镜头", label: "佳能微单 + 18-45mm 入门套机", icon: "🎬" },
       { id: "mirrorless-plus",  value: "佳能微单+18-150mm风光变焦镜头", label: "佳能微单 + 18-150mm 风光变焦", icon: "📷" },
@@ -145,7 +145,7 @@ const CATEGORIES = [
     brand: "Canon",
     homeDesc: "口袋机身即开即拍，旅行与日常随手记录",
     icon: "📸",
-    iconImage: "images/category-icons/compact-camera.svg",
+    iconImage: "../../images/category-icons/compact-camera.svg",
     children: [
       { id: "compact-entry", value: "佳能卡片相机标准版", label: "G7 X Mark III 标准版", icon: "📸" },
       { id: "compact-vlog",  value: "佳能无线蓝牙自拍杆版", label: "G7 X Mark III 蓝牙自拍杆版", icon: "🎥" },
@@ -159,7 +159,7 @@ const CATEGORIES = [
     brand: "Canon",
     homeDesc: "千禧年复古色彩，氛围感照片与胶片质感",
     icon: "📻",
-    iconImage: "images/category-icons/ccd-camera.svg",
+    iconImage: "../../images/category-icons/ccd-camera.svg",
     children: [
       { id: "canon-ixus-210", value: "佳能IXU210复古CCD相机", label: "IXUS 210 复古 CCD", icon: "📸" },
       { id: "canon-ixus-130", value: "佳能IXU130复古CCD相机", label: "IXUS 130 复古 CCD", icon: "📷" }
@@ -172,7 +172,7 @@ const CATEGORIES = [
     brand: "Fotopro",
     homeDesc: "液压云台稳定支撑，直播、合影与长曝光必备",
     icon: "🔭",
-    iconImage: "images/category-icons/tripod.svg",
+    iconImage: "../../images/category-icons/tripod.svg",
     children: [
       { id: "tripod-live",  value: "富宝图FY-830-MH-4A液压云台标准版",   label: "FY-830 液压云台标准版",   icon: "📱" },
       { id: "tripod-cam",   value: "富宝图FY-830-MH-4A所含配件可自选赠送使用",   label: "FY-830 自选赠送配件",   icon: "📷" }
@@ -185,7 +185,7 @@ const CATEGORIES = [
     brand: "SanDisk · Lexar",
     homeDesc: "误删或格式化后，按官方工具流程尝试找回",
     icon: "💾",
-    iconImage: "images/category-icons/memory-recovery.svg",
+    iconImage: "../../images/category-icons/memory-recovery.svg",
     children: [
       { id: "recovery-sd",   value: "SD 卡",       label: "SD 卡数据找回",       icon: "💾" },
       { id: "recovery-tf",   value: "TF 卡",       label: "TF 卡数据找回",       icon: "📱" }
@@ -318,7 +318,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "Pocket 系列开机、屏幕旋转与摇杆操作演示，开机前先看一遍最省心"
           },
           {
@@ -452,7 +452,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
+            "src": "../../images/滤镜参数推荐.jpg",
             "alt": "Pocket 相机美颜与滤镜参数推荐参考图",
             "caption": "美颜与滤镜参数推荐参考，照着微调即可，不要一次拉太满"
           },
@@ -480,13 +480,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "用 DJI Mimo App 无线下载素材的示意图",
             "caption": "无线导出：手机连机器 Wi-Fi，在 App 里挑素材下载"
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "用读卡器把素材导入手机的示意图",
             "caption": "读卡器导出：取出 MicroSD 卡插读卡器，再连接手机"
           },
@@ -514,7 +514,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "口袋云台正确收纳演示，照着做能避免云台受损"
           },
           {
@@ -602,7 +602,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "Pocket 系列开机与摇杆操作演示，第一次用建议先看完"
           },
           {
@@ -749,7 +749,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
+            "src": "../../images/滤镜参数推荐.jpg",
             "alt": "美颜与滤镜参数推荐参考图",
             "caption": "左右滑动调美颜滤镜的参数参考，长拍时不必反复调，定好就拍"
           },
@@ -777,13 +777,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "DJI Mimo App 无线导出素材示意图",
             "caption": "无线导出：装好 App，连上机器 Wi-Fi 就能直接下载"
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "用数据线把素材导出到手机的示意图",
             "caption": "数据线导出：直接一根线接手机或电脑，不需要取卡"
           },
@@ -808,7 +808,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "口袋云台收纳演示，装包前照着检查一遍"
           },
           {
@@ -874,7 +874,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/category-icons/children/pocket3-standard.svg",
+            "src": "../../images/category-icons/children/pocket3-standard.svg",
             "alt": "Pocket 3 机身造型示意",
             "caption": "Pocket 3 机身示意：清点主机时先确认云台和屏幕没有磕碰痕迹"
           }
@@ -895,7 +895,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "Pocket 系列开机、屏幕旋转与摇杆演示，装手柄前先看一遍"
           },
           {
@@ -1053,13 +1053,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "用数据线连接手机导出素材的示意图",
             "caption": "数据线导出：手机和机器直连，适合导长视频"
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "用读卡器导出素材的示意图",
             "caption": "读卡器导出：卡取出来插读卡器，接手机或电脑都能用"
           },
@@ -1084,7 +1084,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "收纳演示：配件多的套装尤其要按清单装包"
           },
           {
@@ -1172,7 +1172,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "Pocket 系列开机、转屏与摇杆操作演示，第一次开机前先看"
           },
           {
@@ -1238,7 +1238,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/pocket4pro-fill-light-original.svg",
+            "src": "../../images/pocket4pro-fill-light-original.svg",
             "alt": "Pocket 4 Pro 补光灯位置与使用示意",
             "caption": "补光灯示意：先看说明书确认开关和亮度调节方式，再决定拍摄时怎么补光"
           },
@@ -1320,7 +1320,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/滤镜参数推荐.jpg",
+            "src": "../../images/滤镜参数推荐.jpg",
             "alt": "美颜与滤镜参数推荐参考图",
             "caption": "美颜与滤镜参考参数，按场景小幅调整，不用一次拉到最大"
           },
@@ -1349,7 +1349,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "用 DJI Mimo 无线导出的示意图",
             "caption": "无线导出：手机装 App 连上机器，挑好素材直接下载到相册"
           },
@@ -1373,7 +1373,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "收纳演示：云台收回、装壳再入包，能避免镜头被磕碰"
           },
           {
@@ -1454,7 +1454,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "Pocket 系列开机与摇杆操作演示，装配件前先看一遍"
           },
           {
@@ -1521,7 +1521,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/pocket4pro-fill-light-original.svg",
+            "src": "../../images/pocket4pro-fill-light-original.svg",
             "alt": "Pocket 4 Pro 补光灯位置与按键示意",
             "caption": "补光灯示意：位置和开关方式以随机说明书为准，拍摄前先试亮一次"
           },
@@ -1627,13 +1627,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "DJI Mimo App 无线下载素材示意图",
             "caption": "无线导出：套装出门在外最方便的一条路，连上 Wi-Fi 就能下"
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "用数据线导出素材到手机的示意图",
             "caption": "数据线导出：长视频和大量素材用它更稳"
           },
@@ -1658,7 +1658,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "收纳演示：先收云台再装壳，配件分格装好再合包"
           },
           {
@@ -1735,7 +1735,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-buttons-original.svg",
+            "src": "../../images/camera-buttons-original.svg",
             "alt": "Insta360 Ace Pro 2 按键位置示意图",
             "caption": "看图找位置：重点看电源键、快门键和左右两侧的屏幕释放键，用之前先花一分钟熟悉手感。"
           },
@@ -1760,7 +1760,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图对齐：电池和卡的数据金手指朝向机身内部，插到底会听到轻微一声或感到到位感。"
           },
@@ -1893,7 +1893,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-handgrip-original.svg",
+            "src": "../../images/camera-handgrip-original.svg",
             "alt": "连接手柄示意图",
             "caption": "看图安装：底部螺纹是主要连接口，装好后再拧一次确认紧固，不要用力过猛。"
           },
@@ -1922,7 +1922,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "官方 App 无线导出示意图",
             "caption": "看图走无线导出：手机装 Insta360 App，连上相机后勾选素材下载，适合现场快速出片。"
           },
@@ -2024,13 +2024,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-buttons-original.svg",
+            "src": "../../images/camera-buttons-original.svg",
             "alt": "Ace Pro 2 按键位置示意图",
             "caption": "看图记位置：出门前对着这张图空按几次快门键和电源键，街拍时不至于手忙脚乱。"
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图装卡：街拍连拍连录很吃卡，确认内存卡已插到底、防水盖扣好再出门。"
           },
@@ -2115,7 +2115,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-handgrip-original.svg",
+            "src": "../../images/camera-handgrip-original.svg",
             "alt": "连接手柄示意图",
             "caption": "看图连接：对准底部螺纹轻旋紧固，装好后轻摇一下确认不松动，再开始街拍。"
           },
@@ -2152,7 +2152,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "官方 App 无线导出示意图",
             "caption": "看图走无线流程：手机装 Insta360 App，连相机后挑几张精选下载，比全量导出快得多。"
           },
@@ -2250,7 +2250,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-buttons-original.svg",
+            "src": "../../images/camera-buttons-original.svg",
             "alt": "Ace Pro 2 按键位置示意图",
             "caption": "看图记键位：挂着拍照时拇指摸电源键、食指摸快门键，摸熟位置就不用低头看。"
           },
@@ -2275,7 +2275,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图确认方向：电池和卡按标记插到底，盖子扣紧听不到松动声才算装好。"
           },
@@ -2337,7 +2337,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-quick-release-original.svg",
+            "src": "../../images/camera-quick-release-original.svg",
             "alt": "挂脖与快拆佩戴示意图",
             "caption": "看图佩戴：相机朝向正前方、略向上仰，镜头别被衣服领口挡住，支架贴合肩颈最舒服。"
           },
@@ -2375,7 +2375,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "数据线连接手机导出示意图",
             "caption": "看图连线：数据线一头接相机、一头接手机或电脑，选中素材直接拷出来，适合导大段视频。"
           },
@@ -2473,7 +2473,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-buttons-original.svg",
+            "src": "../../images/camera-buttons-original.svg",
             "alt": "Ace Pro 2 按键与屏幕释放键位置示意图",
             "caption": "看图重点看两处：屏幕左右两侧的释放键，以及顶部快门键，Vlog 拍摄基本只用这两个。"
           },
@@ -2502,7 +2502,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图装电池和卡：按标记方向插到底，盖好后轻轻晃一下相机，没有松动感才算到位。"
           },
@@ -2532,7 +2532,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-handgrip-original.svg",
+            "src": "../../images/camera-handgrip-original.svg",
             "alt": "连接手柄示意图",
             "caption": "看图安装：相机底部对准手柄接口，顺时针轻旋到紧固，不要用蛮力，装好先摇一摇测试。"
           },
@@ -2602,7 +2602,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "数据线连接手机或电脑导出示意图",
             "caption": "看图连线：数据线一头连相机、一头连手机或电脑，选中视频拷出，长片用这种方式最稳。"
           },
@@ -2700,7 +2700,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/insta360-x6-standard-original.svg",
+            "src": "../../images/insta360-x6-standard-original.svg",
             "alt": "Insta360 X6 机身与按键示意图",
             "caption": "看图找位置：重点看正面的 Q 键与快门键、侧面的电源键，以及左右两支全景镜头。"
           },
@@ -2725,7 +2725,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图确认方向：电池和卡按标记朝里插到底，仓盖扣紧后检查密封圈是否平整压合。"
           },
@@ -2875,7 +2875,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "官方 App 无线导出示意图",
             "caption": "看图走无线流程：手机连上相机的 WiFi 后打开 Insta360 App，选中素材下载，再在 App 里取景剪辑。"
           },
@@ -2955,7 +2955,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/insta360-x6-allround-original.svg",
+            "src": "../../images/insta360-x6-allround-original.svg",
             "alt": "Insta360 X6 全能版配件示意图",
             "caption": "看图点件：对照这张图把电池、手柄、线材等都找出来，缺件当场联系客服说明。"
           },
@@ -3001,7 +3001,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图装卡：电池和内存卡按标记插到底，仓盖密封圈压紧。换电时同样先关机再开仓盖。"
           },
@@ -3031,7 +3031,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-handgrip-original.svg",
+            "src": "../../images/camera-handgrip-original.svg",
             "alt": "连接手柄示意图",
             "caption": "看图安装：相机底部对准手柄接口，轻旋紧固后摇一摇测试，再把画面和模式调好开拍。"
           },
@@ -3121,7 +3121,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器导出示意图",
             "caption": "看图用读卡器：拔出内存卡插入读卡器，再接电脑或手机。全景素材多，这种方式最适合批量拷贝。"
           },
@@ -3201,7 +3201,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/insta360-x6-travel-original.svg",
+            "src": "../../images/insta360-x6-travel-original.svg",
             "alt": "Insta360 X6 旅拍套装配件示意图",
             "caption": "看图点件：对照这张图确认主机、自拍杆、三脚架底座等配件都在，拍照留存方便归还核对。"
           },
@@ -3247,7 +3247,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装示意图",
             "caption": "看图装卡：按标记方向插到底，仓盖一定要扣紧压平，密封圈有沙粒就会漏气进水。"
           },
@@ -3325,7 +3325,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/insta360-x6-travel-original.svg",
+            "src": "../../images/insta360-x6-travel-original.svg",
             "alt": "X6 旅拍套装自拍杆与三脚架示意图",
             "caption": "看图辨配件：自拍杆负责举高拍自己，三脚架底座负责稳稳站住；使用前先确认接好、拧紧。"
           },
@@ -3363,7 +3363,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "数据线连接手机导出示意图",
             "caption": "看图连线：数据线一头连相机一头连手机或电脑，选中素材拷出；酒店里这样备份最方便。"
           },
@@ -3466,13 +3466,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
+            "src": "../../images/camera-mirrorless-front-original.svg",
             "alt": "佳能微单机身正面示意图",
             "caption": "机身正面：看快门按钮、镜头释放键和手柄位置"
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
+            "src": "../../images/camera-mirrorless-back-original.svg",
             "alt": "佳能微单机背屏幕与按键示意图",
             "caption": "机背：屏幕、菜单键、回放键、短片拍摄键都在这一面"
           },
@@ -3502,7 +3502,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装位置示意",
             "caption": "底部仓门里：电池有方向标记，卡槽在另一侧"
           },
@@ -3530,7 +3530,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
+            "src": "../../images/camera-lens-mount-original.svg",
             "alt": "镜头与机身卡口对准示意图",
             "caption": "两个红点对齐，顺时针转到“咔”一声"
           },
@@ -3559,7 +3559,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
+            "src": "../../images/camera-auto-mode-original.svg",
             "alt": "自动模式下的屏幕取景示意",
             "caption": "屏幕取景时，点哪里就对焦哪里"
           },
@@ -3645,7 +3645,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
+            "src": "../../images/camera-phone-connect-original.svg",
             "alt": "手机与相机无线连接示意图",
             "caption": "相机开 Wi-Fi，手机上用 Camera Connect 连接"
           },
@@ -3660,7 +3660,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器把照片导入手机的示意图",
             "caption": "没有 Wi-Fi 时：拔卡 + 读卡器，直接把照片拷到手机"
           },
@@ -3689,7 +3689,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "设备收纳与归还注意事项（客服提供）"
           },
           {
@@ -3737,7 +3737,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
+            "src": "../../images/camera-mirrorless-front-original.svg",
             "alt": "佳能微单机身正面示意图",
             "caption": "机身正面：快门、镜头释放键、手柄"
           },
@@ -3765,7 +3765,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装位置示意",
             "caption": "底部仓门：电池仓与卡槽各一个"
           },
@@ -3793,7 +3793,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
+            "src": "../../images/camera-lens-mount-original.svg",
             "alt": "镜头与机身卡口对准示意图",
             "caption": "红点对红点，顺时针转到“咔”一声"
           },
@@ -3822,7 +3822,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
+            "src": "../../images/camera-auto-mode-original.svg",
             "alt": "屏幕取景构图示意",
             "caption": "取景时看屏幕上的焦距提示，判断当前是多少 mm"
           },
@@ -3911,7 +3911,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "手机 App 无线传图示意图",
             "caption": "相机 Wi-Fi 连 Camera Connect，挑选照片保存到手机"
           },
@@ -3969,13 +3969,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
+            "src": "../../images/camera-mirrorless-front-original.svg",
             "alt": "佳能微单机身正面示意图",
             "caption": "机身正面：快门、镜头释放键、手柄"
           },
           {
             "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
+            "src": "../../images/camera-lens-mount-original.svg",
             "alt": "镜头与机身卡口对准示意图",
             "caption": "红点对红点，顺时针转到底"
           },
@@ -4003,7 +4003,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
+            "src": "../../images/camera-auto-mode-original.svg",
             "alt": "屏幕取景与对焦画面示意",
             "caption": "Av 档左下方显示光圈数字，转动拨盘就能改"
           },
@@ -4040,7 +4040,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
+            "src": "../../images/camera-mirrorless-back-original.svg",
             "alt": "机背屏幕显示对焦框示意图",
             "caption": "机背屏幕：点哪里，对焦框就到哪里"
           }
@@ -4145,13 +4145,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
+            "src": "../../images/camera-phone-connect-original.svg",
             "alt": "手机与相机无线连接示意图",
             "caption": "相机开 Wi-Fi，用 Camera Connect 挑选保存"
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "数据线连接电脑导出示意",
             "caption": "线连电脑也能直接拷贝 DCIM 里的照片"
           },
@@ -4208,13 +4208,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-front-original.svg",
+            "src": "../../images/camera-mirrorless-front-original.svg",
             "alt": "佳能微单机身正面示意图",
             "caption": "右手握机身手柄，快门键在食指位置"
           },
           {
             "type": "img",
-            "src": "images/camera-lens-mount-original.svg",
+            "src": "../../images/camera-lens-mount-original.svg",
             "alt": "镜头与机身卡口对准示意图",
             "caption": "红点对红点，顺时针拧到“咔”一声"
           },
@@ -4243,7 +4243,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装位置示意",
             "caption": "底部仓门：电池、卡槽"
           },
@@ -4271,7 +4271,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
+            "src": "../../images/camera-auto-mode-original.svg",
             "alt": "屏幕取景显示快门速度示意",
             "caption": "屏幕左下角的快门数字，越大越不容易糊"
           },
@@ -4353,7 +4353,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-mirrorless-back-original.svg",
+            "src": "../../images/camera-mirrorless-back-original.svg",
             "alt": "机背屏幕取景与对焦示意图",
             "caption": "用屏幕点选主体，比自动对焦更稳"
           }
@@ -4392,13 +4392,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器导入照片示意图",
             "caption": "读卡器 + 手机或电脑，速度比无线快"
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "手机 App 无线传图示意图",
             "caption": "少量照片可以用 Camera Connect 传"
           },
@@ -4447,7 +4447,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-compact-original.svg",
+            "src": "../../images/camera-compact-original.svg",
             "alt": "佳能 G7 X Mark III 机身操作示意图",
             "caption": "顶部：电源、快门、模式转盘；背面：屏幕与按键"
           },
@@ -4477,7 +4477,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装位置示意",
             "caption": "底部仓门：电池与 SD 卡槽"
           },
@@ -4506,7 +4506,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-compact-original.svg",
+            "src": "../../images/camera-compact-original.svg",
             "alt": "卡片机屏幕取景操作示意",
             "caption": "屏幕点选主体后，轻按快门按到底"
           },
@@ -4558,7 +4558,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
+            "src": "../../images/camera-phone-connect-original.svg",
             "alt": "相机与手机无线连接示意图",
             "caption": "相机开无线，手机用 Camera Connect 连接"
           },
@@ -4638,7 +4638,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-compact-original.svg",
+            "src": "../../images/camera-compact-original.svg",
             "alt": "佳能 G7 X Mark III 机身操作示意图",
             "caption": "顶部：电源、快门、模式转盘、录像键"
           },
@@ -4667,7 +4667,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与内存卡安装位置示意",
             "caption": "底部仓门：电池与 SD 卡"
           },
@@ -4696,7 +4696,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-phone-connect-original.svg",
+            "src": "../../images/camera-phone-connect-original.svg",
             "alt": "无线连接与配对操作示意",
             "caption": "配对在相机菜单的无线设置里完成"
           },
@@ -4734,7 +4734,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/camera-compact-original.svg",
+            "src": "../../images/camera-compact-original.svg",
             "alt": "卡片机屏幕取景自拍示意",
             "caption": "屏幕翻转后看着自己，点屏幕对焦自己"
           },
@@ -4777,13 +4777,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器导入素材示意图",
             "caption": "拔卡 + 读卡器，导到手机或电脑"
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "手机 App 无线传图示意",
             "caption": "少量照片可用 Camera Connect 传"
           },
@@ -4898,7 +4898,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-210-original.svg",
+            "src": "../../images/canon-ixus-210-original.svg",
             "alt": "卡片机机身按键与转盘位置示意",
             "caption": "先认清机顶转盘、快门和背部按键的位置（示意图，具体以实物为准）"
           },
@@ -4947,7 +4947,7 @@ const SUBCATEGORY_CONTENT = {
         "body": [
           {
             "type": "img",
-            "src": "images/camera-battery-card-original.svg",
+            "src": "../../images/camera-battery-card-original.svg",
             "alt": "电池与存储卡安装位置示意",
             "caption": "电池仓与存储卡槽在机身底部，按正确方向插入"
           },
@@ -5028,7 +5028,7 @@ const SUBCATEGORY_CONTENT = {
         "body": [
           {
             "type": "img",
-            "src": "images/camera-auto-mode-original.svg",
+            "src": "../../images/camera-auto-mode-original.svg",
             "alt": "自动模式拍照示意",
             "caption": "对准主体、半按快门锁定，再按到底"
           },
@@ -5148,7 +5148,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器连接手机导出示意",
             "caption": "关机取卡 → 插读卡器 → 文件管理里找到 DCIM 文件夹"
           },
@@ -5254,7 +5254,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-210-original.svg",
+            "src": "../../images/canon-ixus-210-original.svg",
             "alt": "佳能 IXUS 210 机身按键示意图",
             "caption": "正面与背面按键布局：快门、变焦、模式、回放"
           },
@@ -5293,7 +5293,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-210-original.svg",
+            "src": "../../images/canon-ixus-210-original.svg",
             "alt": "IXUS 210 底部电池与卡仓示意",
             "caption": "底部仓门打开后装入电池与 SD 卡"
           },
@@ -5313,7 +5313,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-210-original.svg",
+            "src": "../../images/canon-ixus-210-original.svg",
             "alt": "IXUS 210 闪光灯与模式设置示意",
             "caption": "注意上方闪光灯位置，手指别挡住"
           },
@@ -5387,13 +5387,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器导出照片示意图",
             "caption": "拔卡 + 读卡器，导进手机或电脑"
           },
           {
             "type": "img",
-            "src": "images/export-cable-phone-original.svg",
+            "src": "../../images/export-cable-phone-original.svg",
             "alt": "数据线连接电脑导出示意",
             "caption": "部分老机型支持数据线直连电脑"
           },
@@ -5473,7 +5473,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-130-original.svg",
+            "src": "../../images/canon-ixus-130-original.svg",
             "alt": "佳能 IXUS 130 机身按键示意图",
             "caption": "顶部快门与电源，背面环形方向键与回放键"
           },
@@ -5512,7 +5512,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-130-original.svg",
+            "src": "../../images/canon-ixus-130-original.svg",
             "alt": "IXUS 130 底部电池与卡仓示意",
             "caption": "底部仓门位置与电池方向"
           },
@@ -5532,7 +5532,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/canon-ixus-130-original.svg",
+            "src": "../../images/canon-ixus-130-original.svg",
             "alt": "IXUS 130 闪光灯位置示意",
             "caption": "闪光灯在正面上方，手指握手柄时注意避开"
           },
@@ -5624,13 +5624,13 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/export-reader-phone-original.svg",
+            "src": "../../images/export-reader-phone-original.svg",
             "alt": "读卡器导出照片示意图",
             "caption": "取出 SD 卡接入读卡器，导入手机或电脑"
           },
           {
             "type": "img",
-            "src": "images/export-app-wireless-original.svg",
+            "src": "../../images/export-app-wireless-original.svg",
             "alt": "手机 App 无线传图示意（如机型支持）",
             "caption": "部分机型支持无线，多数仍靠读卡器"
           },
@@ -5684,7 +5684,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/sanjiaojia.png",
+            "src": "../../images/sanjiaojia.png",
             "alt": "富图宝 FY-830 三脚架实物图",
             "caption": "实物图：看脚管锁扣、中轴、云台手柄的位置"
           },
@@ -5736,7 +5736,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/sanjiaojia.png",
+            "src": "../../images/sanjiaojia.png",
             "alt": "三脚架云台与快装板示意",
             "caption": "云台顶部：快装板卡槽与锁紧旋钮"
           },
@@ -5816,7 +5816,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "设备收纳注意事项（客服提供）"
           }
         ]
@@ -5860,7 +5860,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "img",
-            "src": "images/sanjiaojia.png",
+            "src": "../../images/sanjiaojia.png",
             "alt": "三脚架与配件使用场景示意",
             "caption": "配件都是围绕云台与中轴加装的"
           },
@@ -6035,7 +6035,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/收纳说明.mp4",
+            "src": "../../images/收纳说明.mp4",
             "caption": "设备收纳注意事项（客服提供）"
           }
         ]
@@ -6196,7 +6196,7 @@ const SUBCATEGORY_CONTENT = {
           },
           {
             "type": "video",
-            "src": "images/使用说明教程.mp4",
+            "src": "../../images/使用说明教程.mp4",
             "caption": "设备使用说明（客服提供）"
           }
         ]
